@@ -20,18 +20,87 @@
 
   </Views>
 
-  <!-- Popup -->
   <Popup id="my-popup">
     <View>
       <Page>
-        <Navbar title="Popup">
-          <NavRight>
-            <Link popupClose>Close</Link>
-          </NavRight>
+        <Navbar title="Join In">
         </Navbar>
-        <Block>
-          <p>Popup content goes here.</p>
-        </Block>
+          <BlockTitle>Be part of the community</BlockTitle>
+          <List noHairlinesMd inset>
+            <ListInput
+              label="Name"
+              type="text"
+              placeholder="Your name"
+            ></ListInput>
+        
+            <ListInput
+              label="E-mail"
+              type="email"
+              placeholder="E-mail"
+            ></ListInput>
+        
+            <ListInput
+              label="URL"
+              type="url"
+              placeholder="URL"
+            ></ListInput>
+        
+            <ListInput
+              label="Password"
+              type="password"
+              placeholder="Password"
+            ></ListInput>
+        
+            <ListInput
+              label="Phone"
+              type="tel"
+              placeholder="Phone"
+            ></ListInput>
+        
+            <ListInput
+              label="Gender"
+              type="select"
+              >
+              <option>Male</option>
+              <option>Female</option>
+            </ListInput>
+        
+            <ListInput
+              label="Birth date"
+              type="date"
+              placeholder="Birth day"
+              value="2014-04-30"
+            ></ListInput>
+        
+            <ListItem
+              title="Toggle"
+            >
+              <span slot="after">
+                <Toggle />
+              </span>
+            </ListItem>
+        
+            <ListInput
+              label="Range"
+              input={false}
+            >
+              <span slot="after">
+                <Range value={50} min={0} max={100} step={1} />
+              </span>
+            </ListInput>
+        
+            <ListInput
+              type="textarea"
+              label="Textarea"
+              placeholder="Bio"
+            ></ListInput>
+            <ListInput
+              type="textarea"
+              label="Resizable"
+              placeholder="Bio"
+              resizable
+            ></ListInput>
+          </List>
       </Page>
     </View>
   </Popup>
@@ -84,6 +153,8 @@
     Page,
     Navbar,
     Toolbar,
+    Toggle,
+    Range,
     NavRight,
     Link,
     Block,
