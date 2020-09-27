@@ -18,10 +18,16 @@
       <div class="hero-card" >
         <h1 class="hero-card-title">Home Sweet Home, The Wirral</h1>
         <div class="hero-card-info" > 
-            <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
-            <div class="hero-card-text">North West</div> 
-            <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
-            <div class="hero-card-text">England</div>
+           
+            {#if showLocation != undefined }
+              <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
+              <div class="hero-card-text">{latitude}, {longitude}</div> 
+              <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
+              <div class="hero-card-text">England</div>
+            {:else}
+              <div class="hero-card-text">Unknown</div> 
+            {/if}
+   
         </div>
        
       </div>
@@ -35,16 +41,38 @@
     <ListItem link="/form/" title="Form"/>
   </List> -->
 
-  <Block strong inset>
-    <Row>
-      <Col width="50">
-        <Button fill raised popupOpen="#my-popup">Popup</Button>
-      </Col>
-      <Col width="50">
-        <Button fill raised loginScreenOpen="#my-login-screen">Login Screen</Button>
-      </Col>
-    </Row>
-  </Block>
+
+  {#if firsttime == true && loggedIn == false }
+    <Block strong inset>
+      <Row>
+        <Col width="100">
+          <Button fill raised popupOpen="#my-popup">Join In</Button>
+        </Col>
+      </Row>
+    </Block>
+  {:else}
+
+    {#if loggedIn == true }
+      <Block strong inset>
+        <Row>
+          <Col width="100">
+            <Button fill raised on:click|once={getLocation}>Discover</Button>
+          </Col>
+        </Row>
+      </Block>
+    {:else}
+      <Block strong inset>
+        <Row>
+          <Col width="100">
+            <Button fill raised loginScreenOpen="#my-login-screens">Sign In</Button>
+          </Col>
+        </Row>
+      </Block>
+    {/if}
+  
+  {/if}
+
+
 
 </Page>
 
@@ -83,6 +111,35 @@
 </style>
 
 <script>
+
+function getLocation() {
+
+  
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+         showLocation = position;
+         console.log(showLocation);
+
+         latitudeFull = showLocation.coords.latitude;
+         latitude = latitudeFull.toFixed(4);
+         longitude = showLocation.coords.longitude;
+
+        },
+        function errorCallback(error) {
+            //do error handling
+        },
+        {
+            timeout:5000
+        }
+    );
+  } else { 
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+
+
   import {
     Page,
     Card,
@@ -101,4 +158,13 @@
     Col,
     Button
   } from 'framework7-svelte';
+
+  var firsttime = true;
+  var loggedIn = true;
+
+  var ErrorHandler;
+  var showLocation;
+  var latitudeFull;
+  var latitude;
+  var longitude;
 </script>
