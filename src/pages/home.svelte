@@ -1,31 +1,41 @@
-<Page name="home">
+<Page name="home" class="transparent">
   <!-- Top Navbar -->
-  <Navbar large sliding={false}>
-    <NavLeft>
-      <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="left" />
-    </NavLeft>
-    <NavTitle sliding>Odyssey</NavTitle>
-    <NavRight>
-      <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="right" />
-    </NavRight>
-    <NavTitleLarge>Odyssey</NavTitleLarge>
+  <Navbar >
+    <NavTitle>Odyssey</NavTitle>
   </Navbar>
 
-  <!-- Page content -->
-  <Block strong>
-    <p>This is an example of tabs-layout application. The main point of such tabbed layout is that each tab contains independent view with its own routing and navigation.</p>
-
-    <p>Each tab/view may have different layout, different navbar type (dynamic, fixed or static) or without navbar like this tab.</p>
+  <Block >
+    <Row>
+      <Col width="100">
+        <div class="spacing"></div>
+      </Col>
+    </Row>
   </Block>
 
-  <BlockTitle>Navigation</BlockTitle>
-  <List>
+  <Block strong inset>
+    <Row>
+      <Col width="100">
+      <div class="hero-card" >
+        <h1 class="hero-card-title">Home Sweet Home, The Wirral</h1>
+        <div class="hero-card-info" > 
+            <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
+            <div class="hero-card-text">North West</div> 
+            <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
+            <div class="hero-card-text">England</div>
+        </div>
+       
+      </div>
+      </Col>
+    </Row>
+  </Block>
+
+
+  <!-- <List inset>
     <ListItem link="/about/" title="About"/>
     <ListItem link="/form/" title="Form"/>
-  </List>
+  </List> -->
 
-  <BlockTitle>Modals</BlockTitle>
-  <Block strong>
+  <Block strong inset>
     <Row>
       <Col width="50">
         <Button fill raised popupOpen="#my-popup">Popup</Button>
@@ -36,36 +46,46 @@
     </Row>
   </Block>
 
-  <BlockTitle>Panels</BlockTitle>
-  <Block strong>
-    <Row>
-      <Col width="50">
-        <Button fill raised panelOpen="left">Left Panel</Button>
-      </Col>
-      <Col width="50">
-        <Button fill raised panelOpen="right">Right Panel</Button>
-      </Col>
-    </Row>
-  </Block>
-
-  <List>
-    <ListItem
-      title="Dynamic (Component) Route"
-      link="/dynamic-route/blog/45/post/125/?foo=bar#about"
-    />
-    <ListItem
-      title="Default Route (404)"
-      link="/load-something-that-doesnt-exist/"
-    />
-    <ListItem
-      title="Request Data & Load"
-      link="/request-and-load/user/123456/"
-    />
-  </List>
 </Page>
+
+<style>
+  .spacing {
+    height:40vh;
+  }
+
+  .hero-card {
+
+  }
+
+  .hero-card-title{
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+
+  .hero-card-info {
+    display: flex;
+    align-items:center;
+  }
+
+  .hero-card-text {
+    margin-right: 14px;
+    font-weight: bolder;
+    color: #848484;
+  }
+
+  .flag-icons {
+    margin-right: 4px;
+    height: 16px;
+    width: 16px;
+  }
+
+</style>
+
 <script>
   import {
     Page,
+    Card,
     Navbar,
     NavLeft,
     NavTitle,

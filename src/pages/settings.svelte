@@ -1,8 +1,8 @@
 <Page name="settings">
   <Navbar title="Settings" />
 
-  <BlockTitle>Form Example</BlockTitle>
-  <List noHairlinesMd>
+  <BlockTitle class="theme-dark">Form Example</BlockTitle>
+  <List noHairlinesMd inset>
     <ListInput
       label="Name"
       type="text"
@@ -78,8 +78,8 @@
     ></ListInput>
   </List>
 
-  <BlockTitle>Buttons</BlockTitle>
-  <Block strong>
+  <BlockTitle class="theme-dark" >Buttons</BlockTitle>
+  <Block strong inset>
     <Row tag="p">
       <Button class="col">Button</Button>
       <Button class="col" fill>Fill</Button>
@@ -114,8 +114,8 @@
     </Row>
   </Block>
 
-  <BlockTitle>Checkbox group</BlockTitle>
-  <List>
+  <BlockTitle class="theme-dark" >Checkbox group</BlockTitle>
+  <List inset>
     <ListItem
       checkbox
       name="my-checkbox"
@@ -136,8 +136,8 @@
     ></ListItem>
   </List>
 
-  <BlockTitle>Radio buttons group</BlockTitle>
-  <List>
+  <BlockTitle class="theme-dark" >Radio buttons group</BlockTitle>
+  <List inset>
     <ListItem
       radio
       name="radio"

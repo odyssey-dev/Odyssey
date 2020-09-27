@@ -1,7 +1,7 @@
 <Page name="product">
   <Navbar title={currentProduct.title} backLink="Back" />
-  <BlockTitle>About {currentProduct.title}</BlockTitle>
-  <Block strong>
+  <BlockTitle class="theme-dark" >About {currentProduct.title}</BlockTitle>
+  <Block strong inset>
     {currentProduct.description}
   </Block>
 </Page>
