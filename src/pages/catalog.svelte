@@ -1,6 +1,6 @@
 <Page name="catalog">
   <Navbar title="Catalog" />
-  <List>
+  <List inset>
     {#each products as product, index (product.id)}
       <ListItem
         title={product.title}
