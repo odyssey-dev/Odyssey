@@ -1,22 +1,29 @@
- version: 2
- jobs: 
-   one: 
-     docker:
-       - image: circleci/node:12
-     steps:
-       - checkout 
-       - run: npm install
-   two: 
-     steps:
-       - run: npm run build:prod
-   three: 
-     steps:
-       - run: npm run deploy
-
- workflows:
-   version: 2
-   one_and_two: 
-     jobs: 
-       - one
-       - two
-       - three
+--- 
+jobs: 
+  one: 
+    docker: 
+      - 
+        image: "circleci/node:12"
+    steps: 
+      - checkout
+      - 
+        run: "npm install"
+  three: 
+    steps: 
+      - 
+        run: "npm run deploy"
+  two: 
+    steps: 
+      - 
+        run: "npm run build:prod"
+version: 2
+workflows: 
+  filters: 
+    branches: 
+      only: master
+  pipeline: 
+    jobs: 
+      - one
+      - two
+      - three
+  version: 2
