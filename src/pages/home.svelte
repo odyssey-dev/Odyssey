@@ -1,47 +1,29 @@
 <Page name="home" class="transparent">
-  <!-- Top Navbar -->
-  <Navbar >
-    <NavTitle>Odyssey</NavTitle>
-  </Navbar>
 
-  <Block >
-    <Row>
-      <Col width="100">
-        <div class="spacing"></div>
-      </Col>
-    </Row>
-  </Block>
-
+<div class="cards">
+<div class="card">
   <Block strong inset>
     <Row>
       <Col width="100">
-      <div class="hero-card" >
-        <h1 class="hero-card-title">Home Sweet Home, The Wirral</h1>
-        <div class="hero-card-info" > 
-           
+      <div class="hero-card">
+        <h1 class="hero-card-title">Merseyside</h1>
+        <div class="hero-card-info"> 
             {#if showLocation != undefined }
               <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
               <div class="hero-card-text">{latitude}, {longitude}</div> 
+              <div class="spacer"></div>
               <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
               <div class="hero-card-text">England</div>
             {:else}
               <div class="hero-card-text">Unknown</div> 
             {/if}
-   
         </div>
-       
       </div>
       </Col>
     </Row>
   </Block>
-
-
-  <!-- <List inset>
-    <ListItem link="/about/" title="About"/>
-    <ListItem link="/form/" title="Form"/>
-  </List> -->
-
-
+</div>
+<div class="card">
   {#if firsttime == true && loggedIn == false }
     <Block strong inset>
       <Row>
@@ -71,43 +53,70 @@
     {/if}
   
   {/if}
-
-
+</div>
+</div>
 
 </Page>
 
 <style>
-  .spacing {
-    height:40vh;
-  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
   .hero-card {
-
+    display: flex;
+    text-align: center;
+    flex-direction: column;
   }
 
-  .hero-card-title{
+  .spacer {
+    display: flex;
+    width: 24%;
+  }
+
+  .hero-card-title {
     margin-top: 8px;
-    font-size: 18px;
-    font-weight: bolder;
+    margin-bottom: 4px;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Rubik', sans-serif;
+
   }
 
   .hero-card-info {
     display: flex;
+    flex-direction: row;
     align-items:center;
+    justify-content: space-evenly;
+    margin-bottom: 16px;
+    font-family: 'Roboto';
+    
   }
 
   .hero-card-text {
     margin-right: 14px;
     font-weight: bolder;
     color: #848484;
+    margin-right: 0;
   }
 
   .flag-icons {
     margin-right: 4px;
+    margin-left: 4px;
     height: 16px;
     width: 16px;
   }
 
+  .cards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    bottom: 10%;
+  }
+
+  .card {
+    margin: 10px;
+  }
 </style>
 
 <script>
@@ -123,8 +132,8 @@ function getLocation() {
 
          latitudeFull = showLocation.coords.latitude;
          latitude = latitudeFull.toFixed(4);
-         longitude = showLocation.coords.longitude;
-
+         longitudeFull = showLocation.coords.longitude;
+         longitude = longitudeFull.toFixed(4);
         },
         function errorCallback(error) {
             //do error handling
@@ -165,6 +174,7 @@ function getLocation() {
   var ErrorHandler;
   var showLocation;
   var latitudeFull;
+  var longitudeFull;  
   var latitude;
   var longitude;
 </script>
