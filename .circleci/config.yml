@@ -1,0 +1,18 @@
+--- 
+jobs: 
+  checkout: 
+    docker: 
+      - image: "circleci/node:12"
+    steps: 
+      - deploy
+      - run: "npm install"
+      - run: "npm run build:prod"
+      - run: "npm run deploy"
+      
+workflows: 
+  pipeline: 
+    jobs: 
+      - deploy
+        filters: 
+          branches: 
+            only: master
