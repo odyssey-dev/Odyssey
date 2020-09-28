@@ -1,29 +1,7 @@
 <App params={ f7params } >
 
-  <!-- Left panel with cover effect-->
-  <Panel left cover themeDark>
-    <View>
-      <Page>
-        <Navbar title="Left Panel"/>
-        <Block>Left panel content goes here</Block>
-      </Page>
-    </View>
-  </Panel>
-
-
-  <!-- Right panel with reveal effect-->
-  <Panel right reveal themeDark>
-    <View>
-      <Page>
-        <Navbar title="Right Panel"/>
-        <Block>Right panel content goes here</Block>
-      </Page>
-    </View>
-  </Panel>
-
-
   <!-- Views/Tabs container -->
-  <Views tabs class="safe-areas">
+  <Views tabs class="safe-areas {background_hour}">
     <!-- Tabbar for switching views-tabs -->
     <Toolbar tabbar labels bottom>
       <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
@@ -42,19 +20,87 @@
 
   </Views>
 
-
-  <!-- Popup -->
   <Popup id="my-popup">
     <View>
       <Page>
-        <Navbar title="Popup">
-          <NavRight>
-            <Link popupClose>Close</Link>
-          </NavRight>
+        <Navbar title="Join In">
         </Navbar>
-        <Block>
-          <p>Popup content goes here.</p>
-        </Block>
+          <BlockTitle>Be part of the community</BlockTitle>
+          <List noHairlinesMd inset>
+            <ListInput
+              label="Name"
+              type="text"
+              placeholder="Your name"
+            ></ListInput>
+        
+            <ListInput
+              label="E-mail"
+              type="email"
+              placeholder="E-mail"
+            ></ListInput>
+        
+            <ListInput
+              label="URL"
+              type="url"
+              placeholder="URL"
+            ></ListInput>
+        
+            <ListInput
+              label="Password"
+              type="password"
+              placeholder="Password"
+            ></ListInput>
+        
+            <ListInput
+              label="Phone"
+              type="tel"
+              placeholder="Phone"
+            ></ListInput>
+        
+            <ListInput
+              label="Gender"
+              type="select"
+              >
+              <option>Male</option>
+              <option>Female</option>
+            </ListInput>
+        
+            <ListInput
+              label="Birth date"
+              type="date"
+              placeholder="Birth day"
+              value="2014-04-30"
+            ></ListInput>
+        
+            <ListItem
+              title="Toggle"
+            >
+              <span slot="after">
+                <Toggle />
+              </span>
+            </ListItem>
+        
+            <ListInput
+              label="Range"
+              input={false}
+            >
+              <span slot="after">
+                <Range value={50} min={0} max={100} step={1} />
+              </span>
+            </ListInput>
+        
+            <ListInput
+              type="textarea"
+              label="Textarea"
+              placeholder="Bio"
+            ></ListInput>
+            <ListInput
+              type="textarea"
+              label="Resizable"
+              placeholder="Bio"
+              resizable
+            ></ListInput>
+          </List>
       </Page>
     </View>
   </Popup>
@@ -88,7 +134,11 @@
       </Page>
     </View>
   </LoginScreen>
+
 </App>
+
+
+
 <script>
   import { onMount } from 'svelte';
   import { Device }  from 'framework7/framework7-lite.esm.bundle.js';
@@ -103,6 +153,8 @@
     Page,
     Navbar,
     Toolbar,
+    Toggle,
+    Range,
     NavRight,
     Link,
     Block,
@@ -117,6 +169,12 @@
   } from 'framework7-svelte';
   import cordovaApp from '../js/cordova-app';
   import routes from '../js/routes';
+
+  var date = new Date();
+  var current_hour = date.getHours();
+  var background_hour = "g"+current_hour;
+
+  console.log(background_hour);
 
   // Framework7 Parameters
   let f7params = {
