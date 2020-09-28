@@ -4,30 +4,14 @@ jobs:
     docker: 
       - image: "circleci/node:12"
     steps: 
-      - checkout
+      - deploy
       - run: "npm install"
-  build: 
-    docker: 
-      - image: "circleci/node:12"
-    steps: 
       - run: "npm run build:prod"
-  deploy: 
-    docker: 
-      - image: "circleci/node:12"
-    steps: 
       - run: "npm run deploy"
       
 workflows: 
   pipeline: 
     jobs: 
-      - checkout
-        filters: 
-          branches: 
-           only: master
-      - build
-        filters: 
-          branches: 
-           only: master
       - deploy
         filters: 
           branches: 
