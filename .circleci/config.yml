@@ -9,10 +9,11 @@ jobs:
       - run: "npm run build:prod"
       - run: "npm run deploy"
       
-workflows: 
-  pipeline: 
-    jobs: 
-      - deploy
-        filters: 
-          branches: 
-            only: master
+workflows:
+  version: 2.1
+  pipeline:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
