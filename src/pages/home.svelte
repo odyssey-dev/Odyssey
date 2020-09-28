@@ -1,8 +1,8 @@
 <Page name="home" class="transparent">
   <!-- Top Navbar -->
-  <Navbar >
+  <!-- <Navbar >
     <NavTitle>Odyssey</NavTitle>
-  </Navbar>
+  </Navbar> -->
 
   <Block >
     <Row>
@@ -12,13 +12,14 @@
     </Row>
   </Block>
 
+<div class="cards">
+<div class="card">
   <Block strong inset>
     <Row>
       <Col width="100">
-      <div class="hero-card" >
-        <h1 class="hero-card-title">Home Sweet Home, The Wirral</h1>
-        <div class="hero-card-info" > 
-           
+      <div class="hero-card">
+        <h1 class="hero-card-title">Merseyside</h1>
+        <div class="hero-card-info"> 
             {#if showLocation != undefined }
               <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
               <div class="hero-card-text">{latitude}, {longitude}</div> 
@@ -27,21 +28,13 @@
             {:else}
               <div class="hero-card-text">Unknown</div> 
             {/if}
-   
         </div>
-       
       </div>
       </Col>
     </Row>
   </Block>
-
-
-  <!-- <List inset>
-    <ListItem link="/about/" title="About"/>
-    <ListItem link="/form/" title="Form"/>
-  </List> -->
-
-
+</div>
+<div class="card">
   {#if firsttime == true && loggedIn == false }
     <Block strong inset>
       <Row>
@@ -71,8 +64,8 @@
     {/if}
   
   {/if}
-
-
+</div>
+</div>
 
 </Page>
 
@@ -82,18 +75,21 @@
   }
 
   .hero-card {
-
+    display: flex;
+    text-align: center;
+    flex-direction: column;
   }
 
-  .hero-card-title{
+  .hero-card-title {
     margin-top: 8px;
-    font-size: 18px;
-    font-weight: bolder;
+    font-size: 24px;
+    font-weight: bold;
   }
 
   .hero-card-info {
     display: flex;
     align-items:center;
+    justify-content: center;
   }
 
   .hero-card-text {
@@ -108,6 +104,17 @@
     width: 16px;
   }
 
+  .cards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    bottom: 10%;
+  }
+
+  .card {
+    margin: 10px;
+  }
 </style>
 
 <script>
