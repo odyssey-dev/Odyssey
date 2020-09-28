@@ -15,4 +15,4 @@ jobs:
         node-version: '12.x'
     - run: npm install
     - run: npm run build-prod
-    - run: npm run deploy -d www
+    - run: npm run deploy
