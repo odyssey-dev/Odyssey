@@ -18,7 +18,7 @@ import * as firebase from 'firebase'
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
   apiKey: "AIzaSyDItGG1opisGpeiVW-u18Ao4qy0ctFRQ1k",
-  authDomain: "tlclassless.github.io/Odyssey/",
+  authDomain: "odysseyapp.dev",
   databaseURL: "https://odyssey-65e36.firebaseio.com",
   projectId: "odyssey-65e36",
   storageBucket: "odyssey-65e36.appspot.com",
