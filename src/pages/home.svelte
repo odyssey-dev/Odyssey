@@ -42,11 +42,20 @@
           </Col>
         </Row>
       </Block>
+
+
+      <Block strong inset>
+        <Row>
+          <Col width="100">
+            <Button fill raised on:click|once={logout}>Logout</Button>
+          </Col>
+        </Row>
+      </Block>
     {:else}
       <Block strong inset>
         <Row>
           <Col width="100">
-            <Button fill raised loginScreenOpen="#my-login-screens">Sign In</Button>
+            <Button fill raised on:click|once={login} >Sign In</Button>
           </Col>
         </Row>
       </Block>
@@ -122,8 +131,6 @@
 <script>
 
 function getLocation() {
-
-  
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       function(position) {
@@ -147,7 +154,29 @@ function getLocation() {
   }
 }
 
+import * as firebase from 'firebase'
 
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+
+function login() {
+  auth.signInWithPopup(provider);
+}
+
+function logout() {
+  auth.signOut();
+}
+
+var loggedIn;
+
+auth.onAuthStateChanged(user => {
+  if (user){
+    loggedIn = true;
+  } else {
+    loggedIn = false;
+  }
+});
 
   import {
     Page,
@@ -168,8 +197,10 @@ function getLocation() {
     Button
   } from 'framework7-svelte';
 
-  var firsttime = true;
-  var loggedIn = true;
+
+
+  var firsttime = false;
+
 
   var ErrorHandler;
   var showLocation;
