@@ -13,6 +13,22 @@ import '../css/app.css';
 
 // Import App Component
 import App from '../components/app.svelte';
+import * as firebase from 'firebase'
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+  apiKey: "AIzaSyDItGG1opisGpeiVW-u18Ao4qy0ctFRQ1k",
+  authDomain: "odyssey-65e36.firebaseapp.com",
+  databaseURL: "https://odyssey-65e36.firebaseio.com",
+  projectId: "odyssey-65e36",
+  storageBucket: "odyssey-65e36.appspot.com",
+  messagingSenderId: "472825991254",
+  appId: "1:472825991254:web:ec6f2163e9183667952bf7",
+  measurementId: "G-7HLL2Q93W8"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 // Init F7 Svelte Plugin
 Framework7.use(Framework7Svelte)

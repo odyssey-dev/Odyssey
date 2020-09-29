@@ -2,7 +2,7 @@
   <Navbar title="Not found" backLink="Back" />
   <Block strong>
     <p>Sorry</p>
-    <p>Requested content not found.</p>
+    <p>You seem to be lost.</p>
   </Block>
 </Page>
 <script>
