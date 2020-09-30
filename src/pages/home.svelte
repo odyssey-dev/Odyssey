@@ -7,7 +7,7 @@
             <Col width="100">
               <div class="hero-card">
                 <div class="profile-info">
-                  <img class="pp" src="/static/default-pp.png" alt="profile picture" width="50" height="50">
+                  <img class="pp" src="{userPhoto}" alt="profile picture" width="50" height="50">
                   <div class="profile-txt">
                     <div class="profile-name"><p>{username}</p></div>
                     <div class="profile-points"><p>🧭 1,500</p></div>
@@ -237,6 +237,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 // Authentication
 var loggedIn;
 var username;
+var userPhoto;
 var firsttime = false;
 function login() {
   auth.signInWithPopup(provider);
@@ -250,6 +251,8 @@ function logout() {
 auth.onAuthStateChanged(user => {
   if (user){
     username = user.displayName;
+    userPhoto = user.photoURL;
+    
     console.log(username);
     loggedIn = true;
   } else {
