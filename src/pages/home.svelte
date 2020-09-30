@@ -60,13 +60,17 @@
       </div>
     </div>
   {:else if loggedIn == false}
-  <Block strong inset>
-    <Row>
-      <Col width="100">
-        <Button fill raised on:click|once={login} >Sign In</Button>
-      </Col>
-    </Row>
-  </Block>
+    <div class="cards">
+      <div class="card">
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+              <Button fill raised on:click|once={login} >Sign In</Button>
+            </Col>
+          </Row>
+        </Block>
+      </div>
+    </div>
   {:else}
    
   {/if}
