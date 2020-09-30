@@ -242,6 +242,7 @@ function logout() {
 auth.onAuthStateChanged(user => {
   if (user){
     username = user.displayName;
+    console.log(username);
     loggedIn = true;
   } else {
     username = "";
