@@ -1,91 +1,73 @@
 <Page name="home" class="transparent">
-
-<div class="top-card">
-  <div class="card">
-    <Block strong inset>
-      <Row>
-        <Col width="100">
-          <div class="hero-card">
-            <div class="profile-info">
-              <image class="pp" src="/static/default-pp.png" alt="profile picture" width="50" height="50">
-              <div class="profile-txt">
-                <div class="profile-name"><p>Sample User</p></div>
-                <div class="profile-points"><p>🧭 1,500</p></div>
+  {#if loggedIn == true }
+    <div class="top-card">
+      <div class="card">
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+              <div class="hero-card">
+                <div class="profile-info">
+                  <img class="pp" src="/static/default-pp.png" alt="profile picture" width="50" height="50">
+                  <div class="profile-txt">
+                    <div class="profile-name"><p>{username}</p></div>
+                    <div class="profile-points"><p>🧭 1,500</p></div>
+                  </div>
+                </div>
+              </div>
+            </Col>  
+          </Row>
+        </Block>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+            <div class="hero-card">
+              <h1 class="hero-card-title">Merseyside</h1>
+              <div class="hero-card-info"> 
+                  {#if showLocation != undefined }
+                    <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
+                    <div class="hero-card-text">{latitude}, {longitude}</div> 
+                    <div class="spacer"></div>
+                    <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
+                    <div class="hero-card-text">England</div>
+                  {:else}
+                    <div class="hero-card-text">Unknown</div> 
+                  {/if}
               </div>
             </div>
-          </div>
-        </Col>  
-      </Row>
-    </Block>
-  </div>
-</div>
-
-
-<div class="cards">
-<div class="card">
-  <Block strong inset>
-    <Row>
-      <Col width="100">
-      <div class="hero-card">
-        <h1 class="hero-card-title">Merseyside</h1>
-        <div class="hero-card-info"> 
-            {#if showLocation != undefined }
-              <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
-              <div class="hero-card-text">{latitude}, {longitude}</div> 
-              <div class="spacer"></div>
-              <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
-              <div class="hero-card-text">England</div>
-            {:else}
-              <div class="hero-card-text">Unknown</div> 
-            {/if}
-        </div>
+            </Col>
+          </Row>
+        </Block>
       </div>
-      </Col>
-    </Row>
-  </Block>
-</div>
-<div class="card">
-  {#if firsttime == true && loggedIn == false }
+      <div class="card">
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+              <Button fill raised on:click|once={getLocation}>Discover</Button>
+            </Col>
+          </Row>
+        </Block>
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+              <Button fill raised on:click|once={logout}>Logout</Button>
+            </Col>
+          </Row>
+        </Block>
+      </div>
+    </div>
+  {:else}
     <Block strong inset>
       <Row>
         <Col width="100">
-          <Button fill raised popupOpen="#my-popup">Join In</Button>
+          <Button fill raised on:click|once={login} >Sign In</Button>
         </Col>
       </Row>
     </Block>
-  {:else}
-
-    {#if loggedIn == true }
-      <Block strong inset>
-        <Row>
-          <Col width="100">
-            <Button fill raised on:click|once={getLocation}>Discover</Button>
-          </Col>
-        </Row>
-      </Block>
-
-
-      <Block strong inset>
-        <Row>
-          <Col width="100">
-            <Button fill raised on:click|once={logout}>Logout</Button>
-          </Col>
-        </Row>
-      </Block>
-    {:else}
-      <Block strong inset>
-        <Row>
-          <Col width="100">
-            <Button fill raised on:click|once={login} >Sign In</Button>
-          </Col>
-        </Row>
-      </Block>
-    {/if}
-  
   {/if}
-</div>
-</div>
-
 </Page>
 
 <style>
@@ -184,51 +166,79 @@
 </style>
 
 <script>
+  var name;
+// Location
+  var ErrorHandler;
+  var showLocation;
+  var latitudeFull;
+  var longitudeFull;  
+  var latitude;
+  var longitude;
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-         showLocation = position;
-         console.log(showLocation);
-
-         latitudeFull = showLocation.coords.latitude;
-         latitude = latitudeFull.toFixed(4);
-         longitudeFull = showLocation.coords.longitude;
-         longitude = longitudeFull.toFixed(4);
-        },
-        function errorCallback(error) {
-            //do error handling
-        },
-        {
-            timeout:5000
-        }
-    );
-  } else { 
-    console.log("Geolocation is not supported by this browser.");
+          showLocation = position;
+          latitudeFull = showLocation.coords.latitude;
+          longitudeFull = showLocation.coords.longitude;
+      
+          formatLocation(longitudeFull,latitudeFull);
+          },
+          function errorCallback(error) {
+              //do error handling
+          },
+          {
+              timeout:5000
+          }
+      );
+    } else { 
+      console.log("Geolocation is not supported by this browser.");
+    }
   }
+
+function formatLocation(longitudeFull,latitudeFull) {
+  latitude = latitudeFull.toFixed(4);
+  longitude = longitudeFull.toFixed(4);
+  var locationData = {longitude:longitude, latitude:latitude};
+  oneToOne(locationData);
 }
 
+async function oneToOne(locationData) {
+  const {uid} = auth.currentUser;
+  const ref = db.collection('accounts').doc(uid);
+  return ref.set(locationData);
+}
+
+
+// Firebase
 import * as firebase from 'firebase'
 
 const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
+
 const provider = new firebase.auth.GoogleAuthProvider();
 
-
+// Authentication
+var loggedIn;
+var username;
+var firsttime = false;
 function login() {
   auth.signInWithPopup(provider);
 }
+
 
 function logout() {
   auth.signOut();
 }
 
-var loggedIn;
-
 auth.onAuthStateChanged(user => {
   if (user){
+    username = user.displayName;
     loggedIn = true;
   } else {
+    username = "";
     loggedIn = false;
   }
 });
@@ -252,15 +262,4 @@ auth.onAuthStateChanged(user => {
     Button
   } from 'framework7-svelte';
 
-
-
-  var firsttime = false;
-
-
-  var ErrorHandler;
-  var showLocation;
-  var latitudeFull;
-  var longitudeFull;  
-  var latitude;
-  var longitude;
 </script>
