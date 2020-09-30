@@ -28,8 +28,9 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 
+const analytics = firebase.analytics();
+const performance = firebase.performance();
 // Init F7 Svelte Plugin
 Framework7.use(Framework7Svelte)
 
