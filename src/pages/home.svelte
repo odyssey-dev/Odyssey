@@ -9,7 +9,7 @@
             <div class="profile-info">
               <image class="pp" src="/static/default-pp.png" alt="profile picture" width="50" height="50">
               <div class="profile-txt">
-                <div class="profile-name"><p>Ben Buckley</p></div>
+                <div class="profile-name"><p>Sample User</p></div>
                 <div class="profile-points"><p>🧭 1,500</p></div>
               </div>
             </div>
