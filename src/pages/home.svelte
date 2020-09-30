@@ -59,14 +59,16 @@
         </Block>
       </div>
     </div>
+  {:else if loggedIn == false}
+  <Block strong inset>
+    <Row>
+      <Col width="100">
+        <Button fill raised on:click|once={login} >Sign In</Button>
+      </Col>
+    </Row>
+  </Block>
   {:else}
-    <Block strong inset>
-      <Row>
-        <Col width="100">
-          <Button fill raised on:click|once={login} >Sign In</Button>
-        </Col>
-      </Row>
-    </Block>
+   
   {/if}
 </Page>
 
