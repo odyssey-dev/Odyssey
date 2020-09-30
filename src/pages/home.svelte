@@ -1,5 +1,26 @@
 <Page name="home" class="transparent">
 
+<div class="top-card">
+  <div class="card">
+    <Block strong inset>
+      <Row>
+        <Col width="100">
+          <div class="hero-card">
+            <div class="profile-info">
+              <image class="pp" src="/static/default-pp.png" alt="profile picture" width="50" height="50">
+              <div class="profile-txt">
+                <div class="profile-name"><p>Sample User</p></div>
+                <div class="profile-points"><p>🧭 1,500</p></div>
+              </div>
+            </div>
+          </div>
+        </Col>  
+      </Row>
+    </Block>
+  </div>
+</div>
+
+
 <div class="cards">
 <div class="card">
   <Block strong inset>
@@ -84,7 +105,7 @@
 
   .hero-card-title {
     margin-top: 8px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     font-size: 30px;
     font-weight: 600;
     font-family: 'Rubik', sans-serif;
@@ -119,13 +140,47 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: fixed;
-    bottom: 10%;
+    position: absolute;
+    bottom: 2%;
+  }
+
+  .top-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 2%;
   }
 
   .card {
     margin: 10px;
   }
+
+  .pp {
+    display: flex;
+    border-radius: 50%;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .profile-txt {
+    margin-left: 5px;
+  }
+
+  .profile-txt p {
+    display:flex;
+    margin: 0px;
+  }
+
+  .profile-name {
+    font-size: 14pt;
+    font-weight: 600;
+  }
+
 </style>
 
 <script>
