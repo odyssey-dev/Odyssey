@@ -220,7 +220,8 @@ function formatLocation(longitudeFull,latitudeFull) {
 async function oneToOne(locationData) {
   const {uid} = auth.currentUser;
   const ref = db.collection('accounts').doc(uid);
-  return ref.set(locationData);
+  console.log("Sending data...");
+  return ref.set({locationData},{merge:true});
 }
 
 
