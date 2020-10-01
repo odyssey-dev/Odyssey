@@ -1,5 +1,8 @@
 <Page name="home" class="transparent">
   {#if loggedIn == true }
+  <div class="background">
+    <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
+  </div>
     <div class="top-card">
       <div class="card">
         <Block strong inset>
@@ -174,6 +177,13 @@
   .profile-name {
     font-size: 14pt;
     font-weight: 600;
+  }
+
+  .bg {
+    z-index: -1;
+    position:absolute;
+    bottom: 0;
+    opacity: 0.4;
   }
 
 </style>
