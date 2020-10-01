@@ -10,6 +10,7 @@
             <Col width="100">
               <div class="hero-card">
                 <div class="profile-info">
+                  <!-- svelte-ignore a11y-img-redundant-alt -->
                   <img class="pp" src="{userPhoto}" alt="profile picture" width="50" height="50">
                   <div class="profile-txt">
                     <div class="profile-name"><p>{username}</p></div>
