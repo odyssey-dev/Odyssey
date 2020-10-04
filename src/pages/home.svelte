@@ -289,8 +289,8 @@ auth.onAuthStateChanged(user => {
     Col,
     Button,
     Popup,
-    Swiper,
-    SwiperSlide
+    // Swiper,
+    // SwiperSlide
   } from 'framework7-svelte';
 
 

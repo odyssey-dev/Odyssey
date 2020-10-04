@@ -45,6 +45,7 @@
               <h1 class="swiper-title">Have Fun & Stay Safe</h1>
               <p>Keep yourself safe, earn lots of badges and, most importantly,
                 have fun, get ready to start your Odyssey and enjoy the adventure!</p>
+              <button class="button">Sign in with Google</button>
             </div>
           </SwiperSlide>
 
@@ -99,15 +100,31 @@
     display: flex;
     justify-content: center;
   }
+
+  .button {
+    position:fixed;
+    bottom: 10%;
+    background-color: orange;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    width: 90%;
+    }
+
 </style>
 <script>
     import { 
         f7,
+        Button,
         Page,
         Swiper,
         SwiperSlide,
         Card,
         Link,
         Block,
+        Col
      } from 'framework7-svelte';
 </script>
