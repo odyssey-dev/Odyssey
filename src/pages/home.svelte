@@ -79,19 +79,11 @@
       </div>
     </div>
   {:else}
-  <img class="loading" src="/static/svgs/loading.svg" alt="loading" width="50" height="50">
+    <LoadingIcon></LoadingIcon>
   {/if}
 </Page>
 
 <style>
-
-  .loading {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    margin: 0 auto;
-  }
-
   .hero-card {
     display: flex;
     text-align: center;
@@ -189,6 +181,9 @@
 </style>
 
 <script>
+
+  import LoadingIcon from '@odyssey-dev/loading-icon';
+
   var name;
 // Location
   var ErrorHandler;
