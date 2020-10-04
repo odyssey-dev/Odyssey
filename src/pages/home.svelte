@@ -23,9 +23,6 @@
         </Block>
       </div>
     </div>
-
-    <Landing></Landing>
-
     <div class="cards">
       <div class="card">
         <Block strong inset>
@@ -67,7 +64,7 @@
       </div>
     </div>
   {:else if loggedIn == false}
-    <div class="cards">
+    <!-- <div class="cards">
       <div class="card">
         <Block strong inset>
           <Row>
@@ -77,7 +74,8 @@
           </Row>
         </Block>
       </div>
-    </div>
+    </div> -->
+    <Landing></Landing>
   {:else}
   <img class="loading" src="/static/svgs/loading.svg" alt="loading" width="50" height="50">
   {/if}
@@ -288,9 +286,7 @@ auth.onAuthStateChanged(user => {
     Row,
     Col,
     Button,
-    Popup,
-    // Swiper,
-    // SwiperSlide
+    Popup
   } from 'framework7-svelte';
 
 
