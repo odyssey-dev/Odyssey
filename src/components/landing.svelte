@@ -7,9 +7,9 @@
             <div class="swiper-img-cont"><img class="swiper-img" src="../static/svgs/slider-img-1.svg" alt="profile picture"></div>
             <div class="swiper-info">
               <h1 class="swiper-title">Visit Anywhere</h1>
-              <p>Towns, Cities, Countries, anywhere!
+              <p>You can go to Towns, Cities, Countries, Continents, anywhere!
               <br><br>
-              Just get out and explore!</p>
+              Just get out there and explore!</p>
             </div>
           </SwiperSlide>
         </div>
@@ -45,7 +45,7 @@
               <h1 class="swiper-title">Have Fun & Stay Safe</h1>
               <p>Keep yourself safe, earn lots of badges and, most importantly,
                 have fun, get ready to start your Odyssey and enjoy the adventure!</p>
-              <button class="button">Sign in with Google</button>
+              <button class="button" on:click|once={login}>Sign in with Google</button>
             </div>
           </SwiperSlide>
 
@@ -96,6 +96,11 @@
     padding-top: 0%;
   }
 
+  .swiper-info p {
+    font-size: 14pt;
+    text-align: center;
+  }
+
   .swiper-title {
     display: flex;
     justify-content: center;
@@ -127,4 +132,40 @@
         Block,
         Col
      } from 'framework7-svelte';
+
+     // Firebase
+import * as firebase from 'firebase'
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+const provider = new firebase.auth.GoogleAuthProvider();
+
+// Authentication
+var loggedIn;
+var username;
+var userPhoto;
+var firsttime = false;
+function login() {
+  auth.signInWithPopup(provider);
+}
+
+
+function logout() {
+  auth.signOut();
+}
+
+auth.onAuthStateChanged(user => {
+  if (user){
+    username = user.displayName;
+    userPhoto = user.photoURL;
+    
+    console.log(username);
+    loggedIn = true;
+  } else {
+    username = "";
+    loggedIn = false;
+  }
+});
 </script>
