@@ -23,6 +23,9 @@
         </Block>
       </div>
     </div>
+
+    <Landing></Landing>
+
     <div class="cards">
       <div class="card">
         <Block strong inset>
@@ -106,7 +109,6 @@
     font-size: 30px;
     font-weight: 600;
     font-family: 'Rubik', sans-serif;
-
   }
 
   .hero-card-info {
@@ -115,8 +117,7 @@
     align-items:center;
     justify-content: space-evenly;
     margin-bottom: 16px;
-    font-family: 'Roboto', sans-serif;
-    
+    font-family: 'Roboto', sans-serif;    
   }
 
   .hero-card-text {
@@ -180,7 +181,7 @@
 
   .bg {
     z-index: -1;
-    position:absolute;
+    position:fixed;
     bottom: 0;
     opacity: 0.4;
   }
@@ -286,7 +287,16 @@ auth.onAuthStateChanged(user => {
     ListItem,
     Row,
     Col,
-    Button
+    Button,
+    Popup,
+    Swiper,
+    SwiperSlide
   } from 'framework7-svelte';
+
+
+  // importing landing functionality
+  import Landing from '../components/landing.svelte';
+  let popupOpened = false;
+  let popup;
 
 </script>
