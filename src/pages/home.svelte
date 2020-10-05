@@ -3,31 +3,37 @@
   <div class="background">
     <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
   </div>
-    <div class="top-card">
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <div class="hero-card">
-                <div class="profile-info">
-                  <!-- svelte-ignore a11y-img-redundant-alt -->
-                  <img class="pp" src="{userPhoto}" alt="profile picture" width="50" height="50">
-                  <div class="profile-txt">
-                    <div class="profile-name"><p>{username}</p></div>
-                    <div class="profile-points"><p>🧭 1,500</p></div>
-                  </div>
+
+<!-- Top Section (Pic, Name and Points) -->
+  
+  <div class="top-card">
+    <div class="card">
+      <Block strong inset>
+        <Row>
+          <Col width="100">
+            <div class="hero-card">
+              <div class="profile-info">
+                <!-- svelte-ignore a11y-img-redundant-alt -->
+                <img class="pp" src="{userPhoto}" alt="profile picture" width="50" height="50">
+                <div class="profile-txt">
+                  <div class="profile-name"><p>{username}</p></div>
+                  <div class="profile-points"><p>{badgePoints}</p></div>
                 </div>
               </div>
-            </Col>  
-          </Row>
-        </Block>
-      </div>
+            </div>
+          </Col>  
+        </Row>
+      </Block>
     </div>
-    <div class="cards">
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
+  </div>
+
+<!-- Bottom Section (Location info, Latest Badges) -->
+
+  <div class="cards">
+    <div class="card"> <!-- Location info -->
+      <Block strong inset>
+        <Row>
+          <Col width="100">
             <div class="hero-card">
               <h1 class="hero-card-title">Merseyside</h1>
               <div class="hero-card-info"> 
@@ -42,42 +48,33 @@
                   {/if}
               </div>
             </div>
-            </Col>
-          </Row>
-        </Block>
-      </div>
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <Button fill raised on:click|once={getLocation}>Discover</Button>
-            </Col>
-          </Row>
-        </Block>
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <Button fill raised on:click|once={logout}>Logout</Button>
-            </Col>
-          </Row>
-        </Block>
-      </div>
+          </Col>
+        </Row>
+      </Block>
     </div>
+
+    <div class="card"> <!-- Discover and Logout buttons, TEMPORARY -->
+      <Block strong inset>
+        <Row>
+          <Col width="100">
+            <Button fill raised on:click|once={getLocation}>Discover</Button>
+          </Col>
+        </Row>
+      </Block>
+      <Block strong inset>
+        <Row>
+          <Col width="100">
+            <Button fill raised on:click|once={logout}>Logout</Button>
+          </Col>
+        </Row>
+      </Block>
+    </div>
+  </div>
+
   {:else if loggedIn == false}
-    <!-- <div class="cards">
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <Button fill raised on:click|once={login} >Sign In</Button>
-            </Col>
-          </Row>
-        </Block>
-      </div>
-    </div> -->
-    <Landing></Landing>
+    <Landing></Landing> <!-- Show Landing Swiper-->
   {:else}
-    <LoadingIcon></LoadingIcon>
+    <LoadingIcon></LoadingIcon> <!-- Show Loading Icon-->
   {/if}
 </Page>
 
@@ -183,6 +180,8 @@
   import LoadingIcon from '@odyssey-dev/loading-icon';
 
   var name;
+  var badgePoints = "🧭 " + 1000;
+
 // Location
   var ErrorHandler;
   var showLocation;
