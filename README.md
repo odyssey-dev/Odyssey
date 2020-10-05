@@ -12,7 +12,12 @@ When you're using Odyssey, you will go from place to place, and as you do you'll
 Badges mean points. Try to get more than your friends and share the ones you're most proud of.
 
 ## Development  💻
-The App will be created using a mixture of Framework7, Svelte and a lot of **magic.**
+The App uses javascript with a mixture of libraries and frameworks such as Framework7, Svelte and a lot of **magic.**
+
+## Projects 💾
+- [App](https://github.com/odyssey-dev/Odyssey)
+- [Admin](https://github.com/odyssey-dev/Odyssey-Admin)
+- [Components](https://github.com/odyssey-dev/Odyssey-Components)
 
 ## Distribution 🚀
 The app will be native and distributed through the Play Store & App Store
