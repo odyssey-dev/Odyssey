@@ -1,5 +1,12 @@
 <Page name="home" class="transparent">
-  {#if loggedIn == true }
+  {#if $userstate == true }
+
+    <!-- Top-card component -->
+    <div class="background">
+      <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
+    </div>
+
+    <!-- Profile-Card component -->
     <div class="top-card">
       <div class="card">
         <Block strong inset>
@@ -7,9 +14,10 @@
             <Col width="100">
               <div class="hero-card">
                 <div class="profile-info">
-                  <img class="pp" src="{userPhoto}" alt="profile picture" width="50" height="50">
+                  <!-- svelte-ignore a11y-img-redundant-alt -->
+                  <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
                   <div class="profile-txt">
-                    <div class="profile-name"><p>{username}</p></div>
+                    <div class="profile-name"><p>{$userprofile.displayName}</p></div>
                     <div class="profile-points"><p>🧭 1,500</p></div>
                   </div>
                 </div>
@@ -19,6 +27,8 @@
         </Block>
       </div>
     </div>
+
+    <!-- Current-Location-Card Component -->
     <div class="cards">
       <div class="card">
         <Block strong inset>
@@ -50,43 +60,27 @@
             </Col>
           </Row>
         </Block>
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <Button fill raised on:click|once={logout}>Logout</Button>
-            </Col>
-          </Row>
-        </Block>
       </div>
-    </div>
-  {:else if loggedIn == false}
-    <div class="cards">
+    <!-- Need Replacing/Removing -->
       <div class="card">
         <Block strong inset>
           <Row>
             <Col width="100">
-              <Button fill raised on:click|once={login} >Sign In</Button>
+              <Logout></Logout>
             </Col>
           </Row>
         </Block>
       </div>
+
     </div>
+  {:else if $userstate == false}
+    <Landing></Landing> <!-- Show Landing Page -->
   {:else}
-  <img class="loading" src="/static/svgs/loading.svg" alt="loading" width="50" height="50">
+    <LoadingIcon></LoadingIcon> <!-- Show Loading Icon -->
   {/if}
 </Page>
 
 <style>
-
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-  .loading {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    margin: 0 auto;
-  }
-
   .hero-card {
     display: flex;
     text-align: center;
@@ -104,7 +98,6 @@
     font-size: 30px;
     font-weight: 600;
     font-family: 'Rubik', sans-serif;
-
   }
 
   .hero-card-info {
@@ -113,8 +106,7 @@
     align-items:center;
     justify-content: space-evenly;
     margin-bottom: 16px;
-    font-family: 'Roboto';
-    
+    font-family: 'Roboto', sans-serif;    
   }
 
   .hero-card-text {
@@ -176,11 +168,23 @@
     font-weight: 600;
   }
 
+  .bg {
+    z-index: -1;
+    position:fixed;
+    bottom: 0;
+    opacity: 0.4;
+  }
+
 </style>
 
 <script>
-  var name;
-// Location
+
+  // Importing Login/user functionality
+  import {userstate, userprofile} from '../js/store.js';
+  import {test} from '../js/userstate.js';
+  import Logout from '../components/logout.svelte';
+
+  // Location
   var ErrorHandler;
   var showLocation;
   var latitudeFull;
@@ -199,7 +203,7 @@
           formatLocation(longitudeFull,latitudeFull);
           },
           function errorCallback(error) {
-              //do error handling
+              // error handling
           },
           {
               timeout:5000
@@ -210,56 +214,12 @@
     }
   }
 
-function formatLocation(longitudeFull,latitudeFull) {
-  latitude = latitudeFull.toFixed(4);
-  longitude = longitudeFull.toFixed(4);
-  var locationData = {longitude:longitude, latitude:latitude};
-  oneToOne(locationData);
-}
-
-async function oneToOne(locationData) {
-  const {uid} = auth.currentUser;
-  const ref = db.collection('accounts').doc(uid);
-  console.log("Sending data...");
-  return ref.set({locationData},{merge:true});
-}
-
-
-// Firebase
-import * as firebase from 'firebase'
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-
-// Authentication
-var loggedIn;
-var username;
-var userPhoto;
-var firsttime = false;
-function login() {
-  auth.signInWithPopup(provider);
-}
-
-
-function logout() {
-  auth.signOut();
-}
-
-auth.onAuthStateChanged(user => {
-  if (user){
-    username = user.displayName;
-    userPhoto = user.photoURL;
-    
-    console.log(username);
-    loggedIn = true;
-  } else {
-    username = "";
-    loggedIn = false;
+  function formatLocation(longitudeFull,latitudeFull) {
+    latitude = latitudeFull.toFixed(4);
+    longitude = longitudeFull.toFixed(4);
+    var locationData = {longitude:longitude, latitude:latitude};
+    oneToOne(locationData);
   }
-});
 
   import {
     Page,
@@ -277,7 +237,13 @@ auth.onAuthStateChanged(user => {
     ListItem,
     Row,
     Col,
-    Button
+    Button,
+    Popup
   } from 'framework7-svelte';
+
+
+  // importing landing functionality
+  import Landing from '../components/landing.svelte';
+  import LoadingIcon from '@odyssey-dev/loading-icon';
 
 </script>
