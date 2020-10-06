@@ -59,25 +59,3 @@
   font-feature-settings: "liga";
   text-align: center;
 }
-
-/* Roboto - secondary font */
-@font-face {
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/rubik-webfont.eot"); /* IE */
-  src: url('../fonts/rubik-webfont.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/rubik-webfont.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../fonts/rubik-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
-}
-
-/* Roboto - secondary font */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/roboto-webfont.eot"); /* IE */
-  src: url('../fonts/roboto-webfont.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/roboto-webfont.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../fonts/roboto-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
-}
