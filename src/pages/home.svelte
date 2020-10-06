@@ -1,23 +1,26 @@
-<Page name="home" class="transparent">
-  {#if loggedIn == true }
-  <div class="background">
-    <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
-  </div>
+<Page 
+      ="home" class="transparent">
 
-<!-- Top Section (Pic, Name and Points) -->
-  
-  <div class="top-card">
-    <div class="card">
-      <Block strong inset>
-        <Row>
-          <Col width="100">
-            <div class="hero-card">
-              <div class="profile-info">
-                <!-- svelte-ignore a11y-img-redundant-alt -->
-                <img class="pp" src="{userPhoto}" alt="profile picture" width="50" height="50">
-                <div class="profile-txt">
-                  <div class="profile-name"><p>{username}</p></div>
-                  <div class="profile-points"><p>{badgePoints}</p></div>
+  {#if $userstate == true }
+    <!-- Top-card component -->
+    <!-- Top Section (Pic, Name and Points) -->
+    <div class="background">
+      <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
+    </div>
+    <!-- Profile-Card component -->
+    <div class="top-card">
+      <div class="card">
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+              <div class="hero-card">
+                <div class="profile-info">
+                  <!-- svelte-ignore a11y-img-redundant-alt -->
+                  <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
+                  <div class="profile-txt">
+                    <div class="profile-name"><p>{$userprofile.displayName}</p></div>
+                    <div class="profile-points"><p>🧭 1,500</p></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -25,15 +28,13 @@
         </Row>
       </Block>
     </div>
-  </div>
-
-<!-- Bottom Section (Location info, Latest Badges) -->
-
-  <div class="cards">
-    <div class="card"> <!-- Location info -->
-      <Block strong inset>
-        <Row>
-          <Col width="100">
+    <!-- Current-Location-Card Component -->
+    <!-- Bottom Section (Location info, Latest Badges) -->
+    <div class="cards">
+      <div class="card">
+        <Block strong inset>
+          <Row>
+            <Col width="100">
             <div class="hero-card">
               <h1 class="hero-card-title">Merseyside</h1>
               <div class="hero-card-info"> 
@@ -48,30 +49,32 @@
                   {/if}
               </div>
             </div>
-          </Col>
-        </Row>
-      </Block>
-    </div>
+            </Col>
+          </Row>
+        </Block>
+      </div>
+      <div class="card"><!-- Discover and Logout buttons, TEMPORARY -->
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+              <Button fill raised on:click|once={getLocation}>Discover</Button>
+            </Col>
+          </Row>
+        </Block>
+      </div>
+    <!-- Need Replacing/Removing -->
+      <div class="card">
+        <Block strong inset>
+          <Row>
+            <Col width="100">
+              <Logout></Logout>
+            </Col>
+          </Row>
+        </Block>
+      </div>
 
-    <div class="card"> <!-- Discover and Logout buttons, TEMPORARY -->
-      <Block strong inset>
-        <Row>
-          <Col width="100">
-            <Button fill raised on:click|once={getLocation}>Discover</Button>
-          </Col>
-        </Row>
-      </Block>
-      <Block strong inset>
-        <Row>
-          <Col width="100">
-            <Button fill raised on:click|once={logout}>Logout</Button>
-          </Col>
-        </Row>
-      </Block>
     </div>
-  </div>
-
-  {:else if loggedIn == false}
+  {:else if $userstate == false}
     <Landing></Landing> <!-- Show Landing Swiper-->
   {:else}
     <LoadingIcon></LoadingIcon> <!-- Show Loading Icon-->
@@ -177,12 +180,12 @@
 
 <script>
 
-  import LoadingIcon from '@odyssey-dev/loading-icon';
+  import {userstate, userprofile} from '../js/store.js';
+  import {test} from '../js/userstate.js';
+  import Logout from '../components/logout.svelte';
 
-  var name;
   var badgePoints = "🧭 " + 1000;
 
-// Location
   var ErrorHandler;
   var showLocation;
   var latitudeFull;
@@ -212,56 +215,23 @@
     }
   }
 
-function formatLocation(longitudeFull,latitudeFull) {
-  latitude = latitudeFull.toFixed(4);
-  longitude = longitudeFull.toFixed(4);
-  var locationData = {longitude:longitude, latitude:latitude};
-  oneToOne(locationData);
-}
-
-async function oneToOne(locationData) {
-  const {uid} = auth.currentUser;
-  const ref = db.collection('accounts').doc(uid);
-  console.log("Sending data...");
-  return ref.set({locationData},{merge:true});
-}
-
-
-// Firebase
-import * as firebase from 'firebase'
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-
-// Authentication
-var loggedIn;
-var username;
-var userPhoto;
-var firsttime = false;
-function login() {
-  auth.signInWithPopup(provider);
-}
-
-
-function logout() {
-  auth.signOut();
-}
-
-auth.onAuthStateChanged(user => {
-  if (user){
-    username = user.displayName;
-    userPhoto = user.photoURL;
-    
-    console.log(username);
-    loggedIn = true;
-  } else {
-    username = "";
-    loggedIn = false;
+  function formatLocation(longitudeFull,latitudeFull) {
+    latitude = latitudeFull.toFixed(4);
+    longitude = longitudeFull.toFixed(4);
+    var locationData = {longitude:longitude, latitude:latitude};
+    oneToOne(locationData);
   }
-});
+
+  // async function oneToOne(locationData) {
+  //   const {uid} = auth.currentUser;
+  //   const ref = db.collection('accounts').doc(uid);
+  //   console.log("Sending data...");
+  //   return ref.set({locationData},{merge:true});
+  // }
+
+ // Firebase firestore & storage
+  // const db = firebase.firestore();
+  // const storage = firebase.storage();
 
   import {
     Page,
@@ -286,7 +256,6 @@ auth.onAuthStateChanged(user => {
 
   // importing landing functionality
   import Landing from '../components/landing.svelte';
-  let popupOpened = false;
-  let popup;
+  import LoadingIcon from '@odyssey-dev/loading-icon';
 
 </script>

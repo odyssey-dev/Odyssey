@@ -45,7 +45,8 @@
               <h1 class="swiper-title">Have Fun & Stay Safe</h1>
               <p>Keep yourself safe, earn lots of badges and, most importantly,
                 have fun, get ready to start your Odyssey and enjoy the adventure!</p>
-              <button class="button" on:click|once={login}>Sign in with Google</button>
+                <Login></Login>
+              <!-- <button class="button">Sign in with Google</button> -->
             </div>
           </SwiperSlide>
 
@@ -57,7 +58,7 @@
     </div>
 </div>
 <style>
-      .swiper-block {
+  .swiper-block {
     margin: 10;
     display:flex;
     flex-direction: column;
@@ -120,6 +121,7 @@
     }
 
 </style>
+
 <script>
     import { 
         f7,
@@ -133,39 +135,5 @@
         Col
      } from 'framework7-svelte';
 
-     // Firebase
-import * as firebase from 'firebase'
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-
-// Authentication
-var loggedIn;
-var username;
-var userPhoto;
-var firsttime = false;
-function login() {
-  auth.signInWithPopup(provider);
-}
-
-
-function logout() {
-  auth.signOut();
-}
-
-auth.onAuthStateChanged(user => {
-  if (user){
-    username = user.displayName;
-    userPhoto = user.photoURL;
-    
-    console.log(username);
-    loggedIn = true;
-  } else {
-    username = "";
-    loggedIn = false;
-  }
-});
+     import Login from '../components/login.svelte';
 </script>
