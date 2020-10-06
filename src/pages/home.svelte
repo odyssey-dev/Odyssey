@@ -1,8 +1,10 @@
 <Page name="home" class="transparent">
-  {#if loggedIn == true }
-  <div class="background">
-    <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
-  </div>
+  {#if $userstate == true }
+    <!-- Top-card component -->
+    <div class="background">
+      <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
+    </div>
+    <!-- Profile-Card component -->
     <div class="top-card">
       <div class="card">
         <Block strong inset>
@@ -11,9 +13,9 @@
               <div class="hero-card">
                 <div class="profile-info">
                   <!-- svelte-ignore a11y-img-redundant-alt -->
-                  <img class="pp" src="{userPhoto}" alt="profile picture" width="50" height="50">
+                  <img class="pp" src="" alt="profile picture" width="50" height="50">
                   <div class="profile-txt">
-                    <div class="profile-name"><p>{username}</p></div>
+                    <div class="profile-name"><p></p></div>
                     <div class="profile-points"><p>🧭 1,500</p></div>
                   </div>
                 </div>
@@ -23,6 +25,7 @@
         </Block>
       </div>
     </div>
+    <!-- Current-Location-Card Component -->
     <div class="cards">
       <div class="card">
         <Block strong inset>
@@ -54,16 +57,20 @@
             </Col>
           </Row>
         </Block>
+      </div>
+    <!-- Need Replacing/Removing -->
+      <div class="card">
         <Block strong inset>
           <Row>
             <Col width="100">
-              <Button fill raised on:click|once={logout}>Logout</Button>
+              <Logout></Logout>
             </Col>
           </Row>
         </Block>
       </div>
+
     </div>
-  {:else if loggedIn == false}
+  {:else if $userstate == false}
     <!-- <div class="cards">
       <div class="card">
         <Block strong inset>
@@ -180,10 +187,13 @@
 
 <script>
 
-  import LoadingIcon from '@odyssey-dev/loading-icon';
+  import {userstate} from '../js/store.js';
+  import {user} from '../js/userstate.js';
 
-  var name;
-// Location
+
+  import Logout from '../components/logout.svelte';
+
+  // Location
   var ErrorHandler;
   var showLocation;
   var latitudeFull;
@@ -213,56 +223,23 @@
     }
   }
 
-function formatLocation(longitudeFull,latitudeFull) {
-  latitude = latitudeFull.toFixed(4);
-  longitude = longitudeFull.toFixed(4);
-  var locationData = {longitude:longitude, latitude:latitude};
-  oneToOne(locationData);
-}
-
-async function oneToOne(locationData) {
-  const {uid} = auth.currentUser;
-  const ref = db.collection('accounts').doc(uid);
-  console.log("Sending data...");
-  return ref.set({locationData},{merge:true});
-}
-
-
-// Firebase
-import * as firebase from 'firebase'
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-const storage = firebase.storage();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-
-// Authentication
-var loggedIn;
-var username;
-var userPhoto;
-var firsttime = false;
-function login() {
-  auth.signInWithPopup(provider);
-}
-
-
-function logout() {
-  auth.signOut();
-}
-
-auth.onAuthStateChanged(user => {
-  if (user){
-    username = user.displayName;
-    userPhoto = user.photoURL;
-    
-    console.log(username);
-    loggedIn = true;
-  } else {
-    username = "";
-    loggedIn = false;
+  function formatLocation(longitudeFull,latitudeFull) {
+    latitude = latitudeFull.toFixed(4);
+    longitude = longitudeFull.toFixed(4);
+    var locationData = {longitude:longitude, latitude:latitude};
+    oneToOne(locationData);
   }
-});
+
+  // async function oneToOne(locationData) {
+  //   const {uid} = auth.currentUser;
+  //   const ref = db.collection('accounts').doc(uid);
+  //   console.log("Sending data...");
+  //   return ref.set({locationData},{merge:true});
+  // }
+
+ // Firebase firestore & storage
+  // const db = firebase.firestore();
+  // const storage = firebase.storage();
 
   import {
     Page,
@@ -287,7 +264,6 @@ auth.onAuthStateChanged(user => {
 
   // importing landing functionality
   import Landing from '../components/landing.svelte';
-  let popupOpened = false;
-  let popup;
+  import LoadingIcon from '@odyssey-dev/loading-icon';
 
 </script>

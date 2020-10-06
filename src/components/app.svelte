@@ -6,12 +6,6 @@
     <!-- Your main view/tab, should have "view-main" class. It also has "tabActive" prop -->
     <View id="view-home" main tab tabActive url="/" />
 
-    <!-- Catalog View -->
-    <View id="view-catalog" name="catalog" tab url="/catalog/" />
-
-    <!-- Settings View -->
-    <View id="view-settings" name="settings" tab url="/settings/" />
-
   </Views>
 
   <Popup id="my-popup">
@@ -131,8 +125,6 @@
 
 </App>
 
-
-
 <script>
   import { onMount } from 'svelte';
   import { Device }  from 'framework7/framework7-lite.esm.bundle.js';
@@ -191,7 +183,6 @@
   // Login screen demo data
   let username = '';
   let password = '';
-
   function alertLoginData() {
     f7.dialog.alert('Username: ' + username + '<br>Password: ' + password, () => {
       f7.loginScreen.close();
