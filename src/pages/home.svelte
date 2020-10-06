@@ -13,9 +13,9 @@
               <div class="hero-card">
                 <div class="profile-info">
                   <!-- svelte-ignore a11y-img-redundant-alt -->
-                  <img class="pp" src="" alt="profile picture" width="50" height="50">
+                  <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
                   <div class="profile-txt">
-                    <div class="profile-name"><p></p></div>
+                    <div class="profile-name"><p>{$userprofile.displayName}</p></div>
                     <div class="profile-points"><p>🧭 1,500</p></div>
                   </div>
                 </div>
@@ -187,10 +187,8 @@
 
 <script>
 
-  import {userstate} from '../js/store.js';
-  import {user} from '../js/userstate.js';
-
-
+  import {userstate, userprofile} from '../js/store.js';
+  import {test} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
 
   // Location
