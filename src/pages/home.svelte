@@ -1,4 +1,20 @@
 <Page name="home" class="transparent">
+
+  
+{#await features}
+ <p>loading...</p>
+{:then data}
+<!-- {data.features}
+  {#each datas.features as feature}
+    {feature}
+  {:else}
+    loading...
+  {/each} -->
+{:catch error}
+	<p style="color: red">{error.message}</p>
+{/await}
+
+
   {#if $userstate == true }
 
     <!-- Top-card component -->
@@ -179,6 +195,7 @@
 
 <script>
 
+
   // Importing Login/user functionality
   import {userstate, userprofile} from '../js/store.js';
   import {test} from '../js/userstate.js';
@@ -214,12 +231,39 @@
     }
   }
 
+  var locData;
+  var data;
+  var features;
   function formatLocation(longitudeFull,latitudeFull) {
     latitude = latitudeFull.toFixed(4);
     longitude = longitudeFull.toFixed(4);
     var locationData = {longitude:longitude, latitude:latitude};
-    oneToOne(locationData);
+    // oneToOne(locationData);
+    locData = locationApi(latitude,longitude);
+    // console.log(locData);
+    features = locData;
+    console.log(features);
   }
+
+  async function locationApi(latitude, longitude) {
+    let response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A`);
+    data = await response.json();
+    // var formatteddata = JSON.parse(data)
+    // console.log(data); 
+    // console.log(data.query);
+    // console.log(data.features);
+    // features = data.features;
+    return data;
+  }
+
+
+
+  // import { onMount } from 'svelte'; 
+  // onMount(async () => { 
+  //   const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${latitude},${longitude}.json?access_token=pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A`);
+  //   data = await res.json();
+
+  // }); 
 
   import {
     Page,
@@ -241,7 +285,7 @@
     Popup
   } from 'framework7-svelte';
 
-
+  
   // importing landing functionality
   import Landing from '../components/landing.svelte';
   import LoadingIcon from '@odyssey-dev/loading-icon';
