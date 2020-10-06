@@ -1,9 +1,11 @@
 <Page name="home" class="transparent">
   {#if $userstate == true }
+
     <!-- Top-card component -->
     <div class="background">
       <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
     </div>
+
     <!-- Profile-Card component -->
     <div class="top-card">
       <div class="card">
@@ -25,6 +27,7 @@
         </Block>
       </div>
     </div>
+
     <!-- Current-Location-Card Component -->
     <div class="cards">
       <div class="card">
@@ -71,20 +74,9 @@
 
     </div>
   {:else if $userstate == false}
-    <!-- <div class="cards">
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <Button fill raised on:click|once={login} >Sign In</Button>
-            </Col>
-          </Row>
-        </Block>
-      </div>
-    </div> -->
-    <Landing></Landing>
+    <Landing></Landing> <!-- Show Landing Page -->
   {:else}
-    <LoadingIcon></LoadingIcon>
+    <LoadingIcon></LoadingIcon> <!-- Show Loading Icon -->
   {/if}
 </Page>
 
@@ -187,6 +179,7 @@
 
 <script>
 
+  // Importing Login/user functionality
   import {userstate, userprofile} from '../js/store.js';
   import {test} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
@@ -210,7 +203,7 @@
           formatLocation(longitudeFull,latitudeFull);
           },
           function errorCallback(error) {
-              //do error handling
+              // error handling
           },
           {
               timeout:5000
@@ -227,17 +220,6 @@
     var locationData = {longitude:longitude, latitude:latitude};
     oneToOne(locationData);
   }
-
-  // async function oneToOne(locationData) {
-  //   const {uid} = auth.currentUser;
-  //   const ref = db.collection('accounts').doc(uid);
-  //   console.log("Sending data...");
-  //   return ref.set({locationData},{merge:true});
-  // }
-
- // Firebase firestore & storage
-  // const db = firebase.firestore();
-  // const storage = firebase.storage();
 
   import {
     Page,

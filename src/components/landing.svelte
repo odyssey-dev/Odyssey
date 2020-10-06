@@ -30,11 +30,23 @@
             <div class="swiper-img-cont"><img class="swiper-img" src="../static/svgs/slider-img-1.svg" alt="profile picture"></div>
             <div class="swiper-info">
               <h1 class="swiper-title">Before we start</h1>
-              <p>Before we start we just need a few permissions from you,
+              <p>For our app to work, we will need to access your location, we use this so that we can find where
+               you are to award you badges, but rest assured, we will always respect your privacy and will 
+               <b>never</b> sell your data.
+              </p>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide class="swiper-container">
+            <!-- svelte-ignore a11y-img-redundant-alt -->
+            <div class="swiper-img-cont"><img class="swiper-img" src="../static/svgs/slider-img-1.svg" alt="profile picture"></div>
+            <div class="swiper-info">
+              <h1 class="swiper-title">One more thing</h1>
+              <p>The last thing we need from you is permission to send you notifications,
               <br><br>
-              For our app to work, we will need to access your location and send you notifications.
-              <br><br>
-              But rest assured, we will always respect your privacy and will never sell your data.</p>
+              We use these in conjunction with the location data to send you notifications when you unlock a
+              new badge.
+            </p>
             </div>
           </SwiperSlide>
 
@@ -45,7 +57,7 @@
               <h1 class="swiper-title">Have Fun & Stay Safe</h1>
               <p>Keep yourself safe, earn lots of badges and, most importantly,
                 have fun, get ready to start your Odyssey and enjoy the adventure!</p>
-                <Login></Login>
+              <Login></Login>
               <!-- <button class="button">Sign in with Google</button> -->
             </div>
           </SwiperSlide>
@@ -106,19 +118,6 @@
     display: flex;
     justify-content: center;
   }
-
-  .button {
-    position:fixed;
-    bottom: 10%;
-    background-color: orange;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    font-size: 16px;
-    width: 90%;
-    }
 
 </style>
 

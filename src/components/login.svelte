@@ -2,11 +2,14 @@
 
 <style>
   .button {
+    display: flex;
     background-color: orange;
     color: white;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
+    padding: 20px;
+    width: 100%;
     }
 </style>
 
