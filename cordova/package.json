@@ -1,5 +1,5 @@
 {
-  "name": "io.framework7.myapp",
+  "name": "io.Odyssey.Odyssey",
   "displayName": "Odyssey",
   "version": "1.0.0",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
@@ -14,7 +14,6 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^9.0.0",
-    "cordova-ios": "^6.1.1",
     "cordova-plugin-keyboard": "^1.2.0",
     "cordova-plugin-splashscreen": "^6.0.0",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -25,11 +24,18 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-keyboard": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-buildinfo": {},
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
+  },
+  "dependencies": {
+    "cordova-ios": "^5.1.1",
+    "cordova-plugin-buildinfo": "4.0.0",
+    "cordova-plugin-geolocation": "^4.0.2"
   }
 }

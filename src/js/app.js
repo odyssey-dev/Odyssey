@@ -22,3 +22,11 @@ Framework7.use(Framework7Svelte)
 const app = new App({
   target: document.getElementById('app'),
 });
+
+import {ios} from '../js/store.js';
+if(window.hasOwnProperty("cordova")){
+  // ios hack for login 
+  // ios.set(true);
+} else {
+  ios.set(false);
+}

@@ -23,7 +23,7 @@
     "preserveAssetsPaths": false,
     "inlineAssets": true
   },
-  "pkg": "io.framework7.myapp",
+  "pkg": "io.Odyssey.Odyssey",
   "cordova": {
     "folder": "cordova",
     "platforms": [

@@ -1,26 +1,6 @@
 <Page name="home" class="transparent">
 
-  
-{#await features}
- <p>loading...</p>
-{:then data}
-<!-- {data.features}
-  {#each datas.features as feature}
-    {feature}
-  {:else}
-    loading...
-  {/each} -->
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
-
-
-  {#if $userstate == true }
-
-    <!-- Top-card component -->
-    <div class="background">
-      <image class="bg" src="./static/bg/merseyside-bg.png" width="100%" height="auto">
-    </div>
+  {#if $userstate == true || $ios == true }
 
     <!-- Profile-Card component -->
     <div class="top-card">
@@ -46,33 +26,37 @@
 
     <!-- Current-Location-Card Component -->
     <div class="cards">
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-            <div class="hero-card">
-              <h1 class="hero-card-title">Merseyside</h1>
-              <div class="hero-card-info"> 
-                  {#if showLocation != undefined }
+      {#if showLocation != undefined }
+        {#await locationData}
+          <div></div>
+        {:then location}
+        <div class="card">
+          <Block strong inset>
+            <Row>
+              <Col width="100">
+              <div class="hero-card">
+                <h1 class="hero-card-title">{location.features[3].text}</h1>
+                <div class="hero-card-info"> 
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
                     <div class="hero-card-text">{latitude}, {longitude}</div> 
                     <div class="spacer"></div>
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
-                    <div class="hero-card-text">England</div>
-                  {:else}
-                    <div class="hero-card-text">Unknown</div> 
-                  {/if}
+                    <div class="hero-card-text">{location.features[4].place_name}</div>
+                </div>
               </div>
-            </div>
-            </Col>
-          </Row>
-        </Block>
-      </div>
+              </Col>
+            </Row>
+          </Block>
+        </div>
+        {:catch error}
+          <p style="color: red">{error.message}</p>
+        {/await}
+      {/if}
       <div class="card">
         <Block strong inset>
           <Row>
             <Col width="100">
-              <Button fill raised on:click|once={getLocation}>Discover</Button>
+              <Button fill raised on:click={getLocation}>Discover</Button>
             </Col>
           </Row>
         </Block>
@@ -197,21 +181,30 @@
 
 
   // Importing Login/user functionality
-  import {userstate, userprofile} from '../js/store.js';
-  import {test} from '../js/userstate.js';
+  import {userstate, userprofile, ios} from '../js/store.js';
+  import {onAuthStateChanged} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
 
   // Location
-  var ErrorHandler;
   var showLocation;
   var latitudeFull;
   var longitudeFull;  
   var latitude;
   var longitude;
-  function getLocation() {
+
+  async function getLocation() {
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
+          
+          // position.coords.longitude
+          // position.coords.latitude 
+          // position.coords.accuracy 
+          // position.coords.altitudeAccuracy
+          // position.coords.heading 
+          // position.coords.speed 
+          // position.timestamp  
 
           showLocation = position;
           latitudeFull = showLocation.coords.latitude;
@@ -224,46 +217,35 @@
           },
           {
               timeout:5000
-          }
+          },
+          { enableHighAccuracy: true }
       );
     } else { 
       console.log("Geolocation is not supported by this browser.");
     }
-  }
 
-  var locData;
-  var data;
-  var features;
+  }
+  var locationData = locationApi();
   function formatLocation(longitudeFull,latitudeFull) {
     latitude = latitudeFull.toFixed(4);
     longitude = longitudeFull.toFixed(4);
-    var locationData = {longitude:longitude, latitude:latitude};
+    // var locationData = {longitude:longitude, latitude:latitude};
     // oneToOne(locationData);
-    locData = locationApi(latitude,longitude);
-    // console.log(locData);
-    features = locData;
-    console.log(features);
+    locationData = locationApi(latitude,longitude);
+
   }
 
   async function locationApi(latitude, longitude) {
-    let response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A`);
-    data = await response.json();
-    // var formatteddata = JSON.parse(data)
-    // console.log(data); 
-    // console.log(data.query);
-    // console.log(data.features);
-    // features = data.features;
-    return data;
+    if (latitude != undefined && longitude != undefined ) {
+      const geocodingURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+      const accessToken = "pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A"
+      let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
+      var data = await response.json();
+      console.log(data); 
+      return data;
+    } 
+    return;
   }
-
-
-
-  // import { onMount } from 'svelte'; 
-  // onMount(async () => { 
-  //   const res = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${latitude},${longitude}.json?access_token=pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A`);
-  //   data = await res.json();
-
-  // }); 
 
   import {
     Page,
