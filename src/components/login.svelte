@@ -1,4 +1,4 @@
-<button class="button" on:click={login}>Sign in with Google</button>
+<button class="button" on:click={loginUser}>Sign in with Google</button>
 
 <style>
   .button {
@@ -8,8 +8,9 @@
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    padding: 20px;
-    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    z-index: 12;
     }
 </style>
 
@@ -17,8 +18,8 @@
   // Firebase 
   import {auth, provider} from '../js/firebase.js';
 
-  function login() {
-    auth.signInWithPopup(provider);
+  function loginUser() {
+      auth.signInWithRedirect(provider);
   }
 
 </script>
