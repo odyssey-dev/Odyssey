@@ -1,4 +1,4 @@
-<button class="button" on:click={loginUser}>Sign in with Google</button>
+<button class="button" on:click={loginUser}>Get Started</button>
 
 <style>
   .button {
@@ -7,7 +7,6 @@
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
     height: 40px;
     box-sizing: border-box;
     z-index: 12;
