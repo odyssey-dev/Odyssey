@@ -1,6 +1,6 @@
 <Page name="home" class="transparent">
 
-  {#if $userstate == true || $ios == true }
+  {#if $userstate == true }
 
     <!-- Profile-Card component -->
     <div class="top-card">
@@ -172,11 +172,31 @@
 
 <script>
 
-
   // Importing Login/user functionality
-  import {userstate, userprofile, ios} from '../js/store.js';
+  import {userstate, userprofile} from '../js/store.js';
   import {onAuthStateChanged} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
+  import {auth} from '../js/firebase.js';
+
+  var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/ping';
+
+  async function pingApi() {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl, 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl, true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', locationData.features[2].place_name);
+      // console.log("test", testLoc)
+      req.send();
+    });
+  }
 
   // Location
   var showLocation;
@@ -234,7 +254,8 @@
       const accessToken = "pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A"
       let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
       var data = await response.json();
-      console.log(data); 
+      console.log(data.features[2].place_name);
+      pingApi();
       return data;
     } 
     return;
@@ -263,6 +284,6 @@
   
   // importing landing functionality
   import Landing from '../components/landing.svelte';
-  import LoadingIcon from '@odyssey-dev/loading-icon';
+  import LoadingIcon from '../components/loading.svelte';
 
 </script>
