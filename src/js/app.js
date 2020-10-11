@@ -22,3 +22,4 @@ Framework7.use(Framework7Svelte)
 const app = new App({
   target: document.getElementById('app'),
 });
+

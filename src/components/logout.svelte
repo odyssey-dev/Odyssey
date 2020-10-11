@@ -7,6 +7,7 @@
     text-align: center;
     text-decoration: none;
     font-size: 16px;
+    box-sizing: border-box;
     }
 </style>
 

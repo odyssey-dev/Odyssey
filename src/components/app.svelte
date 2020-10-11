@@ -162,7 +162,7 @@
 
   // Framework7 Parameters
   let f7params = {
-    id: 'io.framework7.myapp', // App bundle ID
+    id: 'io.Odyssey.Odyssey', // App bundle ID
     name: 'Odyssey', // App name
     theme: 'auto', // Automatic theme detection
 
