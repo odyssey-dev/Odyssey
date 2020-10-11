@@ -168,13 +168,6 @@
     font-weight: 600;
   }
 
-  .bg {
-    z-index: -1;
-    position:fixed;
-    bottom: 0;
-    opacity: 0.4;
-  }
-
 </style>
 
 <script>
