@@ -107,7 +107,7 @@
     min-height: 86vh;
     display: flex;
     flex-direction: column;
-    max-width: 800px;
+    max-width: 610px;
   }
 
   .swiper-img {
@@ -168,12 +168,6 @@
 
   .swiper-title {
     font-size: 30pt;
-  }
-
-  .swiper-img-cont {
-    height: 50vh;
-    max-height: 48vh;
-    min-height: 48vh;
   }
 
 }
