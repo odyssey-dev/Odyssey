@@ -163,11 +163,17 @@
 
   @media screen and (min-width: 800px) { 
   .swiper-info p {
-    font-size: 26pt;
+    font-size: 20pt;
   }
 
   .swiper-title {
-    font-size: 36pt;
+    font-size: 30pt;
+  }
+
+  .swiper-img-cont {
+    height: 50vh;
+    max-height: 48vh;
+    min-height: 48vh;
   }
 
 }
