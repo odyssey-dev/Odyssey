@@ -107,7 +107,7 @@
     min-height: 86vh;
     display: flex;
     flex-direction: column;
-    max-width: 800px;
+    max-width: 610px;
   }
 
   .swiper-img {
