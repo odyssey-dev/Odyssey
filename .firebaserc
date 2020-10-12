@@ -1,5 +1,16 @@
 {
   "projects": {
     "default": "odyssey-65e36"
+  },
+  "targets": {
+    "odyssey-65e36": {
+      "hosting": {
+        "development": [
+          "odyssey-development",
+          "odysseys-production",
+          "odysseys-staging"
+        ]
+      }
+    }
   }
 }
