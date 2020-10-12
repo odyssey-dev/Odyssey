@@ -192,7 +192,6 @@
   var longitude;
 
   async function getLocation() {
-    console.log("getLocation");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
@@ -247,8 +246,12 @@
     return;
   }
 
+  if ( process.env.NODE_ENV == "production") {
+    var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app/ping';
+  } else {
+    var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/ping';
+  }
 
-  var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/ping';
 
   async function pingApi(testData) {
     auth.currentUser.getIdToken().then(function(token) {
