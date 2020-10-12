@@ -35,11 +35,11 @@
             <Row>
               <Col width="100">
               <div class="hero-card">
-                <h1 class="hero-card-title">{location.features[3].text}</h1>
+                <h1 class="hero-card-title">{location.features[2].text}</h1>
+                <h3 class="hero-card-subtitle">{location.features[3].text}</h3>
                 <div class="hero-card-info"> 
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
-                    <div class="hero-card-text">{latitude}, {longitude}</div> 
-                    <div class="spacer"></div>
+                    <div class="hero-card-text">{latitude}, {longitude}</div>
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
                     <div class="hero-card-text">{location.features[4].place_name}</div>
                 </div>
@@ -52,6 +52,8 @@
           <p style="color: red">{error.message}</p>
         {/await}
       {/if}
+      
+
       <div class="card">
         <Block strong inset>
           <Row>
@@ -61,8 +63,8 @@
           </Row>
         </Block>
       </div>
-    <!-- Need Replacing/Removing -->
-      <div class="card">
+    <!-- Enable for debugging -->
+      <!-- <div class="card">
         <Block strong inset>
           <Row>
             <Col width="100">
@@ -70,7 +72,7 @@
             </Col>
           </Row>
         </Block>
-      </div>
+      </div> -->
 
     </div>
   {:else if $userstate == false}
@@ -87,17 +89,20 @@
     flex-direction: column;
   }
 
-  .spacer {
-    display: flex;
-    width: 24%;
-  }
-
   .hero-card-title {
     margin-top: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     font-size: 30px;
     font-weight: 600;
     font-family: 'Rubik', sans-serif;
+  }
+
+  .hero-card-subtitle {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 6pt;
+    font-weight: 500;
+    color: #848483;
   }
 
   .hero-card-info {
@@ -106,7 +111,8 @@
     align-items:center;
     justify-content: space-evenly;
     margin-bottom: 16px;
-    font-family: 'Roboto', sans-serif;    
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;  
   }
 
   .hero-card-text {
