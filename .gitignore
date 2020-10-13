@@ -39,5 +39,8 @@ cordova/platforms/
 cordova/plugins/
 cordova/www/
 
+# Firebase
+.firebase
+
 # Production build
 www/
