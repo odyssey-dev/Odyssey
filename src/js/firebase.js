@@ -15,8 +15,8 @@ if ( process.env.NODE_ENV == "production") {
     projectId: "odyssey-65e36",
     storageBucket: "odyssey-65e36.appspot.com",
     messagingSenderId: "472825991254",
-    appId: "1:472825991254:web:2e4a079f8a73bca8952bf7",
-    measurementId: "G-GC5L9R1H8Q"
+    appId: "1:472825991254:web:af0d44280fc63e5a952bf7",
+    measurementId: "G-M8LPY480WP"
   };
 
 } else {
