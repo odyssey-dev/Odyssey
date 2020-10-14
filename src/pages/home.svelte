@@ -24,6 +24,8 @@
       </div>
     </div>
 
+    <AchievementGet></AchievementGet>
+
     <!-- Current-Location-Card Component -->
     <div class="cards">
       {#if showLocation != undefined }
@@ -287,8 +289,9 @@
   } from 'framework7-svelte';
 
   
-  // importing landing functionality
+  // importing functionality
   import Landing from '../components/landing.svelte';
   import LoadingIcon from '../components/loading.svelte';
-
+  import AchievementGet from '../components/achievement-get.svelte';
+  
 </script>
