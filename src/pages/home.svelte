@@ -207,7 +207,7 @@
           showLocation = position;
           latitudeFull = showLocation.coords.latitude;
           longitudeFull = showLocation.coords.longitude;
-      
+          console.log(showLocation);
           formatLocation(longitudeFull,latitudeFull);
           },
           function errorCallback(error) {
@@ -240,14 +240,19 @@
       let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
       var data = await response.json();
       var testData = data.features[2].place_name;
+      testData = testData.replace(/\,\s/g, ',');
       pingApi(testData);
       return data;
     } 
     return;
   }
 
+  if ( process.env.NODE_ENV == "production") {
+    var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app/ping';
+  } else {
+    var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/ping';
+  }
 
-  var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app/ping';
 
   async function pingApi(testData) {
     auth.currentUser.getIdToken().then(function(token) {
