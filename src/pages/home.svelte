@@ -24,6 +24,8 @@
       </div>
     </div>
 
+    <AchievementGet></AchievementGet>
+
     <!-- Current-Location-Card Component -->
     <div class="cards">
       {#if showLocation != undefined }
@@ -343,6 +345,7 @@
     });
   }
 
+
   async function districtApi(testData) {
     auth.currentUser.getIdToken().then(function(token) {
       console.log('Sending request to', apiUrl+"api/district", 'with ID token in Authorization header.');
@@ -381,8 +384,9 @@
   } from 'framework7-svelte';
 
   
-  // importing landing functionality
+  // importing functionality
   import Landing from '../components/landing.svelte';
   import LoadingIcon from '../components/loading.svelte';
-
+  import AchievementGet from '../components/achievement-get.svelte';
+  
 </script>

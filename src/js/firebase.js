@@ -5,6 +5,7 @@ import 'firebase/performance';
 import 'firebase/auth'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional 
+
 export var firebaseConfig = {
   apiKey: "AIzaSyCyx2lcqANo_cve5LXWcV6_75dX1KJBy-0",
   authDomain: "odyssey-65e36.firebaseapp.com",
@@ -15,6 +16,8 @@ export var firebaseConfig = {
   appId: "1:472825991254:web:af0d44280fc63e5a952bf7",
   measurementId: "G-M8LPY480WP"
 };
+}
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
