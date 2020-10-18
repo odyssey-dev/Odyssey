@@ -11,6 +11,7 @@ auth.onAuthStateChanged(user => {
       photoUrl: user.photoURL,
       uid: user.uid
     });
+    console.log("Auth Ready");
   } else {
     userstate.set(false);
     userprofile.set(0);
