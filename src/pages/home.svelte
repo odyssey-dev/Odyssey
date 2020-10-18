@@ -237,7 +237,7 @@
           // position.coords.heading 
           // position.coords.speed 
           // position.timestamp  
-
+          console.log("Calling Geolocation");
           showLocation = position;
           latitudeFull = showLocation.coords.latitude;
           longitudeFull = showLocation.coords.longitude;
@@ -259,16 +259,15 @@
   }
   var locationData = locationApi();
   function formatLocation(longitudeFull,latitudeFull) {
+    console.log("Format Geolocation");
     latitude = latitudeFull.toFixed(4);
     longitude = longitudeFull.toFixed(4);
-    // var locationData = {longitude:longitude, latitude:latitude};
-    // oneToOne(locationData);
     locationData = locationApi(latitude,longitude);
-
   }
 
   async function locationApi(latitude, longitude) {
     if (latitude != undefined && longitude != undefined ) {
+      console.log("Calling Mapbox");
       const geocodingURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
       const accessToken = "pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A"
       let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
@@ -288,49 +287,56 @@
       console.log(country);
       console.log(county);
       console.log(district);
-
-      if (typeof localStorage !== 'undefined') {
-        try {
-            localStorage.setItem('localStorage_Test', 'yes');
-            if (localStorage.getItem('localStorage_Test') === 'yes') {
-                localStorage.removeItem('localStorage_Test');
-
-                if (localStorage.getItem('Continent') !== continent) {
-                  localStorage.setItem('Continent', continent);
-                  continentApi(newData);
-                }
-
-                if (localStorage.getItem('Territory') !== territory) {
-                  localStorage.setItem('Territory', territory);
-                  territoryApi(newData);
-                }
-               
-                if (localStorage.getItem('Country') !== country) {
-                  localStorage.setItem('Country', country);
-                  countryApi(newData);
-                }
-               
-                if (localStorage.getItem('County') !== county) {
-                  localStorage.setItem('County', county);
-                  countyApi(newData);
-                }
-
-                if (localStorage.getItem('District') !== district) {
-                  localStorage.setItem('District', district);
-                  districtApi(newData);
-                }
-            } else {
-                // localStorage is disabled
-            }
-        } catch(e) {
-            // localStorage is disabled
-        }
-      } else {
-          // localStorage is not available
-      }
+      apiCheck();
       return data;
-    } 
+    } else {
+      console.log("Mapbox Error");
+    }
     return;
+  }
+
+
+  function apiCheck() {
+    console.log("API Check");
+    if (typeof localStorage !== 'undefined') {
+      try {
+          localStorage.setItem('localStorage_Test', 'yes');
+          if (localStorage.getItem('localStorage_Test') === 'yes') {
+              localStorage.removeItem('localStorage_Test');
+
+              if (localStorage.getItem('Continent') !== continent) {
+                localStorage.setItem('Continent', continent);
+                continentApi(newData);
+              }
+
+              if (localStorage.getItem('Territory') !== territory) {
+                localStorage.setItem('Territory', territory);
+                territoryApi(newData);
+              }
+            
+              if (localStorage.getItem('Country') !== country) {
+                localStorage.setItem('Country', country);
+                countryApi(newData);
+              }
+            
+              if (localStorage.getItem('County') !== county) {
+                localStorage.setItem('County', county);
+                countyApi(newData);
+              }
+
+              if (localStorage.getItem('District') !== district) {
+                localStorage.setItem('District', district);
+                districtApi(newData);
+              }
+          } else {
+              // localStorage is disabled
+          }
+      } catch(e) {
+          // localStorage is disabled
+      }
+    } else {
+        // localStorage is not available
+    }
   }
 
   if ( process.env.NODE_ENV == "production") {
@@ -340,20 +346,20 @@
   }
 
   export async function newAccountApi() {
-  auth.currentUser.getIdToken().then(function(token) {
-    console.log('Sending request to', apiUrl+"api/hello", 'with ID token in Authorization header.');
-    var req = new XMLHttpRequest();
-    req.onload = function() {
-      console.log(req.responseText);
-    };
-    req.onerror = function() {
-      this.responseContainer.innerText = 'There was an error';
-    };
-    req.open('GET', apiUrl+"api/hello", true);
-    req.setRequestHeader('Authorization', 'Bearer ' + token);
-    req.send();
-  });
-} 
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/hello", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/hello", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.send();
+    });
+  } 
 
 
   async function continentApi(testData) {
@@ -474,8 +480,6 @@
 
   let profile;
   
-
-
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
     getLocation();
