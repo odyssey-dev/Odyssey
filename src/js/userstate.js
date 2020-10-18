@@ -9,7 +9,8 @@ auth.onAuthStateChanged(user => {
       email: user.email,
       emailVerified: user.emailVerified,
       photoUrl: user.photoURL,
-      uid: user.uid
+      uid: user.uid,
+      token: user.xa
     });
     console.log("Auth Ready");
   } else {

@@ -54,8 +54,18 @@
           {:catch error}
             <p style="color: red">{error.message}</p>
           {/await}
+        {:else}
+        <div class="card">
+          <Block strong inset>
+            <Row>
+              <Col width="100">
+                <Button fill raised on:click={getLocation}>Discover</Button>
+              </Col>
+            </Row>
+          </Block>
+        </div> 
         {/if}
-      
+
       <!-- Enable for debugging -->
       <!-- <div class="cards">
                 <div class="card-block">
@@ -498,7 +508,6 @@
   
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
-    getLocation();
   });
   
   // move to achievement-get component
