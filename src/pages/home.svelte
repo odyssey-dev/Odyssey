@@ -227,6 +227,7 @@
   var longitude;
   var locationData;
   var newData;
+
  function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -289,7 +290,12 @@
       console.log(country);
       console.log(county);
       console.log(district);
-      apiCheck();
+
+      auth.currentUser.getIdToken().then(function(token) {
+        console.log(token);
+        apiCheck();
+      });
+
       return data;
     } else {
       console.log("Mapbox Error");
@@ -332,16 +338,22 @@
               }
           } else {
             console.log(" localStorage is disabled");
-             districtApi(newData);
           }
       } catch(e) {
           console.log(" localStorage is disabled - Error");
-          districtApi(newData);
+          apiBackup();
       }
     } else {
       console.log(" localStorage is not available");
-      districtApi(newData);
     }
+  }
+
+  function apiBackup() {
+    continentApi(newData);
+    territoryApi(newData);
+    countryApi(newData);
+    countyApi(newData);
+    districtApi(newData);
   }
 
   if ( process.env.NODE_ENV == "production") {
