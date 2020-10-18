@@ -1,78 +1,73 @@
 <Page name="home" class="transparent">
 
   {#if $userstate == true }
+  <main class="main-page">
+    <div class="main-content">
 
-    <!-- Profile-Card component -->
-    <div class="top-card">
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <div class="hero-card">
-                <div class="profile-info">
-                  <!-- svelte-ignore a11y-img-redundant-alt -->
-                  <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
-                  <div class="profile-txt">
-                    <div class="profile-name"><p>{$userprofile.displayName}</p></div>
-                    <div class="profile-points"><p>🧭 1,500</p></div>
-                  </div>
+      <!-- Profile-Card component -->
+      <section class="top-card" on:click={() => profile.show()}>
+        <div class="cards">
+          <div class="card-block">
+            <div class="hero-card">
+              <div class="profile-info">
+                <!-- svelte-ignore a11y-img-redundant-alt -->
+                <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
+                <div class="profile-txt">
+                  <div class="profile-name"><p>{$userprofile.displayName}</p></div>
+                  <div class="profile-points"><p>🧭 1,500</p></div>
                 </div>
               </div>
-            </Col>  
-          </Row>
-        </Block>
-      </div>
-    </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Current-Location-Card Component -->
-    <div class="cards">
-      {#if showLocation != undefined }
-        {#await locationData}
-          <div></div>
-        {:then location}
-        <div class="card">
-          <Block strong inset>
-            <Row>
-              <Col width="100">
+      <!-- debug: <button on:click={() => modal.show()}>Show Modal</button> -->
+      <!-- to be exported to achievement-get -->
+      <Modal bind:this={modal}>
+          <div class="achievement-get">
+              <h1 class="badge-notif">Badge Unlocked!</h1>
+              <img id="badge-img" src="../static/badge/sample-badge.svg" alt="badge">
+              <h3 class="badge-name">Badge Name Here</h3>   
+          </div>
+      </Modal>
+      <Profile bind:this={profile}></Profile>
+
+      <!-- Current-Location-Card Component -->
+      <div class="cards">
+        {#if showLocation != undefined }
+          {#await locationData}
+            <div></div>
+          {:then location}
+            <div class="card-block">
               <div class="hero-card">
-                <h1 class="hero-card-title">{location.features[3].text}</h1>
+                <h1 class="hero-card-title">{location.features[2].text}</h1>
+                <h3 class="hero-card-subtitle">{location.features[3].text}</h3>
                 <div class="hero-card-info"> 
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
-                    <div class="hero-card-text">{latitude}, {longitude}</div> 
-                    <div class="spacer"></div>
+                    <div class="hero-card-text">{latitude}, {longitude}</div>
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
                     <div class="hero-card-text">{location.features[4].place_name}</div>
                 </div>
               </div>
-              </Col>
-            </Row>
-          </Block>
-        </div>
-        {:catch error}
-          <p style="color: red">{error.message}</p>
-        {/await}
-      {/if}
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <Button fill raised on:click={getLocation}>Discover</Button>
-            </Col>
-          </Row>
-        </Block>
-      </div>
-    <!-- Need Replacing/Removing -->
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
+            </div>
+          {:catch error}
+            <p style="color: red">{error.message}</p>
+          {/await}
+        {/if}
+      
+      <!-- Enable for debugging -->
+      <!-- <div class="cards">
+                <div class="card-block">
               <Logout></Logout>
-            </Col>
-          </Row>
-        </Block>
-      </div>
+                </div>
+            </div>
+      -->
 
+      </div>
     </div>
+  </main>
+
   {:else if $userstate == false}
     <Landing></Landing> <!-- Show Landing Page -->
   {:else}
@@ -81,23 +76,52 @@
 </Page>
 
 <style>
+
+  .card-block {
+    padding: 16px; 
+    font-size: inherit;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+
+  
+  .main-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    height: 100vh;
+  }
+
+  .main-content {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-self: center;
+    height: 96%;
+    padding: 4%;
+  }
+
   .hero-card {
     display: flex;
     text-align: center;
     flex-direction: column;
   }
 
-  .spacer {
-    display: flex;
-    width: 24%;
-  }
-
   .hero-card-title {
     margin-top: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     font-size: 30px;
     font-weight: 600;
     font-family: 'Rubik', sans-serif;
+  }
+
+  .hero-card-subtitle {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 6pt;
+    font-weight: 500;
+    color: #848483;
   }
 
   .hero-card-info {
@@ -106,7 +130,8 @@
     align-items:center;
     justify-content: space-evenly;
     margin-bottom: 16px;
-    font-family: 'Roboto', sans-serif;    
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;  
   }
 
   .hero-card-text {
@@ -127,20 +152,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: absolute;
-    bottom: 2%;
   }
 
   .top-card {
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: absolute;
-    top: 2%;
-  }
-
-  .card {
-    margin: 10px;
   }
 
   .pp {
@@ -168,6 +185,30 @@
     font-weight: 600;
   }
 
+/* to be exported to achievement-get */
+  .achievement-get {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .badge-notif {
+      font-family: 'Rubik', sans-serif;
+      font-size: 18pt;
+      font-weight: 600;
+      margin-top: 0;
+  }
+
+  .badge-name {
+      font-family: 'Roboto', sans-serif;
+      font-size: 12pt;
+      font-weight: 400;
+      margin-bottom: 0;
+  }
+
+  #badge-img {
+      height: 60%;
+  }
+
 </style>
 
 <script>
@@ -185,11 +226,10 @@
   var latitude;
   var longitude;
 
-  async function getLocation() {
+ function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
-          
           // position.coords.longitude
           // position.coords.latitude 
           // position.coords.accuracy 
@@ -201,7 +241,7 @@
           showLocation = position;
           latitudeFull = showLocation.coords.latitude;
           longitudeFull = showLocation.coords.longitude;
-      
+          console.log(showLocation);
           formatLocation(longitudeFull,latitudeFull);
           },
           function errorCallback(error) {
@@ -234,18 +274,91 @@
       let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
       var data = await response.json();
       var testData = data.features[2].place_name;
-      pingApi(testData);
+      var newData = testData.replace(/\,\s/g, ',');
+
+      var array = newData.split(',');
+      var continent = "Europe";
+      var territory = array[3];
+      var country = array[2];
+      var county = array[1];
+      var district = array[0];
+
+      console.log(continent);
+      console.log(territory);
+      console.log(country);
+      console.log(county);
+      console.log(district);
+      
+      if (typeof localStorage !== 'undefined') {
+        try {
+            localStorage.setItem('localStorage_Test', 'yes');
+            if (localStorage.getItem('localStorage_Test') === 'yes') {
+                localStorage.removeItem('localStorage_Test');
+
+                if (localStorage.getItem('Continent') !== continent) {
+                  localStorage.setItem('Continent', continent);
+                  continentApi(newData);
+                }
+
+                if (localStorage.getItem('Territory') !== territory) {
+                  localStorage.setItem('Territory', territory);
+                  territoryApi(newData);
+                }
+               
+                if (localStorage.getItem('Country') !== country) {
+                  localStorage.setItem('Country', country);
+                  countryApi(newData);
+                }
+               
+                if (localStorage.getItem('County') !== county) {
+                  localStorage.setItem('County', county);
+                  countyApi(newData);
+                }
+
+                if (localStorage.getItem('District') !== district) {
+                  localStorage.setItem('District', district);
+                  districtApi(newData);
+                }
+            } else {
+                // localStorage is disabled
+            }
+        } catch(e) {
+            // localStorage is disabled
+        }
+      } else {
+          // localStorage is not available
+      }
       return data;
     } 
     return;
   }
 
+  if ( process.env.NODE_ENV == "production") {
+    var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app';
+  } else {
+    var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/';
+  }
 
-  var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app/ping';
+  export async function newAccountApi() {
+  auth.currentUser.getIdToken().then(function(token) {
+    console.log('Sending request to', apiUrl+"api/hello", 'with ID token in Authorization header.');
+    var req = new XMLHttpRequest();
+    req.onload = function() {
+      console.log(req.responseText);
+    };
+    req.onerror = function() {
+      this.responseContainer.innerText = 'There was an error';
+    };
+    req.open('GET', apiUrl+"api/hello", true);
+    req.setRequestHeader('Authorization', 'Bearer ' + token);
+    req.send();
+  });
+} 
 
-  async function pingApi(testData) {
+
+  async function continentApi(testData) {
     auth.currentUser.getIdToken().then(function(token) {
-      console.log('Sending request to', apiUrl, 'with ID token in Authorization header.');
+      console.log('Sending request to', apiUrl+"api/continent", 'with ID token in Authorization header.');
       var req = new XMLHttpRequest();
       req.onload = function() {
         console.log(req.responseText);
@@ -253,7 +366,79 @@
       req.onerror = function() {
         this.responseContainer.innerText = 'There was an error';
       };
-      req.open('GET', apiUrl, true);
+      req.open('GET', apiUrl+"api/continent", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  } 
+
+  async function territoryApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/territory", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/territory", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  } 
+
+  async function countryApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/country", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/country", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  } 
+
+  async function countyApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/county", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/county", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  }
+
+
+  async function districtApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/district", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText)
+        if (req.responseText != "District Badge Already Achieved: E08000015") {
+          modal.show();
+        };
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/district", true);
       req.setRequestHeader('Authorization', 'Bearer ' + token);
       req.setRequestHeader('location', testData);
       req.send();
@@ -281,8 +466,18 @@
   } from 'framework7-svelte';
 
   
-  // importing landing functionality
+  // importing functionality
   import Landing from '../components/landing.svelte';
   import LoadingIcon from '../components/loading.svelte';
+  import AchievementGet from '../components/achievement-get.svelte';
+  import Profile from '../components/profile.svelte';
+
+  let profile;
+  
+  getLocation();
+  
+  // move to achievement-get component
+  import Modal from "../components/modal.svelte";
+  let modal;
 
 </script>

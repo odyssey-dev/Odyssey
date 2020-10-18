@@ -1,14 +1,6 @@
 
 import HomePage from '../pages/home.svelte';
-import AboutPage from '../pages/about.svelte';
-import ProfilePage from '../pages/profile.svelte';
-import FormPage from '../pages/form.svelte';
 
-import ProductPage from '../pages/product.svelte';
-import SettingsPage from '../pages/settings.svelte';
-
-import DynamicRoutePage from '../pages/dynamic-route.svelte';
-import RequestAndLoad from '../pages/request-and-load.svelte';
 import NotFoundPage from '../pages/404.svelte';
 
 var routes = [
@@ -16,31 +8,7 @@ var routes = [
     path: '/',
     component: HomePage,
   },
-  {
-    path: '/about/',
-    component: AboutPage,
-  },
-  {
-    path: '/profile/',
-    component: ProfilePage,
-  },
-  {
-    path: '/form/',
-    component: FormPage,
-  },
-  {
-    path: '/product/:id/',
-    component: ProductPage,
-  },
-  {
-    path: '/settings/',
-    component: SettingsPage,
-  },
 
-  {
-    path: '/dynamic-route/blog/:blogId/post/:postId/',
-    component: DynamicRoutePage,
-  },
   {
     path: '/request-and-load/user/:userId/',
     async: function (routeTo, routeFrom, resolve, reject) {
