@@ -473,8 +473,11 @@
   import Profile from '../components/profile.svelte';
 
   let profile;
-
+  
+  getLocation();
+  
   // move to achievement-get component
   import Modal from "../components/modal.svelte";
   let modal;
+
 </script>
