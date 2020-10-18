@@ -288,7 +288,7 @@
       console.log(country);
       console.log(county);
       console.log(district);
-      
+
       if (typeof localStorage !== 'undefined') {
         try {
             localStorage.setItem('localStorage_Test', 'yes');
@@ -474,7 +474,12 @@
 
   let profile;
   
-  getLocation();
+
+
+  document.addEventListener("DOMContentLoaded", function(){
+    console.log("Ready");
+    getLocation();
+  });
   
   // move to achievement-get component
   import Modal from "../components/modal.svelte";
