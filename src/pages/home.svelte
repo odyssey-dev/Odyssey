@@ -193,7 +193,7 @@
   var latitude;
   var longitude;
 
-  async function getLocation() {
+ function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
@@ -242,22 +242,44 @@
       let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
       var data = await response.json();
       var testData = data.features[2].place_name;
-      pingApi(testData);
+      testData = testData.replace(/\,\s/g, ',');
+      // newAccountApi();
+      continentApi(testData);
+      territoryApi(testData);
+      countryApi(testData);
+      countyApi(testData);
+      districtApi(testData);
       return data;
     } 
     return;
   }
 
   if ( process.env.NODE_ENV == "production") {
-    var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app/ping';
+    var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app';
   } else {
-    var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/ping';
+    var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/';
   }
 
+  export async function newAccountApi() {
+  auth.currentUser.getIdToken().then(function(token) {
+    console.log('Sending request to', apiUrl+"api/hello", 'with ID token in Authorization header.');
+    var req = new XMLHttpRequest();
+    req.onload = function() {
+      console.log(req.responseText);
+    };
+    req.onerror = function() {
+      this.responseContainer.innerText = 'There was an error';
+    };
+    req.open('GET', apiUrl+"api/hello", true);
+    req.setRequestHeader('Authorization', 'Bearer ' + token);
+    req.send();
+  });
+} 
 
-  async function pingApi(testData) {
+
+  async function continentApi(testData) {
     auth.currentUser.getIdToken().then(function(token) {
-      console.log('Sending request to', apiUrl, 'with ID token in Authorization header.');
+      console.log('Sending request to', apiUrl+"api/continent", 'with ID token in Authorization header.');
       var req = new XMLHttpRequest();
       req.onload = function() {
         console.log(req.responseText);
@@ -265,7 +287,76 @@
       req.onerror = function() {
         this.responseContainer.innerText = 'There was an error';
       };
-      req.open('GET', apiUrl, true);
+      req.open('GET', apiUrl+"api/continent", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  } 
+
+  async function territoryApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/territory", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/territory", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  } 
+
+  async function countryApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/country", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/country", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  } 
+
+  async function countyApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/county", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/county", true);
+      req.setRequestHeader('Authorization', 'Bearer ' + token);
+      req.setRequestHeader('location', testData);
+      req.send();
+    });
+  }
+
+
+  async function districtApi(testData) {
+    auth.currentUser.getIdToken().then(function(token) {
+      console.log('Sending request to', apiUrl+"api/district", 'with ID token in Authorization header.');
+      var req = new XMLHttpRequest();
+      req.onload = function() {
+        console.log(req.responseText);
+      };
+      req.onerror = function() {
+        this.responseContainer.innerText = 'There was an error';
+      };
+      req.open('GET', apiUrl+"api/district", true);
       req.setRequestHeader('Authorization', 'Bearer ' + token);
       req.setRequestHeader('location', testData);
       req.send();

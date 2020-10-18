@@ -6,31 +6,16 @@ import 'firebase/auth'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional 
 
-if ( process.env.NODE_ENV == "production") {
-
-   var firebaseConfig = {
-    apiKey: "AIzaSyCyx2lcqANo_cve5LXWcV6_75dX1KJBy-0",
-    authDomain: "odyssey-65e36.firebaseapp.com",
-    databaseURL: "https://odyssey-65e36.firebaseio.com",
-    projectId: "odyssey-65e36",
-    storageBucket: "odyssey-65e36.appspot.com",
-    messagingSenderId: "472825991254",
-    appId: "1:472825991254:web:af0d44280fc63e5a952bf7",
-    measurementId: "G-M8LPY480WP"
-  };
-
-} else {
-
-  var firebaseConfig = {
-    apiKey: "AIzaSyCyx2lcqANo_cve5LXWcV6_75dX1KJBy-0",
-    authDomain: "odyssey-65e36.firebaseapp.com",
-    databaseURL: "https://odyssey-65e36.firebaseio.com",
-    projectId: "odyssey-65e36",
-    storageBucket: "odyssey-65e36.appspot.com",
-    messagingSenderId: "472825991254",
-    appId: "1:472825991254:web:af0d44280fc63e5a952bf7",
-    measurementId: "G-M8LPY480WP"
-  };
+export var firebaseConfig = {
+  apiKey: "AIzaSyCyx2lcqANo_cve5LXWcV6_75dX1KJBy-0",
+  authDomain: "odyssey-65e36.firebaseapp.com",
+  databaseURL: "https://odyssey-65e36.firebaseio.com",
+  projectId: "odyssey-65e36",
+  storageBucket: "odyssey-65e36.appspot.com",
+  messagingSenderId: "472825991254",
+  appId: "1:472825991254:web:af0d44280fc63e5a952bf7",
+  measurementId: "G-M8LPY480WP"
+};
 }
 
 // Initialize Firebase
