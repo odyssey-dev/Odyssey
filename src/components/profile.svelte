@@ -50,13 +50,14 @@
     overflow: hidden;
     overflow-y: scroll;
     margin: auto;
-    width: 94%;
     min-width: 300px;
-    min-height: 70vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     max-width: 610px;
-    max-height: 70vh;
+    max-height: 60vh;
+    margin-left: 4%;
+    margin-right: 4%;
   }
 </style>
 
