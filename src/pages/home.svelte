@@ -1,7 +1,7 @@
 <Page name="home" class="transparent">
 
   {#if $userstate == true }
-  <main>
+  <main class="main-page">
     <div class="main-content">
 
       <!-- Profile-Card component -->
@@ -89,10 +89,10 @@
     margin-top: 0;
   }
   
-  main {
+  .main-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     justify-self: center;
     height: 100vh;
   }
