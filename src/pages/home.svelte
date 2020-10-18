@@ -1,9 +1,9 @@
 <Page name="home" class="transparent">
 
   {#if $userstate == true }
-
+  <main>
     <!-- Profile-Card component -->
-    <div class="top-card">
+    <div class="top-card" on:click={() => profile.show()}>
       <div class="card">
         <Block strong inset>
           <Row>
@@ -24,8 +24,8 @@
       </div>
     </div>
 
-    <AchievementGet></AchievementGet>
-
+    <!-- <AchievementGet></AchievementGet> enable button to trigger Achievement popup-->
+    <Profile bind:this={profile}></Profile>
     <!-- Current-Location-Card Component -->
     <div class="cards">
       {#if showLocation != undefined }
@@ -77,6 +77,7 @@
       </div> -->
 
     </div>
+  </main>
   {:else if $userstate == false}
     <Landing></Landing> <!-- Show Landing Page -->
   {:else}
@@ -85,6 +86,15 @@
 </Page>
 
 <style>
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-self: center;
+    height: 100%
+  }
+
   .hero-card {
     display: flex;
     text-align: center;
@@ -135,16 +145,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: absolute;
-    bottom: 2%;
   }
 
   .top-card {
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: absolute;
-    top: 2%;
   }
 
   .card {
@@ -388,5 +394,8 @@
   import Landing from '../components/landing.svelte';
   import LoadingIcon from '../components/loading.svelte';
   import AchievementGet from '../components/achievement-get.svelte';
+  import Profile from '../components/profile.svelte';
+
+  let profile;
   
 </script>
