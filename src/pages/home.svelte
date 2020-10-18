@@ -225,7 +225,8 @@
   var longitudeFull;  
   var latitude;
   var longitude;
-
+  var locationData;
+  var newData;
  function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -245,19 +246,20 @@
           formatLocation(longitudeFull,latitudeFull);
           },
           function errorCallback(error) {
-              // error handling
+            console.log(error);
+            console.log("Geolocation Error");
           },
           {
-              timeout:5000
+              timeout:8000
           },
           { enableHighAccuracy: true }
       );
     } else { 
       console.log("Geolocation is not supported by this browser.");
     }
-
   }
-  var locationData = locationApi();
+
+
   function formatLocation(longitudeFull,latitudeFull) {
     console.log("Format Geolocation");
     latitude = latitudeFull.toFixed(4);
@@ -273,7 +275,7 @@
       let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
       var data = await response.json();
       var testData = data.features[2].place_name;
-      var newData = testData.replace(/\,\s/g, ',');
+      newData = testData.replace(/\,\s/g, ',');
 
       var array = newData.split(',');
       var continent = "Europe";
@@ -329,13 +331,16 @@
                 districtApi(newData);
               }
           } else {
-              // localStorage is disabled
+            console.log(" localStorage is disabled");
+             districtApi(newData);
           }
       } catch(e) {
-          // localStorage is disabled
+          console.log(" localStorage is disabled - Error");
+          districtApi(newData);
       }
     } else {
-        // localStorage is not available
+      console.log(" localStorage is not available");
+      districtApi(newData);
     }
   }
 
@@ -360,7 +365,6 @@
       req.send();
     });
   } 
-
 
   async function continentApi(testData) {
     auth.currentUser.getIdToken().then(function(token) {
