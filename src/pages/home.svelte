@@ -2,40 +2,36 @@
 
   {#if $userstate == true }
   <main>
-    <!-- Profile-Card component -->
-    <div class="top-card" on:click={() => profile.show()}>
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
-              <div class="hero-card">
-                <div class="profile-info">
-                  <!-- svelte-ignore a11y-img-redundant-alt -->
-                  <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
-                  <div class="profile-txt">
-                    <div class="profile-name"><p>{$userprofile.displayName}</p></div>
-                    <div class="profile-points"><p>🧭 1,500</p></div>
-                  </div>
+    <div class="main-content">
+
+      <!-- Profile-Card component -->
+      <section class="top-card" on:click={() => profile.show()}>
+        <div class="cards">
+          <div class="card-block">
+            <div class="hero-card">
+              <div class="profile-info">
+                <!-- svelte-ignore a11y-img-redundant-alt -->
+                <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
+                <div class="profile-txt">
+                  <div class="profile-name"><p>{$userprofile.displayName}</p></div>
+                  <div class="profile-points"><p>🧭 1,500</p></div>
                 </div>
               </div>
-            </Col>  
-          </Row>
-        </Block>
-      </div>
-    </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- <AchievementGet></AchievementGet> enable button to trigger Achievement popup-->
-    <Profile bind:this={profile}></Profile>
-    <!-- Current-Location-Card Component -->
-    <div class="cards">
-      {#if showLocation != undefined }
-        {#await locationData}
-          <div></div>
-        {:then location}
-        <div class="card">
-          <Block strong inset>
-            <Row>
-              <Col width="100">
+      <!-- <AchievementGet></AchievementGet> enable button to trigger Achievement popup-->
+      <Profile bind:this={profile}></Profile>
+
+      <!-- Current-Location-Card Component -->
+      <div class="cards">
+        {#if showLocation != undefined }
+          {#await locationData}
+            <div></div>
+          {:then location}
+            <div class="card-block">
               <div class="hero-card">
                 <h1 class="hero-card-title">{location.features[2].text}</h1>
                 <h3 class="hero-card-subtitle">{location.features[3].text}</h3>
@@ -46,38 +42,31 @@
                     <div class="hero-card-text">{location.features[4].place_name}</div>
                 </div>
               </div>
-              </Col>
-            </Row>
-          </Block>
-        </div>
-        {:catch error}
-          <p style="color: red">{error.message}</p>
-        {/await}
-      {/if}
+            </div>
+          {:catch error}
+            <p style="color: red">{error.message}</p>
+          {/await}
+        {/if}
       
-
-      <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
+        <div class="card-discover">
+          <div class="cards">
+            <div id="location" class="card-block">
               <Button fill raised on:click={getLocation}>Discover</Button>
-            </Col>
-          </Row>
-        </Block>
-      </div>
-    <!-- Enable for debugging -->
-      <!-- <div class="card">
-        <Block strong inset>
-          <Row>
-            <Col width="100">
+            </div>
+          </div>
+        </div>
+      <!-- Enable for debugging -->
+      <!-- <div class="cards">
+                <div class="card-block">
               <Logout></Logout>
-            </Col>
-          </Row>
-        </Block>
-      </div> -->
+                </div>
+            </div>
+      -->
 
+      </div>
     </div>
   </main>
+
   {:else if $userstate == false}
     <Landing></Landing> <!-- Show Landing Page -->
   {:else}
@@ -86,13 +75,34 @@
 </Page>
 
 <style>
+
+  .card-block {
+    padding: 16px; 
+    font-size: inherit;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 0;
+    margin: 4%;
+  }
+
+  #location {
+    margin-top: 0;
+  }
   
   main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     justify-self: center;
-    height: 100%
+    height: 100vh;
+  }
+
+  .main-content {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-self: center;
+    height: 96%
   }
 
   .hero-card {
@@ -151,10 +161,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
-
-  .card {
-    margin: 10px;
   }
 
   .pp {
@@ -397,5 +403,5 @@
   import Profile from '../components/profile.svelte';
 
   let profile;
-  
+
 </script>
