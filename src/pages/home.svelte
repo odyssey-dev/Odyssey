@@ -1,7 +1,7 @@
 <Page name="home" class="transparent">
 
   {#if $userstate == true }
-  <main>
+  <main class="main-page">
     <div class="main-content">
 
       <!-- Profile-Card component -->
@@ -22,7 +22,15 @@
         </div>
       </section>
 
-      <!-- <AchievementGet></AchievementGet> enable button to trigger Achievement popup-->
+      <!-- debug: <button on:click={() => modal.show()}>Show Modal</button> -->
+      <!-- to be exported to achievement-get -->
+      <Modal bind:this={modal}>
+          <div class="achievement-get">
+              <h1 class="badge-notif">Badge Unlocked!</h1>
+              <img id="badge-img" src="../static/badge/sample-badge.svg" alt="badge">
+              <h3 class="badge-name">Badge Name Here</h3>   
+          </div>
+      </Modal>
       <Profile bind:this={profile}></Profile>
 
       <!-- Current-Location-Card Component -->
@@ -74,18 +82,13 @@
     font-size: inherit;
     background-color: #fff;
     border-radius: 4px;
-    margin: 0;
-    margin: 4%;
   }
 
-  #location {
-    margin-top: 0;
-  }
   
-  main {
+  .main-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     justify-self: center;
     height: 100vh;
   }
@@ -95,7 +98,8 @@
     flex-direction: column;
     justify-content: space-between;
     justify-self: center;
-    height: 96%
+    height: 96%;
+    padding: 4%;
   }
 
   .hero-card {
@@ -179,6 +183,30 @@
   .profile-name {
     font-size: 14pt;
     font-weight: 600;
+  }
+
+/* to be exported to achievement-get */
+  .achievement-get {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .badge-notif {
+      font-family: 'Rubik', sans-serif;
+      font-size: 18pt;
+      font-weight: 600;
+      margin-top: 0;
+  }
+
+  .badge-name {
+      font-family: 'Roboto', sans-serif;
+      font-size: 12pt;
+      font-weight: 400;
+      margin-bottom: 0;
+  }
+
+  #badge-img {
+      height: 60%;
   }
 
 </style>
@@ -402,7 +430,10 @@
       console.log('Sending request to', apiUrl+"api/district", 'with ID token in Authorization header.');
       var req = new XMLHttpRequest();
       req.onload = function() {
-        console.log(req.responseText);
+        console.log(req.responseText)
+        if (req.responseText != "District Badge Already Achieved: E08000015") {
+          modal.show();
+        };
       };
       req.onerror = function() {
         this.responseContainer.innerText = 'There was an error';
@@ -442,7 +473,11 @@
   import Profile from '../components/profile.svelte';
 
   let profile;
-
+  
   getLocation();
+  
+  // move to achievement-get component
+  import Modal from "../components/modal.svelte";
+  let modal;
 
 </script>
