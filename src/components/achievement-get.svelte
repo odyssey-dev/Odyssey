@@ -10,10 +10,11 @@
         flex-direction: column;
     }
 
-    .badge-unlocked {
+    .badge-notif {
         font-family: 'Rubik', sans-serif;
         font-size: 18pt;
         font-weight: 600;
+        margin-top: 0;
     }
 
     .badge-name {
@@ -23,12 +24,8 @@
         margin-bottom: 0;
     }
 
-    img {
+    #badge-img {
         height: 60%;
-    }
-
-    h1 {
-        margin-top: 0;
     }
 
 </style>
@@ -37,8 +34,8 @@
     <button on:click={() => modal.show()}>Show Modal</button>
     <Modal bind:this={modal}>
         <div class="achievement-get">
-            <h1 class="badge-unlocked">Badge Unlocked!</h1>
-            <img src="../static/badge/sample-badge.svg" alt="badge">
+            <h1 class="badge-notif">Badge Unlocked!</h1>
+            <img id="badge-img" src="../static/badge/sample-badge.svg" alt="badge">
             <h3 class="badge-name">Merseyside Explorer (Gold)</h3>   
         </div>
     </Modal>

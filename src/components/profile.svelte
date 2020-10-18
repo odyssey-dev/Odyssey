@@ -56,8 +56,6 @@
     flex-direction: column;
     max-width: 610px;
     max-height: 60vh;
-    margin-left: 4%;
-    margin-right: 4%;
   }
 </style>
 
