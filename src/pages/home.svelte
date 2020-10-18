@@ -443,4 +443,6 @@
 
   let profile;
 
+  getLocation();
+
 </script>
