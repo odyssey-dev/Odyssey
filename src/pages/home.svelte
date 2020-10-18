@@ -48,13 +48,6 @@
           {/await}
         {/if}
       
-        <div class="card-discover">
-          <div class="cards">
-            <div id="location" class="card-block">
-              <Button fill raised on:click={getLocation}>Discover</Button>
-            </div>
-          </div>
-        </div>
       <!-- Enable for debugging -->
       <!-- <div class="cards">
                 <div class="card-block">
@@ -209,7 +202,6 @@
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
-          
           // position.coords.longitude
           // position.coords.latitude 
           // position.coords.accuracy 
@@ -254,13 +246,60 @@
       let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
       var data = await response.json();
       var testData = data.features[2].place_name;
-      testData = testData.replace(/\,\s/g, ',');
-      // newAccountApi();
-      continentApi(testData);
-      territoryApi(testData);
-      countryApi(testData);
-      countyApi(testData);
-      districtApi(testData);
+      var newData = testData.replace(/\,\s/g, ',');
+
+      var array = newData.split(',');
+      var continent = "Europe";
+      var territory = array[3];
+      var country = array[2];
+      var county = array[1];
+      var district = array[0];
+
+      console.log(continent);
+      console.log(territory);
+      console.log(country);
+      console.log(county);
+      console.log(district);
+      
+      if (typeof localStorage !== 'undefined') {
+        try {
+            localStorage.setItem('localStorage_Test', 'yes');
+            if (localStorage.getItem('localStorage_Test') === 'yes') {
+                localStorage.removeItem('localStorage_Test');
+
+                if (localStorage.getItem('Continent') !== continent) {
+                  localStorage.setItem('Continent', continent);
+                  continentApi(newData);
+                }
+
+                if (localStorage.getItem('Territory') !== territory) {
+                  localStorage.setItem('Territory', territory);
+                  territoryApi(newData);
+                }
+               
+                if (localStorage.getItem('Country') !== country) {
+                  localStorage.setItem('Country', country);
+                  countryApi(newData);
+                }
+               
+                if (localStorage.getItem('County') !== county) {
+                  localStorage.setItem('County', county);
+                  countyApi(newData);
+                }
+
+                if (localStorage.getItem('District') !== district) {
+                  localStorage.setItem('District', district);
+                  districtApi(newData);
+                }
+            } else {
+                // localStorage is disabled
+            }
+        } catch(e) {
+            // localStorage is disabled
+        }
+      } else {
+          // localStorage is not available
+      }
       return data;
     } 
     return;
