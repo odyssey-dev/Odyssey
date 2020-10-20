@@ -1,23 +1,23 @@
 {#if shown}
 <div class="swiper-block">
     <div class="swiper-func">
-      <Swiper init pagination params={{spaceBetween: 20,  }}  >
+      <Swiper init pagination params={{spaceBetween: 0,  }}  >
 
-          <SwiperSlide class="swiper-container">
-            <div class="profile-cards">
+          <SwiperSlide  class="swiper-container">
+            <div id="swiper-page-one" class="profile-cards">
                 <Badges></Badges>
             </div>
           </SwiperSlide>
 
 
-          <SwiperSlide class="swiper-container">
+          <!-- <SwiperSlide class="swiper-container">
             <div class="profile-cards">
                 <Statistics></Statistics>
             </div>
-          </SwiperSlide>
+          </SwiperSlide> -->
 
-          <SwiperSlide class="swiper-container">
-            <div class="profile-cards">
+          <SwiperSlide id="swiper-page-two" class="swiper-container">
+            <div id="swiper-page-two" class="profile-cards">
                 <Settings></Settings>
             </div>
           </SwiperSlide>
@@ -29,16 +29,26 @@
 
 <style>
 
+  #swiper-page-one {
+    border-radius: 6px 0 0 6px
+  }
+
+  #swiper-page-two {
+    border-radius: 0 6px 6px 0
+  }
+
   .swiper-func  {
     display: flex;
     height: 100%;
     align-items: center;
+    width: 92vw;
   } 
   
   .swiper-block {
     box-sizing: border-box;
     display:flex;
     height: 100%;
+    width: 92vw;
     justify-self: center;
     flex-direction: column;
     z-index: 4;
@@ -46,15 +56,13 @@
 
   .profile-cards {
     background: #fff;
-    border-radius: 6px;
     overflow: hidden;
     overflow-y: scroll;
     margin: auto;
-    min-width: 300px;
+    width: 92vw;
     min-height: 60vh;
     display: flex;
     flex-direction: column;
-    max-width: 610px;
     max-height: 60vh;
   }
 </style>
