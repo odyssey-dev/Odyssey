@@ -30,25 +30,27 @@
 <style>
 
   #swiper-page-one {
-    border-radius: 6px 0 0 6px
+    border-radius: 6px;
+    height: 100vh;
+    overflow: hidden;
   }
 
   #swiper-page-two {
-    border-radius: 0 6px 6px 0
+    border-radius:6px;
+    height: 100vh;
   }
 
   .swiper-func  {
     display: flex;
     height: 100%;
     align-items: center;
-    width: 92vw;
+    width: 100%;
   } 
   
   .swiper-block {
-    box-sizing: border-box;
+    box-sizing: content-box;
+    padding: 2%;
     display:flex;
-    height: 100%;
-    width: 92vw;
     justify-self: center;
     flex-direction: column;
     z-index: 4;
@@ -59,11 +61,12 @@
     overflow: hidden;
     overflow-y: scroll;
     margin: auto;
-    width: 92vw;
-    min-height: 60vh;
+    min-height: 30vh;
+    width:90vw;
     display: flex;
     flex-direction: column;
-    max-height: 60vh;
+    align-self: center;
+    max-height: 70vh;
   }
 </style>
 
