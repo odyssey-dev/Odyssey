@@ -514,5 +514,5 @@
   // move to achievement-get component
   import Modal from "../components/modal.svelte";
   let modal;
-
+  let achieveAudio = new Audio("../static/audio/app_alert_tone_011.mp3");
 </script>
