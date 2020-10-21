@@ -49,7 +49,6 @@
   
   .swiper-block {
     box-sizing: content-box;
-    padding: 2%;
     display:flex;
     justify-self: center;
     flex-direction: column;
