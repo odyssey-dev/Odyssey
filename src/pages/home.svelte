@@ -5,10 +5,10 @@
     <div class="main-content">
 
       <!-- Profile-Card component -->
-      <section class="top-card" on:click={() => profile.show()}>
+      <section class="top-card">
         <div class="cards">
           <div class="card-block">
-              <div class="hero-card">
+              <div class="hero-card" on:click={() => profile.show()}>
                 <div class="profile-info">
                   <!-- svelte-ignore a11y-img-redundant-alt -->
                   <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
