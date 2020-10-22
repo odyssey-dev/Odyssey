@@ -1,3 +1,4 @@
+
 export async function newAccountApi() {
   auth.currentUser.getIdToken().then(function(token) {
     console.log('Sending request to', apiUrl+"api/hello", 'with ID token in Authorization header.');
