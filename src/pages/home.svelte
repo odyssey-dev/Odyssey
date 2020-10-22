@@ -5,19 +5,20 @@
     <div class="main-content">
 
       <!-- Profile-Card component -->
-      <section class="top-card" on:click={() => profile.show()}>
+      <section class="top-card">
         <div class="cards">
           <div class="card-block">
-            <div class="hero-card">
-              <div class="profile-info">
-                <!-- svelte-ignore a11y-img-redundant-alt -->
-                <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
-                <div class="profile-txt">
-                  <div class="profile-name"><p>{$userprofile.displayName}</p></div>
-                  <div class="profile-points"><p>🧭 1,500</p></div>
+              <div class="hero-card" on:click={() => profile.show()}>
+                <div class="profile-info">
+                  <!-- svelte-ignore a11y-img-redundant-alt -->
+                  <img class="pp" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
+                  <div class="profile-txt">
+                    <div class="profile-name"><p>{$userprofile.displayName}</p></div>
+                    <div class="profile-points"><p>🧭 1,500</p></div>
+                  </div>
                 </div>
               </div>
-            </div>
+            <Profile bind:this={profile}></Profile>
           </div>
         </div>
       </section>
@@ -31,7 +32,6 @@
               <h3 class="badge-name">Badge Name Here</h3>   
           </div>
       </Modal>
-      <Profile bind:this={profile}></Profile>
 
       <!-- Current-Location-Card Component -->
       <div class="cards">
@@ -88,7 +88,7 @@
 <style>
 
   .card-block {
-    padding: 16px; 
+    padding: 0; 
     font-size: inherit;
     background-color: #fff;
     border-radius: 4px;
@@ -116,6 +116,7 @@
     display: flex;
     text-align: center;
     flex-direction: column;
+    padding: 16px;
   }
 
   .hero-card-title {
