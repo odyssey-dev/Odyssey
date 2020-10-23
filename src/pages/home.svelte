@@ -1,5 +1,4 @@
 <Page name="home" class="transparent">
-
   {#if $userstate == true }
   <main class="main-page">
     <div class="main-content">
@@ -41,13 +40,13 @@
           {:then location}
             <div class="card-block">
               <div class="hero-card">
-                <h1 class="hero-card-title">{location.features[2].text}</h1>
-                <h3 class="hero-card-subtitle">{location.features[3].text}</h3>
+                <h1 class="hero-card-title">{district}</h1>
+                <h3 class="hero-card-subtitle">{county}</h3>
                 <div class="hero-card-info"> 
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
                     <div class="hero-card-text">{latitude}, {longitude}</div>
                     <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
-                    <div class="hero-card-text">{location.features[4].place_name}</div>
+                    <div class="hero-card-text">{country}</div>
                 </div>
               </div>
             </div>
@@ -73,11 +72,10 @@
                 </div>
             </div>
       -->
-
+     
       </div>
     </div>
   </main>
-
   {:else if $userstate == false}
     <Landing></Landing> <!-- Show Landing Page -->
   {:else}
@@ -207,6 +205,8 @@
   import {onAuthStateChanged} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
   import {auth} from '../js/firebase.js';
+
+  var devtools = true;
   // Location
   var showLocation;
   var latitudeFull;
@@ -215,6 +215,13 @@
   var longitude;
   var locationData;
   var newData;
+
+
+  var continent;
+  var territory;
+  var country;
+  var county;
+  var district;
  function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -257,16 +264,18 @@
       console.log("Calling Mapbox");
       const geocodingURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
       const accessToken = "pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A"
-      let response = await fetch(`${geocodingURL}${longitude},${latitude}.json?access_token=${accessToken}`);
+      let response = await fetch(`${geocodingURL}-3.0944,53.3443.json?types=place&access_token=${accessToken}`);
       var data = await response.json();
-      var testData = data.features[2].place_name;
+      console.log(data.features);
+
+      var testData = data.features[0].place_name;
       newData = testData.replace(/\,\s/g, ',');
       var array = newData.split(',');
-      var continent = "Europe";
-      var territory = array[3];
-      var country = array[2];
-      var county = array[1];
-      var district = array[0];
+      continent = "Europe";
+      territory = array[3];
+      country = array[2];
+      county = array[1];
+      district = array[0];
       console.log(continent);
       console.log(territory);
       console.log(country);
