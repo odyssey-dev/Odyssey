@@ -39,6 +39,6 @@ import {
 
   import Logout from '../components/logout.svelte';
 
-  var devtoolState = true;
+  var devtoolState = false;
 
 </script>
