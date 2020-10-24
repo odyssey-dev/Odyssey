@@ -466,6 +466,7 @@
         console.log(req.responseText)
         if (req.responseText != "District Badge Already Achieved: E08000015") {
           modal.show();
+          playBadgeNotificationAudio();
         };
       };
       req.onerror = function() {
@@ -510,9 +511,12 @@
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
   });
-  
+
   // move to achievement-get component
   import Modal from "../components/modal.svelte";
   let modal;
-  let achieveAudio = new Audio("../static/audio/app_alert_tone_011.mp3");
+  let badgeNotificationAudio = new Audio("../static/audio/app_alert_tone_011.mp3");
+  function playBadgeNotificationAudio() {
+    badgeNotificationAudio.play();
+  }
 </script>
