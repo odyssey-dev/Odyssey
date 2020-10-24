@@ -83,6 +83,7 @@
   {:else}
     <LoadingIcon></LoadingIcon> <!-- Show Loading Icon -->
   {/if}
+  <ListBadges> </ListBadges>
 </Page>
 
 <style>
@@ -503,6 +504,7 @@
   import LoadingIcon from '../components/loading.svelte';
   import AchievementGet from '../components/achievement-get.svelte';
   import Profile from '../components/profile.svelte';
+  import ListBadges from '../components/listBadges.svelte';
 
   let profile;
   

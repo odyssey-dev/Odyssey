@@ -2,7 +2,7 @@
 import * as firebase from "firebase/app";
 import 'firebase/analytics';
 import 'firebase/performance';
-import 'firebase/auth'
+import 'firebase/auth';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional 
 
@@ -23,5 +23,6 @@ firebase.initializeApp(firebaseConfig);
 export const analytics = firebase.analytics();
 export const performance = firebase.performance();
 export const auth = firebase.auth();
+export const storage = firebase.storage();
 // export const db = firebase.firestore();
 export const provider = new firebase.auth.GoogleAuthProvider();
