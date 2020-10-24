@@ -33,12 +33,12 @@
     <section class="location-card">
       <div class="card-block">
         {#if showLocation != undefined }
-          <div class="card-content">
-        {:then location} 
-          <div></div>
         {#await locationData}
-                <h1 class="hero-card-title">{district}</h1>
-                <h3 class="hero-card-subtitle">{county}</h3>
+        <div></div>
+        {:then location}
+        <div class="card-content">
+                <h1 class="card-content-title">{district}</h1>
+                <h3 class="card-content-subtitle">{county}</h3>
                 <div class="card-content-info"> 
                   <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
                 <div class="card-content-text">{latitude}, {longitude}</div>
