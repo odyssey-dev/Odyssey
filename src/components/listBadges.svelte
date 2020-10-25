@@ -1,6 +1,6 @@
 {#await promise}
   <div>Loading..</div>
-  {:then data}
+ 
   <h1>Continents</h1>
   {#each continentBadges as continentBadge}
 		{continentBadge}<br>
