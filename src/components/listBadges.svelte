@@ -26,6 +26,8 @@
     {districtBadge}<br>
   {/each}
 
+  {:then data}
+
   {:catch error}
     <p style="color: red">{error.message}</p>
 {/await}
@@ -35,7 +37,6 @@
   let url = "https://firebasestorage.googleapis.com/v0/b/odyssey-65e36.appspot.com/o/badge.json?alt=media&token=52cf5ea8-8308-44b5-b80e-1f091f030c6c";
 
   let promise = getRandomNumber();
-
 
     var continentBadges = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"];
     var territoryBadges = ["United Kingdom"];
@@ -57,5 +58,14 @@
       throw new Error(data);
     }
   }
+
+  import {
+    AccordionContent,
+    BlockTitle,
+    Swiper,
+    SwiperSlide,
+    List,
+    ListItem
+  } from 'framework7-svelte';
 
 </script>

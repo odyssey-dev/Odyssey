@@ -1,13 +1,11 @@
-<button class="button" on:click={logout}>Logout</button>
+<p class="logout" on:click={logout}>Logout</p>
 
 <style>
-  .button {
-    background-color: #888;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    box-sizing: border-box;
+  .logout {
+    color: #E50000;
+    text-align: left;
+    font-size: inherit;
+    margin: 0;
     }
 </style>
 
@@ -15,7 +13,7 @@
   // Firebase 
   import {auth, provider} from '../js/firebase.js';
 
-  function logout() {
+  export function logout() {
     auth.signOut();
   }
 </script>
