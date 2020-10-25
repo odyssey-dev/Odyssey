@@ -1,15 +1,17 @@
 {#if shown}
-<div class="swiper-block">
-    <div class="swiper-func">
-      <Swiper init pagination params={{spaceBetween: 0,  }}  >
 
-          <SwiperSlide class="swiper-container">
+
+<div class="swiper-block" transition:slide="{{ y: 50, duration: 400 }}">
+    <div class="swiper-func">
+      <Swiper ref="swiper-container" init params={{spaceBetween: 0, }}>
+
+          <SwiperSlide ref="swiper-slide">
             <div class="profile-cards">
                 <Badges></Badges>
             </div>
           </SwiperSlide>
 
-          <SwiperSlide class="swiper-container">
+          <SwiperSlide ref="swiper-slide">
             <div class="profile-cards">
                 <Settings></Settings>
             </div>
@@ -21,12 +23,12 @@
 {/if}
 
 <style>
-
   .swiper-func  {
     display: flex;
-    height: 100%;
+    height: auto;
     align-items: center;
     width: 100%;
+    overflow-y: hidden;
   } 
   
   .swiper-block {
@@ -35,6 +37,7 @@
     justify-self: center;
     flex-direction: column;
     z-index: 4;
+    overflow-y: hidden;
   }
 
   .profile-cards {
@@ -48,6 +51,19 @@
     margin: 4%;
     border-radius: 6px;
   }
+
+  :global([ref="swiper-container"]) {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  :global([ref="swiper-slide"]) {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
 </style>
 
 <script>
@@ -62,6 +78,8 @@
             shown = false;
         }
     }
+
+    import { slide } from 'svelte/transition';
     
     import { 
         f7,
@@ -72,7 +90,10 @@
         Card,
         Link,
         Block,
-        Col
+        Col,
+        Tab,
+        Tabs,
+        Toolbar,
      } from 'framework7-svelte';
 
      import Badges from '../components/prof-badges.svelte';

@@ -31,6 +31,7 @@
       </Modal>
 
       <!-- Current-Location-Card Component -->
+
       <CurrentLocationCard></CurrentLocationCard>
     </div>
 
@@ -51,6 +52,7 @@
     justify-content: center;
     justify-self: center;
     height: 100vh;
+    overflow: hidden;
   }
   .main-content {
     display:flex;
@@ -69,6 +71,7 @@
     background-color: #fff;
     border-radius: 4px;
     margin: 2%;
+    overflow: hidden;
   }
 
   .card-content {
@@ -129,6 +132,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow-y: scroll;
   }
 
 </style>

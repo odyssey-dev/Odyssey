@@ -22,6 +22,14 @@
   </ListItem>
 
   <ListItem
+  title="Animations"
+  >
+  <span slot="after">
+  <Toggle />
+  </span>
+</ListItem>
+
+  <ListItem
     title="Monthly Challenges"
     >
     <span slot="after">
@@ -123,6 +131,7 @@
     align-self: center;
     margin-bottom: 0;
     font-size: 16pt;
+    height: auto;
   }
 
 </style>
