@@ -7,8 +7,8 @@
 
 In short, an app designed to help start your very own *Odyssey.*
 
-## Development  💻
-The App will be created using a mixture of Framework7, Svelte and a lot of **magic.**
+When you're using Odyssey, you will go from place to place, and as you do you'll earn badges, badges for visiting new locations, for visiting whole counties, countries or continents.
 
-## Distribution 🚀
-The app will be native and distributed through the Play Store & App Store
+Badges mean points. Try to get more than your friends and share the ones you're most proud of.
+
+## [learn more ℹ️](https://github.com/odyssey-dev/Odyssey/wiki) 
