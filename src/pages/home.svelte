@@ -40,7 +40,7 @@
   {:else}
     <LoadingIcon></LoadingIcon> <!-- Show Loading Icon -->
   {/if}
- 
+
 </Page>
 
 <style>
@@ -207,6 +207,9 @@
   import LoadingIcon from '../components/loading.svelte';
   // import AchievementGet from '../components/achievement-get.svelte'; needs to be created
   import Profile from '../components/profile.svelte';
+
+  import ListBadges from '../components/listBadges.svelte';
+
   let profile;
   
   document.addEventListener("DOMContentLoaded", function(){

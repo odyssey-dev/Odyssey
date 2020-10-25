@@ -1,61 +1,32 @@
 {#await promise}
-    <div></div>
+  <div>Loading..</div>
+ 
+  <h1>Continents</h1>
+  {#each continentBadges as continentBadge}
+		{continentBadge}<br>
+	{/each}
+    
+  <h1>Territories</h1>
+  {#each territoryBadges as territoryBadge}
+    {territoryBadge}<br>
+  {/each}
+
+  <h1>Countries</h1>
+  {#each countryBadges as countryBadge}
+    {countryBadge}<br>
+  {/each}
+
+  <h1>Counties</h1>
+  {#each countyBadges as countyBadge}
+    {countyBadge}<br>
+  {/each}
+
+  <h1>Districts</h1>
+  {#each districtBadges as districtBadge}
+    {districtBadge}<br>
+  {/each}
+
   {:then data}
-
-  <Swiper  params={{spaceBetween: 20}}>
-    <SwiperSlide>
-
-      <BlockTitle>Inset</BlockTitle>
-      <List mediaList inset>
-        <ListItem
-          link="#"
-          title="Yellow Submarine"
-          subtitle="Beatles">
-          <img slot="media" src="https://cdn.framework7.io/placeholder/fashion-88x88-4.jpg" width="44" />
-        </ListItem>
-        <ListItem
-          link="#"
-          title="Don't Stop Me Now"
-          subtitle="Queen">
-          <img slot="media" src="https://cdn.framework7.io/placeholder/fashion-88x88-5.jpg" width="44" />
-        </ListItem>
-        <ListItem
-          link="#"
-          title="Billie Jean"
-          subtitle="Michael Jackson">
-          <img slot="media" src="https://cdn.framework7.io/placeholder/fashion-88x88-6.jpg" width="44" />
-        </ListItem>
-      </List>
-
-    </SwiperSlide>
-    <SwiperSlide>
-
-      <BlockTitle>Inset</BlockTitle>
-      <List mediaList inset>
-        <ListItem
-          link="#"
-          title="Yellow Submarine"
-          subtitle="Beatles">
-          <img slot="media" src="https://cdn.framework7.io/placeholder/fashion-88x88-4.jpg" width="44" />
-        </ListItem>
-        <ListItem
-          link="#"
-          title="Don't Stop Me Now"
-          subtitle="Queen">
-          <img slot="media" src="https://cdn.framework7.io/placeholder/fashion-88x88-5.jpg" width="44" />
-        </ListItem>
-        <ListItem
-          link="#"
-          title="Billie Jean"
-          subtitle="Michael Jackson">
-          <img slot="media" src="https://cdn.framework7.io/placeholder/fashion-88x88-6.jpg" width="44" />
-        </ListItem>
-      </List>
-
-    </SwiperSlide>
-
-  </Swiper>
-
 
   {:catch error}
     <p style="color: red">{error.message}</p>
@@ -67,11 +38,20 @@
 
   let promise = getRandomNumber();
 
+    var continentBadges = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"];
+    var territoryBadges = ["United Kingdom"];
+    var countryBadges = ["England", "Wales", "Northern Ireland", "Scotland"];
+    var countyBadges = ["Merseyside"];
+    var districtBadges = ["Wirral"];
+
   async function getRandomNumber() {
+    console.log("List Badges");
     const res = await fetch(url);
+    console.log(res);
     const data = await res.json();
 
     if (res.ok) {
+
       console.log(data);
       return data;
     } else {
@@ -87,7 +67,5 @@
     List,
     ListItem
   } from 'framework7-svelte';
-
-
 
 </script>
