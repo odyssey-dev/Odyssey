@@ -71,7 +71,6 @@
     background-color: #fff;
     border-radius: 4px;
     margin: 2%;
-    transition: all 0.5s ease-in-out;
     overflow: hidden;
   }
 
