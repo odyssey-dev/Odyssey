@@ -43,7 +43,7 @@
                   <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
                 <div class="card-content-text">{latitude}, {longitude}</div>
                   <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
-              <div class="card-content-text">{location.features[4].place_name}</div>
+              <div class="card-content-text">{country}</div>
             </div>
           </div>
         {:catch error}
@@ -72,6 +72,7 @@
     justify-content: center;
     justify-self: center;
     height: 100vh;
+    overflow: hidden;
   }
   .main-content {
     display:flex;
@@ -90,6 +91,8 @@
     background-color: #fff;
     border-radius: 4px;
     margin: 2%;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
   }
 
   .card-content {
@@ -189,6 +192,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow-y: scroll;
   }
 
 </style>

@@ -123,6 +123,7 @@
     align-self: center;
     margin-bottom: 0;
     font-size: 16pt;
+    height: auto;
   }
 
 </style>
