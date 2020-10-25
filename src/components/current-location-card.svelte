@@ -44,10 +44,13 @@ import {
 
 <style>
   .card-block {
+    display: flex;
+    flex-direction: column;
     padding: 0; 
     font-size: inherit;
     background-color: #fff;
     border-radius: 4px;
+    margin: 2%;
   }
   .hero-card {
     display: flex;
