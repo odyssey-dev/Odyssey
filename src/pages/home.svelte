@@ -83,7 +83,7 @@
   {:else}
     <LoadingIcon></LoadingIcon> <!-- Show Loading Icon -->
   {/if}
-  <ListBadges> </ListBadges>
+   
 </Page>
 
 <style>
