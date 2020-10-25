@@ -22,6 +22,14 @@
   </ListItem>
 
   <ListItem
+  title="Animations"
+  >
+  <span slot="after">
+  <Toggle />
+  </span>
+</ListItem>
+
+  <ListItem
     title="Monthly Challenges"
     >
     <span slot="after">
