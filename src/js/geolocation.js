@@ -1,6 +1,6 @@
 import {auth} from '../js/firebase.js';
 import {showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
-import Modal from '../components/modal.svelte';
+
 // Location
 
 export var locationData;
@@ -225,7 +225,7 @@ export function getLocation() {
      req.onload = function() {
        console.log(req.responseText)
        if (req.responseText != "District Badge Already Achieved: E08000015") {
-         modal.show();
+        console.log("District Badge Achieved");
        };
      };
      req.onerror = function() {
