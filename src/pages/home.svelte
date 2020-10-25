@@ -78,46 +78,6 @@
     padding: 16px;
   }
 
-
-  .card-content-title {
-    margin-top: 8px;
-    margin-bottom: 0px;
-    font-size: 30px;
-    font-weight: 600;
-    font-family: 'Rubik', sans-serif;
-  }
-
-  .card-content-subtitle {
-    font-size: 16px;
-    margin-top: 0;
-    margin-bottom: 6pt;
-    font-weight: 500;
-    color: #848483;
-  }
-
-  .card-content-info {
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    justify-content: space-evenly;
-    margin-bottom: 16px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;  
-  }
-
-  .card-content-text {
-    margin-right: 14px;
-    font-weight: bolder;
-    color: #848484;
-    margin-right: 0;
-  }
-  .flag-icons {
-    margin-right: 4px;
-    margin-left: 4px;
-    height: 16px;
-    width: 16px;
-  }
-
   .profile-picture {
     display: flex;
     border-radius: 50%;
@@ -181,7 +141,6 @@
   import {auth} from '../js/firebase.js';
 
   import CurrentLocationCard from '../components/current-location-card.svelte';
-
   import {
     Page,
     Card,
