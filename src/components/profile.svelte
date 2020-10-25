@@ -1,7 +1,7 @@
 {#if shown}
 
 
-<div class="swiper-block">
+<div class="swiper-block" transition:slide="{{ y: 50, duration: 400 }}">
     <div class="swiper-func">
       <Swiper ref="swiper-container" init params={{spaceBetween: 0, }}>
 
@@ -78,6 +78,8 @@
             shown = false;
         }
     }
+
+    import { slide } from 'svelte/transition';
     
     import { 
         f7,
@@ -96,7 +98,4 @@
 
      import Badges from '../components/prof-badges.svelte';
      import Settings from '../components/prof-settings.svelte';
-
-     let swiperSlide
-     let swiperBlock
 </script>
