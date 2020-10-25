@@ -1,4 +1,5 @@
 <Page name="home" class="transparent">
+  <ListBadges> </ListBadges>
   {#if $userstate == true }
   <main class="main-page">
     <div class="main-content">
@@ -81,6 +82,7 @@
   {:else}
     <LoadingIcon></LoadingIcon> <!-- Show Loading Icon -->
   {/if}
+ 
 </Page>
 
 <style>
