@@ -1,6 +1,6 @@
 {#await promise}
   <div>Loading..</div>
- 
+  {:then data}
   <h1>Continents</h1>
   {#each continentBadges as continentBadge}
 		{continentBadge}<br>
@@ -25,8 +25,6 @@
   {#each districtBadges as districtBadge}
     {districtBadge}<br>
   {/each}
-
-  {:then data}
 
   {:catch error}
     <p style="color: red">{error.message}</p>
