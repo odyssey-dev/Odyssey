@@ -51,7 +51,7 @@
     flex-direction: column;
     justify-content: center;
     justify-self: center;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
   }
   .main-content {
