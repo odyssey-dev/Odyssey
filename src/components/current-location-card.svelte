@@ -22,7 +22,7 @@
 
 {:else} 
 <div class="card-block">
-  <h3 class="location-prompt">
+  <h3 class="location-prompt" on:click={getLocation} >
     Enable Location Services
     <Icon ios="f7:location_slash" aurora="f7:location_slash" md="material:location_off"></Icon>
   </h3>
