@@ -26,6 +26,21 @@
 
       <ListItem title="Language" text="{navigator.language}" ></ListItem>
 
+      
+
+      <ListItem title="Continent" text="{localStorage.getItem('Continent')}" ></ListItem>
+
+      <ListItem title="Territory" text="{localStorage.getItem('Territory')}" ></ListItem>
+
+      <ListItem title="Country" text="{localStorage.getItem('Country')}" ></ListItem>
+
+
+      <ListItem title="County" text="{localStorage.getItem('County')}" ></ListItem>
+
+      <ListItem title="District" text="{localStorage.getItem('District')}" ></ListItem>
+
+      <ListItem title="Longitude, Latitude" text="{localStorage.getItem('Longitude'), localStorage.getItem('Latitude')}" ></ListItem>
+
 
       <ListItem title="Host" text="{location.host}" ></ListItem>
 

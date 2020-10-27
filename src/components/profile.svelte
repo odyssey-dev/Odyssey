@@ -29,6 +29,8 @@
     align-items: center;
     width: 100%;
     overflow-y: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
   } 
   
   .swiper-block {
@@ -38,12 +40,16 @@
     flex-direction: column;
     z-index: 4;
     overflow-y: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
   }
 
   .profile-cards {
     background: #fff;
     overflow: hidden;
     overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -56,12 +62,16 @@
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
   }
 
   :global([ref="swiper-slide"]) {
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
   }
 
 </style>

@@ -133,6 +133,8 @@
     flex-direction: column;
     width: 100%;
     overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
   }
 
 </style>
