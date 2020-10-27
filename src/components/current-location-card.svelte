@@ -1,43 +1,110 @@
 
-<div class="cards">
-  {#if $showLocation != undefined }
-    {#await locationData}
-      <div></div>
-    {:then location}
-      <div class="card-block">
-        <div class="hero-card">
-          <h1 class="hero-card-title">{$district}</h1>
-          <h3 class="hero-card-subtitle">{$county}</h3>
-          <div class="hero-card-info"> 
-              <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
-              <div class="hero-card-text">{$latitude}, {$longitude}</div>
-              <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
-              <div class="hero-card-text">{$country}</div>
-          </div>
-        </div>
+{#await locationData}
+  <LoadingIcon></LoadingIcon>
+{:then location}
+  <div></div>
+{:catch error}
+  <p style="color: red">{error.message}</p>
+{/await}
+{#if $district != undefined }
+  <div class="card-block">
+    <div class="hero-card">
+      <h1 class="hero-card-title">{$district}</h1>
+      <h3 class="hero-card-subtitle">{$county}</h3>
+      <div class="hero-card-info"> 
+          <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
+          <div class="hero-card-text">{$latitude}, {$longitude}</div>
+          <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
+          <div class="hero-card-text">{$country}</div>
       </div>
-    {:catch error}
-      <p style="color: red">{error.message}</p>
-    {/await}
-  {:else}
-  <div class="card">
-      <Button fill raised on:click={getLocation}>Discover</Button>
-  </div> 
-  {/if}
+    </div>
+  </div>
 
+{:else} 
+<div class="card-block">
+  <h3 class="location-prompt" on:click={getLocation} >
+    Enable Location Services
+    <Icon ios="f7:location_slash" aurora="f7:location_slash" md="material:location_off"></Icon>
+  </h3>
 </div>
-
+{/if}
 
 <script>
 
 // Importing Geo Location functionality
 import { locationData, getLocation} from '../js/geolocation.js';
 import { showLocation, continent, territory, country,county,district,  latitude, longitude} from '../js/store.js';
-
+import LoadingIcon from '../components/loading.svelte';
 
 import {
-    Button
+  Icon,
+  Badge
   } from 'framework7-svelte';
+
+locationCheck();
+function locationCheck() {
+  console.log("Location Check");
+  if (typeof localStorage !== 'undefined') {
+    try {
+        localStorage.setItem('localStorage_Test', 'yes');
+        if (localStorage.getItem('localStorage_Test') === 'yes') {
+            localStorage.removeItem('localStorage_Test');
+            
+            if (localStorage.getItem('Continent')) {
+              continent.set(localStorage.getItem('Continent')); 
+              console.log("Continent", $continent);
+              console.log($continent);
+            }
+            if (localStorage.getItem('Territory')) {
+              territory.set(localStorage.getItem('Territory')); 
+              console.log("Territory",  $territory);
+              console.log($territory);
+            }
+          
+            if (localStorage.getItem('Country')) {
+              country.set(localStorage.getItem('Country')); 
+              console.log("Country", $country);
+              console.log($country);
+            }
+          
+            if (localStorage.getItem('County')) {
+              county.set(localStorage.getItem('County')); 
+              console.log("County", $county);
+              console.log($county);
+            }
+            if (localStorage.getItem('District')) {
+              district.set(localStorage.getItem('District')); 
+              console.log("District", $district);
+              console.log($district);
+            }
+
+            if (localStorage.getItem('Latitude')) {
+              latitude.set(localStorage.getItem('Latitude')); 
+              console.log("Latitude", $latitude);
+              console.log($latitude);
+            }
+
+            if (localStorage.getItem('Longitude')) {
+              longitude.set(localStorage.getItem('Longitude')); 
+              console.log("Longitude", $longitude);
+              console.log($longitude);
+            }
+        } else {
+          console.log(" localStorage is disabled");
+        }
+    } catch(e) {
+        console.log(" localStorage is disabled - Error");
+        locationBackup();
+    }
+  } else {
+    console.log(" localStorage is not available");
+  }
+}
+function locationBackup() {
+ console.log("Backup Location");
+}
+
+
 
 </script>
 
@@ -93,9 +160,9 @@ import {
     height: 16px;
     width: 16px;
   }
-  .cards {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+
+  .location-prompt {
+    text-align: center;
+    vertical-align: middle;
   }
 </style>
