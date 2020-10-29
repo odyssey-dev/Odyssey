@@ -1,22 +1,17 @@
 {#if shown}
-<div class="swiper-block">
-    <div class="swiper-func">
-      <Swiper init pagination params={{spaceBetween: 20,  }}  >
 
-          <SwiperSlide class="swiper-container">
+
+<div class="swiper-block" transition:slide="{{ y: 50, duration: 400 }}">
+    <div class="swiper-func">
+      <Swiper ref="swiper-container" init params={{spaceBetween: 0, }}>
+
+          <SwiperSlide ref="swiper-slide">
             <div class="profile-cards">
                 <Badges></Badges>
             </div>
           </SwiperSlide>
 
-
-          <SwiperSlide class="swiper-container">
-            <div class="profile-cards">
-                <Statistics></Statistics>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide class="swiper-container">
+          <SwiperSlide ref="swiper-slide">
             <div class="profile-cards">
                 <Settings></Settings>
             </div>
@@ -28,35 +23,47 @@
 {/if}
 
 <style>
-
   .swiper-func  {
     display: flex;
-    height: 100%;
+    height: auto;
     align-items: center;
+    width: 100%;
+    overflow-y: hidden;
   } 
   
   .swiper-block {
-    box-sizing: border-box;
+    box-sizing: content-box;
     display:flex;
-    height: 100%;
     justify-self: center;
     flex-direction: column;
     z-index: 4;
+    overflow-y: hidden;
   }
 
   .profile-cards {
     background: #fff;
-    border-radius: 6px;
     overflow: hidden;
     overflow-y: scroll;
     margin: auto;
-    min-width: 300px;
-    min-height: 60vh;
     display: flex;
     flex-direction: column;
-    max-width: 610px;
-    max-height: 60vh;
+    align-self: center;
+    margin: 4%;
+    border-radius: 6px;
   }
+
+  :global([ref="swiper-container"]) {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  :global([ref="swiper-slide"]) {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
 </style>
 
 <script>
@@ -71,6 +78,8 @@
             shown = false;
         }
     }
+
+    import { slide } from 'svelte/transition';
     
     import { 
         f7,
@@ -81,10 +90,12 @@
         Card,
         Link,
         Block,
-        Col
+        Col,
+        Tab,
+        Tabs,
+        Toolbar,
      } from 'framework7-svelte';
 
      import Badges from '../components/prof-badges.svelte';
      import Settings from '../components/prof-settings.svelte';
-     import Statistics from '../components/prof-stats.svelte';
 </script>
