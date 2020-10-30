@@ -50,10 +50,14 @@
 <div class="card-parent">
     <div class="card-child">
         {#if isBadgePinned === true}
-        <img src="./static/logo-variations/color-icon.svg" alt="badge">
+        <span class="badges">
+            <img src="./static/logo-variations/color-icon.svg" alt="badge">
+        </span>
         <h3 class="monthly-title">Pinned Badge</h3>
         {:else}
-        <img src="./static/svgs/no-selected-badge.svg" alt="none" style="opacity: 0.5;">
+        <span class="badges">
+            <img src="./static/svgs/no-selected-badge.svg" alt="none" style="opacity: 0.5;">
+        </span>
         <h3 class="monthly-title" style="opacity: 0.5;">Pinned Badge</h3>
         <h2 class="click-to-select">Tap to Pin a Badge!</h2>
         {/if}

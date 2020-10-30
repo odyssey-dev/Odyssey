@@ -1,6 +1,8 @@
 <div class="card-parent">
     <div class="card-child">
-        <img src="./static/logo-variations/color-icon.svg" alt="badge">
+        <span class="badges">
+            <img src="./static/logo-variations/color-icon.svg" alt="badge">
+        </span>
         <h3 class="monthly-title">Monthly Challenge: Visit Place</h3>
     </div>
 </div>
@@ -41,6 +43,8 @@ img {
     text-align: center;
     flex-direction: column;
     padding: 16px;
+    align-items: center;
+    justify-content: center;
 }
 
 </style>
