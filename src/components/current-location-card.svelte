@@ -117,7 +117,7 @@ function locationBackup() {
     font-size: inherit;
     background-color: #fff;
     border-radius: 4px;
-    margin: 2%;
+    margin: 0 2% 0 2%;
   }
   .hero-card {
     display: flex;

@@ -21,7 +21,7 @@
         </div>
       </section>
 
-      <!-- To Be Exported to 'achievement-get' -->
+      <!-- Achievement-Get -->
       <Modal bind:this={modal}>
           <div class="achievement-get">
               <h1 class="badge-notif">Badge Unlocked!</h1>
@@ -30,10 +30,12 @@
           </div>
       </Modal>
 
-      <!-- Current-Location-Card Component -->
-
+      <!-- Current-Location and Bottom-Card -->
+      <section class="bottom-card">
       <CurrentLocationCard></CurrentLocationCard>
-    </div>
+      <Bottom></Bottom>
+      </section>
+  </div>
 
   </main>
   {:else if $userstate == false}
@@ -143,7 +145,7 @@
   import {onAuthStateChanged} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
   import {auth} from '../js/firebase.js';
-
+  import Bottom from '../components/bottom-card/main.svelte';
   import CurrentLocationCard from '../components/current-location-card.svelte';
   import {
     Page,
