@@ -20,15 +20,6 @@
             <Profile bind:this={profile}></Profile>
         </div>
       </section>
-      <AchievementGet></AchievementGet>
-      <!-- Achievement-Get -->
-      <!-- <Modal bind:this={modal}>
-          <div class="achievement-get">
-              <h1 class="badge-notif">Badge Unlocked!</h1>
-              <img id="badge-img" src="../static/badge/sample-badge.svg" alt="badge">
-              <h3 class="badge-name">Badge Name Here</h3>
-          </div>
-      </Modal> -->
 
       <!-- Current-Location and Bottom-Card -->
       <section class="bottom-card">
@@ -107,26 +98,6 @@
     font-size: 12pt;
     font-weight: 500;
   }
-/* to be exported to achievement-get */
-  /* .achievement-get {
-      display: flex;
-      flex-direction: column;
-  }
-  .badge-notif {
-      font-family: 'Rubik', sans-serif;
-      font-size: 18pt;
-      font-weight: 600;
-      margin-top: 0;
-  }
-  .badge-name {
-      font-family: 'Roboto', sans-serif;
-      font-size: 12pt;
-      font-weight: 400;
-      margin-bottom: 0;
-  }
-  #badge-img {
-      height: 60%;
-  } */
 
       /* Sections */
 
@@ -179,13 +150,4 @@
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
   });
-
-  // move to achievement-get component
-  // import Modal from "../components/modal.svelte";
-  // let modal;
-  
-  // let badgeNotificationAudio = new Audio("../static/audio/app_alert_tone_011.mp3");
-  // function playBadgeNotificationAudio() {
-  //   badgeNotificationAudio.play();
-  // }
 </script>
