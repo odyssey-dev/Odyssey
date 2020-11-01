@@ -142,10 +142,15 @@
   import Landing from '../components/landing-page/main.svelte';
   import LoadingIcon from '../components/loading.svelte';
   import AchievementGet from '../components/modal/achievement-get.svelte';
-  import Profile from '../components/profile.svelte';
+  import Profile from '../components/top-profile/profile.svelte';
   import ListBadges from '../components/listBadges.svelte';
 
   let profile;
+
+  function topMenuOpen() {
+    profile.show()
+  }
+
   
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
