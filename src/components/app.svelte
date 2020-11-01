@@ -8,7 +8,7 @@
 
   </Views>
 
-  <DevTools></DevTools>
+  <DevTools id="devtools" ></DevTools>
 
   <LoginScreen id="my-login-screen">
     <View>
