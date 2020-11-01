@@ -106,6 +106,6 @@
         Toolbar,
      } from 'framework7-svelte';
 
-     import Badges from '../components/prof-badges.svelte';
-     import Settings from '../components/prof-settings.svelte';
+     import Badges from './prof-badges.svelte';
+     import Settings from './prof-settings.svelte';
 </script>

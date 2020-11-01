@@ -156,5 +156,5 @@
     Block
   } from 'framework7-svelte';
 
-  import Logout from "../components/logout.svelte";
+  import Logout from "../logout.svelte";
 </script>
