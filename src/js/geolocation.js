@@ -94,7 +94,7 @@ export function getLocation() {
      console.log("Calling Mapbox");
      const geocodingURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
      const accessToken = "pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A"
-     let response = await fetch(`${geocodingURL}-3.0944,53.3443.json?types=place&access_token=${accessToken}`);
+     let response = await fetch(`${geocodingURL}${latitude},${longitude}.json?types=place&access_token=${accessToken}`);
      var data = await response.json();
      console.log(data.features);
      var testData = data.features[0].place_name;
