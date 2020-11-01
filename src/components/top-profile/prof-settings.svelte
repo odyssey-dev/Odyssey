@@ -119,6 +119,10 @@
     </span>
   </ListItem>
 
+    <ListItem>
+      <Link popupOpen="#devtools">Devtools</Link>
+    </ListItem>
+
   <ListItem>
     <Logout></Logout>
   </ListItem>
@@ -140,6 +144,7 @@
   import {
     Page,
     Navbar,
+    Link,
     List,
     ListInput,
     ListItem,
@@ -151,5 +156,5 @@
     Block
   } from 'framework7-svelte';
 
-  import Logout from "../components/logout.svelte";
+  import Logout from "../logout.svelte";
 </script>

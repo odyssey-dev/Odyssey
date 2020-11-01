@@ -7,7 +7,7 @@
       <!-- Profile-Card component -->
       <section class="top-card">
         <div class="card-block">
-          <div class="card-content" on:click={() => profile.show()}>
+          <div class="card-content" on:click={() => topMenuOpen()}>
             <div class="profile-block">
               <!-- svelte-ignore a11y-img-redundant-alt -->
               <img class="profile-picture" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
@@ -21,19 +21,12 @@
         </div>
       </section>
 
-      <!-- To Be Exported to 'achievement-get' -->
-      <Modal bind:this={modal}>
-          <div class="achievement-get">
-              <h1 class="badge-notif">Badge Unlocked!</h1>
-              <img id="badge-img" src="../static/badge/sample-badge.svg" alt="badge">
-              <h3 class="badge-name">Badge Name Here</h3>
-          </div>
-      </Modal>
-
-      <!-- Current-Location-Card Component -->
-
-      <CurrentLocationCard></CurrentLocationCard>
-    </div>
+      <!-- Current-Location and Bottom-Card -->
+      <section class="bottom-card">
+      <CurrentLocationCard bind:this={currentCard}></CurrentLocationCard>
+      <Bottom></Bottom>
+      </section>
+  </div>
 
   </main>
   {:else if $userstate == false}
@@ -46,6 +39,7 @@
 
 <style>
       /* Page */
+
   .main-page {
     display: flex;
     flex-direction: column;
@@ -79,6 +73,7 @@
     text-align: center;
     flex-direction: column;
     padding: 16px;
+    min-height: 200px;
   }
 
   .profile-picture {
@@ -105,26 +100,6 @@
     font-size: 12pt;
     font-weight: 500;
   }
-/* to be exported to achievement-get */
-  .achievement-get {
-      display: flex;
-      flex-direction: column;
-  }
-  .badge-notif {
-      font-family: 'Rubik', sans-serif;
-      font-size: 18pt;
-      font-weight: 600;
-      margin-top: 0;
-  }
-  .badge-name {
-      font-family: 'Roboto', sans-serif;
-      font-size: 12pt;
-      font-weight: 400;
-      margin-bottom: 0;
-  }
-  #badge-img {
-      height: 60%;
-  }
 
       /* Sections */
 
@@ -133,6 +108,8 @@
     flex-direction: column;
     width: 100%;
     overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
   }
 
 </style>
@@ -143,7 +120,7 @@
   import {onAuthStateChanged} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
   import {auth} from '../js/firebase.js';
-
+  import Bottom from '../components/bottom-card/main.svelte';
   import CurrentLocationCard from '../components/current-location-card.svelte';
   import {
     Page,
@@ -166,25 +143,21 @@
   } from 'framework7-svelte';
   
   // importing functionality
-  import Landing from '../components/landing.svelte';
+  import Landing from '../components/landing-page/main.svelte';
   import LoadingIcon from '../components/loading.svelte';
-  // import AchievementGet from '../components/achievement-get.svelte'; needs to be created
-  import Profile from '../components/profile.svelte';
-
+  import AchievementGet from '../components/modal/achievement-get.svelte';
+  import Profile from '../components/top-profile/profile.svelte';
   import ListBadges from '../components/listBadges.svelte';
 
   let profile;
-  
+  let currentCard;
+
+  function topMenuOpen() {
+    profile.show(); 
+    currentCard.show();
+  }
+
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
   });
-
-  // move to achievement-get component
-  import Modal from "../components/modal.svelte";
-  let modal;
-  
-  let badgeNotificationAudio = new Audio("../static/audio/app_alert_tone_011.mp3");
-  function playBadgeNotificationAudio() {
-    badgeNotificationAudio.play();
-  }
 </script>

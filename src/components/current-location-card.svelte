@@ -1,4 +1,4 @@
-
+{#if shown}
 {#await locationData}
   <LoadingIcon></LoadingIcon>
 {:then location}
@@ -12,10 +12,14 @@
       <h1 class="hero-card-title">{$district}</h1>
       <h3 class="hero-card-subtitle">{$county}</h3>
       <div class="hero-card-info"> 
-          <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/2948/2948111.svg" alt="flag">
-          <div class="hero-card-text">{$latitude}, {$longitude}</div>
-          <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
-          <div class="hero-card-text">{$country}</div>
+          <span class="long-lat">
+            <img class="flag-icons" src="/static/svgs/location.svg" alt="flag">
+            <div class="hero-card-text">{$latitude}, {$longitude}</div>
+          </span>
+          <span class="flag">
+            <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
+            <div class="hero-card-text">{$country}</div>
+          </span>
       </div>
     </div>
   </div>
@@ -28,13 +32,13 @@
   </h3>
 </div>
 {/if}
-
+{/if}
 <script>
 
 // Importing Geo Location functionality
 import { locationData, getLocation} from '../js/geolocation.js';
 import { showLocation, continent, territory, country,county,district,  latitude, longitude} from '../js/store.js';
-import LoadingIcon from '../components/loading.svelte';
+import LoadingIcon from './loading.svelte';
 
 import {
   Icon,
@@ -104,12 +108,27 @@ function locationBackup() {
  console.log("Backup Location");
 }
 
+    // default shown = false
+    export let shown = true;
 
+    // show function
+    export function show() {
+        if(shown === false) {
+            shown = true;
+        } else {
+            shown = false;
+        }
+    }
 
 </script>
 
 
 <style>
+
+  .long-lat, .flag {
+    display: flex;
+    flex-direction: row;
+  }
   .card-block {
     display: flex;
     flex-direction: column;
@@ -117,7 +136,7 @@ function locationBackup() {
     font-size: inherit;
     background-color: #fff;
     border-radius: 4px;
-    margin: 2%;
+    margin: 0 2% 0 2%;
   }
   .hero-card {
     display: flex;
@@ -143,20 +162,21 @@ function locationBackup() {
     display: flex;
     flex-direction: row;
     align-items:center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 16px;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;  
   }
   .hero-card-text {
-    margin-right: 14px;
     font-weight: bolder;
     color: #848484;
     margin-right: 0;
   }
   .flag-icons {
-    margin-right: 4px;
-    margin-left: 4px;
+    display: flex;
+    align-self: center;
+    margin-right: 12pt;
+    margin-left: 0;
     height: 16px;
     width: 16px;
   }
