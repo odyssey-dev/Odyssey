@@ -73,6 +73,7 @@
     text-align: center;
     flex-direction: column;
     padding: 16px;
+    min-height: 200px;
   }
 
   .profile-picture {
