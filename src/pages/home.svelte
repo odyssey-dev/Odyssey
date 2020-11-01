@@ -139,7 +139,7 @@
   } from 'framework7-svelte';
   
   // importing functionality
-  import Landing from '../components/landing.svelte';
+  import Landing from '../components/landing-page/main.svelte';
   import LoadingIcon from '../components/loading.svelte';
   import AchievementGet from '../components/modal/achievement-get.svelte';
   import Profile from '../components/profile.svelte';
