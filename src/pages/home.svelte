@@ -30,8 +30,7 @@
           </div>
       </Modal>
 
-    
-      <ListBadges></ListBadges>
+  
       <!-- Current-Location-Card Component -->
       <CurrentLocationCard></CurrentLocationCard>
     </div>
