@@ -7,7 +7,7 @@
       <!-- Profile-Card component -->
       <section class="top-card">
         <div class="card-block">
-          <div class="card-content" on:click={() => profile.show()}>
+          <div class="card-content" on:click={() => topMenuOpen()}>
             <div class="profile-block">
               <!-- svelte-ignore a11y-img-redundant-alt -->
               <img class="profile-picture" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
@@ -23,7 +23,7 @@
 
       <!-- Current-Location and Bottom-Card -->
       <section class="bottom-card">
-      <CurrentLocationCard></CurrentLocationCard>
+      <CurrentLocationCard bind:this={currentCard}></CurrentLocationCard>
       <Bottom></Bottom>
       </section>
   </div>
@@ -39,6 +39,7 @@
 
 <style>
       /* Page */
+
   .main-page {
     display: flex;
     flex-direction: column;
@@ -146,12 +147,13 @@
   import ListBadges from '../components/listBadges.svelte';
 
   let profile;
+  let currentCard;
 
   function topMenuOpen() {
-    profile.show()
+    profile.show(); 
+    currentCard.show();
   }
 
-  
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
   });

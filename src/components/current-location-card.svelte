@@ -1,4 +1,4 @@
-
+{#if shown}
 {#await locationData}
   <LoadingIcon></LoadingIcon>
 {:then location}
@@ -32,13 +32,13 @@
   </h3>
 </div>
 {/if}
-
+{/if}
 <script>
 
 // Importing Geo Location functionality
 import { locationData, getLocation} from '../js/geolocation.js';
 import { showLocation, continent, territory, country,county,district,  latitude, longitude} from '../js/store.js';
-import LoadingIcon from '../components/loading.svelte';
+import LoadingIcon from './loading.svelte';
 
 import {
   Icon,
@@ -108,7 +108,17 @@ function locationBackup() {
  console.log("Backup Location");
 }
 
+    // default shown = false
+    export let shown = true;
 
+    // show function
+    export function show() {
+        if(shown === false) {
+            shown = true;
+        } else {
+            shown = false;
+        }
+    }
 
 </script>
 
