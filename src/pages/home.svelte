@@ -21,19 +21,12 @@
         </div>
       </section>
 
-      <!-- To Be Exported to 'achievement-get' -->
-      <Modal bind:this={modal}>
-          <div class="achievement-get">
-              <h1 class="badge-notif">Badge Unlocked!</h1>
-              <img id="badge-img" src="../static/badge/sample-badge.svg" alt="badge">
-              <h3 class="badge-name">Badge Name Here</h3>
-          </div>
-      </Modal>
-
-  
-      <!-- Current-Location-Card Component -->
+      <!-- Current-Location and Bottom-Card -->
+      <section class="bottom-card">
       <CurrentLocationCard></CurrentLocationCard>
-    </div>
+      <Bottom></Bottom>
+      </section>
+  </div>
 
   </main>
   {:else if $userstate == false}
@@ -106,26 +99,6 @@
     font-size: 12pt;
     font-weight: 500;
   }
-/* to be exported to achievement-get */
-  .achievement-get {
-      display: flex;
-      flex-direction: column;
-  }
-  .badge-notif {
-      font-family: 'Rubik', sans-serif;
-      font-size: 18pt;
-      font-weight: 600;
-      margin-top: 0;
-  }
-  .badge-name {
-      font-family: 'Roboto', sans-serif;
-      font-size: 12pt;
-      font-weight: 400;
-      margin-bottom: 0;
-  }
-  #badge-img {
-      height: 60%;
-  }
 
       /* Sections */
 
@@ -144,7 +117,7 @@
   import {onAuthStateChanged} from '../js/userstate.js';
   import Logout from '../components/logout.svelte';
   import {auth} from '../js/firebase.js';
-
+  import Bottom from '../components/bottom-card/main.svelte';
   import CurrentLocationCard from '../components/current-location-card.svelte';
   import {
     Page,
@@ -167,25 +140,20 @@
   } from 'framework7-svelte';
   
   // importing functionality
-  import Landing from '../components/landing.svelte';
+  import Landing from '../components/landing-page/main.svelte';
   import LoadingIcon from '../components/loading.svelte';
-  // import AchievementGet from '../components/achievement-get.svelte'; needs to be created
-  import Profile from '../components/profile.svelte';
-
+  import AchievementGet from '../components/modal/achievement-get.svelte';
+  import Profile from '../components/top-profile/profile.svelte';
   import ListBadges from '../components/listBadges.svelte';
 
   let profile;
+
+  function topMenuOpen() {
+    profile.show()
+  }
+
   
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");
   });
-
-  // move to achievement-get component
-  import Modal from "../components/modal.svelte";
-  let modal;
-  
-  let badgeNotificationAudio = new Audio("../static/audio/app_alert_tone_011.mp3");
-  function playBadgeNotificationAudio() {
-    badgeNotificationAudio.play();
-  }
 </script>
