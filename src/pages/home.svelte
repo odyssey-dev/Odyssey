@@ -30,8 +30,9 @@
           </div>
       </Modal>
 
+    
+      <ListBadges></ListBadges>
       <!-- Current-Location-Card Component -->
-
       <CurrentLocationCard></CurrentLocationCard>
     </div>
 
@@ -79,6 +80,7 @@
     text-align: center;
     flex-direction: column;
     padding: 16px;
+    min-height: 200px;
   }
 
   .profile-picture {
