@@ -7,8 +7,8 @@
   <p style="color: red">{error.message}</p>
 {/await}
 {#if $district != undefined }
-  <div class="card-block">
-    <div class="hero-card">
+  <div class="card-parent">
+    <div class="card-child">
       <h1 class="hero-card-title">{$district}</h1>
       <h3 class="hero-card-subtitle">{$county}</h3>
       <div class="hero-card-info"> 
@@ -25,7 +25,7 @@
   </div>
 
 {:else} 
-<div class="card-block">
+<div class="enable-block">
   <h3 class="location-prompt" on:click={getLocation} >
     Enable Location Services
     <Icon ios="f7:location_slash" aurora="f7:location_slash" md="material:location_off"></Icon>
@@ -129,7 +129,33 @@ function locationBackup() {
     display: flex;
     flex-direction: row;
   }
-  .card-block {
+
+  .card-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0; 
+    font-size: inherit;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 2%;
+    overflow: hidden;
+    height: 100%;
+    }
+
+.card-child {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    padding: 16px;
+    height: 14vh;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+  .enable-block {
+    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 0; 
@@ -137,13 +163,10 @@ function locationBackup() {
     background-color: #fff;
     border-radius: 4px;
     margin: 0 2% 0 2%;
-  }
-  .hero-card {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    padding: 16px;
-  }
+    align-items: center;
+    place-content: center;
+   }
+  
   .hero-card-title {
     margin-top: 8px;
     margin-bottom: 0px;
@@ -151,6 +174,7 @@ function locationBackup() {
     font-weight: 600;
     font-family: 'Rubik', sans-serif;
   }
+
   .hero-card-subtitle {
     font-size: 16px;
     margin-top: 0;
@@ -158,7 +182,9 @@ function locationBackup() {
     font-weight: 500;
     color: #848483;
   }
+
   .hero-card-info {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items:center;
@@ -167,11 +193,13 @@ function locationBackup() {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;  
   }
+
   .hero-card-text {
     font-weight: bolder;
     color: #848484;
     margin-right: 0;
   }
+
   .flag-icons {
     display: flex;
     align-self: center;
