@@ -36,6 +36,7 @@ img {
     border-radius: 4px;
     margin: 2%;
     overflow: hidden;
+    height: 100%;
     }
 
 .card-child {
@@ -43,6 +44,7 @@ img {
     text-align: center;
     flex-direction: column;
     padding: 16px;
+    height: 14vh;
     align-items: center;
     justify-content: center;
 }

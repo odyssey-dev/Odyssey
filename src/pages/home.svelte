@@ -23,7 +23,7 @@
 
       <!-- Current-Location and Bottom-Card -->
       <section class="bottom-card">
-      <CurrentLocationCard bind:this={currentCard}></CurrentLocationCard>
+      <!-- <CurrentLocationCard bind:this={currentCard}></CurrentLocationCard> -->
       <Bottom></Bottom>
       </section>
   </div>
@@ -120,7 +120,7 @@
   import Logout from '../components/logout.svelte';
   import {auth} from '../js/firebase.js';
   import Bottom from '../components/bottom-card/main.svelte';
-  import CurrentLocationCard from '../components/current-location-card.svelte';
+  // import CurrentLocationCard from '../components/current-location-card.svelte';
   import {
     Page,
     Card,
