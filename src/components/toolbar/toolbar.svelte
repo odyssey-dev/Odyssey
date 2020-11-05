@@ -5,15 +5,15 @@
     </Tab>
 
     <Tab id="tab-2" class="page-content">
-
+      <Badges></Badges>
     </Tab>
 
     <Tab id="tab-3" class="page-content">
-
+      <Profile></Profile>
     </Tab>
 
     <Tab id="tab-4" class="page-content">
-
+      <Settings></Settings>
     </Tab>
 
   </Tabs>
@@ -27,6 +27,9 @@
 
   <script>
     import {Page, Navbar, Toolbar, Link, BlockTitle, Block, NavRight, Tabs, Tab } from 'framework7-svelte';
+    import Badges from '../app-pages/badges';
+    import Profile from '../app-pages/profile';
+    import Settings from '../app-pages/settings';
   
     let isBottom = true;
   </script>
