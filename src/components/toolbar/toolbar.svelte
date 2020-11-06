@@ -26,7 +26,7 @@
   </Toolbar>
 
   <script>
-    import {Page, Navbar, Toolbar, Link, BlockTitle, Block, NavRight, Tabs, Tab } from 'framework7-svelte';
+    import {Toolbar, Link, Tabs, Tab } from 'framework7-svelte';
     import Badges from '../app-pages/badges';
     import Profile from '../app-pages/profile';
     import Settings from '../app-pages/settings';
