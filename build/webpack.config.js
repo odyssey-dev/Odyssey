@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const path = require('path');
 
@@ -210,10 +210,16 @@ module.exports = {
           from: resolvePath('src/static'),
           to: resolvePath(isCordova ? 'cordova/www/static' : 'www/static'),
         },
-
+        {
+          noErrorOnMissing: true,
+          from: resolvePath('src/manifest.json'),
+          to: resolvePath('www/manifest.json'),
+        },
       ],
     }),
 
-
+    new WorkboxPlugin.InjectManifest({
+      swSrc: resolvePath('src/service-worker.js'),
+    }),
   ],
 };
