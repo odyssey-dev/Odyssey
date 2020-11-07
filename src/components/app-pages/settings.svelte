@@ -145,8 +145,8 @@
   .card-parent {
     display: flex;
     position: fixed;
-    height: 90%;
     width: 100%;
+    height: 100%;
     z-index: 10;
     top: 0;
   }
@@ -159,8 +159,9 @@
     overflow-y: scroll;
     margin: 2%;
     border-radius: 4px;
-    height: 100%;
+    height: auto;
     width: 100%;
+    margin-bottom: calc(var(--f7-tabbar-labels-height) + 2%);
   }
 
 </style>
