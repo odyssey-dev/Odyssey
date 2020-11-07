@@ -1,6 +1,7 @@
 import {auth} from '../js/firebase.js';
-import {showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
-
+import { SaveLastUpdatedDate } from '../js/LastUpdated.js';
+import { showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
+import { network } from '../js/networkCheck.js';
 // Location
 
 export var locationData;
@@ -29,7 +30,7 @@ export function getLocation() {
          // position.coords.heading 
          // position.coords.speed 
          // position.timestamp  
-         console.log("Calling Geolocation");
+        console.log("Calling Geolocation");
         showLocation.set(position);
          var latitudeFull = position.coords.latitude;
          var longitudeFull = position.coords.longitude;
@@ -48,6 +49,7 @@ export function getLocation() {
      console.log("Geolocation is not supported by this browser.");
    }
  }
+
  function formatLocation(longitudeFull,latitudeFull) {
   console.log("Format Geolocation");
   //  stored vars 
@@ -57,7 +59,12 @@ export function getLocation() {
   latitudeLoc = latitudeFull.toFixed(4);
   longitudeLoc = longitudeFull.toFixed(4);
 
-  locationData = mapboxCheck(longitudeLoc,latitudeLoc);
+  if (network == true) {
+    locationData = mapboxCheck(longitudeLoc,latitudeLoc);
+  } else {
+    console.log("Offline");
+  }
+
  }
 
  function mapboxCheck(longitudeLoc,latitudeLoc) {
@@ -96,7 +103,10 @@ export function getLocation() {
      const accessToken = "pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A"
      let response = await fetch(`${geocodingURL}${latitude},${longitude}.json?types=place&access_token=${accessToken}`);
      var data = await response.json();
-     console.log(data.features);
+
+     SaveLastUpdatedDate();
+
+     console.log("locationApi:",data.features);
      var testData = data.features[0].place_name;
      newData = testData.replace(/\,\s/g, ',');
      var array = newData.split(',');
@@ -114,7 +124,7 @@ export function getLocation() {
     countyLoc = array[1];
     districtLoc = array[0];
 
-      auth.currentUser.getIdToken().then(function(token) {
+    auth.currentUser.getIdToken().then(function(token) {
        apiCheck();
      });
      return data;

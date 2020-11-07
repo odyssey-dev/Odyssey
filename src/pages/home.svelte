@@ -120,6 +120,7 @@
   import Logout from '../components/logout.svelte';
   import {auth} from '../js/firebase.js';
   import Bottom from '../components/bottom-card/main.svelte';
+  import { checkNetwork } from '../js/networkCheck.js';
   import CurrentLocationCard from '../components/current-location-card.svelte';
   import {
     Page,
@@ -150,7 +151,7 @@
 
   let profile;
   let currentCard;
-
+  checkNetwork();
   function topMenuOpen() {
     profile.show(); 
     currentCard.show();

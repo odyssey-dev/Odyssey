@@ -11,6 +11,7 @@
     <div class="hero-card">
       <h1 class="hero-card-title">{$district}</h1>
       <h3 class="hero-card-subtitle">{$county}</h3>
+      <LastUpdated></LastUpdated>
       <div class="hero-card-info"> 
           <span class="long-lat">
             <img class="flag-icons" src="/static/svgs/location.svg" alt="flag">
@@ -23,7 +24,6 @@
       </div>
     </div>
   </div>
-
 {:else} 
 <div class="card-block">
   <h3 class="location-prompt" on:click={getLocation} >
@@ -39,11 +39,15 @@
 import { locationData, getLocation} from '../js/geolocation.js';
 import { showLocation, continent, territory, country,county,district,  latitude, longitude} from '../js/store.js';
 import LoadingIcon from './loading.svelte';
+import LastUpdated from './lastUpdated.svelte';
 
 import {
   Icon,
   Badge
   } from 'framework7-svelte';
+import { network } from '../js/networkCheck.js';
+
+
 
 locationCheck();
 function locationCheck() {
@@ -104,6 +108,7 @@ function locationCheck() {
     console.log(" localStorage is not available");
   }
 }
+
 function locationBackup() {
  console.log("Backup Location");
 }
