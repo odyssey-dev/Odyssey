@@ -146,7 +146,7 @@ export function getLocation() {
                localStorage.setItem('Continent', continentLoc);
                console.log("Continent has Changed");
               //  console.log($continent)
-               continentApi(newData);
+              //  continentApi(newData);
              } else {
               console.log("Continent hasn't Changed");
             }
@@ -155,7 +155,7 @@ export function getLocation() {
                localStorage.setItem('Territory', territoryLoc);
                console.log("Territory has Changed");
               //  console.log($territory)
-               territoryApi(newData);
+              //  territoryApi(newData);
              } else {
               console.log("Territory hasn't Changed");
             }
@@ -164,7 +164,7 @@ export function getLocation() {
                localStorage.setItem('Country', countryLoc);
                console.log("Country has Changed");
               //  console.log($country)
-               countryApi(newData);
+              //  countryApi(newData);
              } else {
               console.log("Country hasn't Changed");
             }
@@ -173,7 +173,7 @@ export function getLocation() {
                localStorage.setItem('County', countyLoc);
                console.log("County has Changed");
               //  console.log($county)
-               countyApi(newData);
+              //  countyApi(newData);
              } else {
               console.log("County hasn't Changed");
             }
@@ -200,10 +200,10 @@ export function getLocation() {
  }
  function apiBackup() {
   console.log("Backup API Call");
-   continentApi(newData);
-   territoryApi(newData);
-   countryApi(newData);
-   countyApi(newData);
+  //  continentApi(newData);
+  //  territoryApi(newData);
+  //  countryApi(newData);
+  //  countyApi(newData);
    districtApi(newData);
  }
  if ( process.env.NODE_ENV == "production") {

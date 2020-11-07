@@ -63,6 +63,7 @@ function locationCheck() {
               console.log("Continent", $continent);
               console.log($continent);
             }
+            
             if (localStorage.getItem('Territory')) {
               territory.set(localStorage.getItem('Territory')); 
               console.log("Territory",  $territory);
@@ -80,6 +81,7 @@ function locationCheck() {
               console.log("County", $county);
               console.log($county);
             }
+            
             if (localStorage.getItem('District')) {
               district.set(localStorage.getItem('District')); 
               console.log("District", $district);
