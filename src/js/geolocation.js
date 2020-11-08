@@ -127,6 +127,7 @@ export function getLocation() {
     auth.currentUser.getIdToken().then(function(token) {
        apiCheck();
      });
+
      return data;
    } else {
      console.log("Mapbox Error");
@@ -183,6 +184,7 @@ export function getLocation() {
                console.log("District has Changed");
               //  console.log($district)
                districtApi(newData);
+              //  profileApi();
              } else {
               console.log("District hasn't Changed");
             }
@@ -206,11 +208,14 @@ export function getLocation() {
   //  countyApi(newData);
    districtApi(newData);
  }
+
  if ( process.env.NODE_ENV == "production") {
    var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app/';
  } else {
    var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/';
  }
+
+
 
  export async function newAccountApi() {
    auth.currentUser.getIdToken().then(function(token) {
@@ -227,6 +232,7 @@ export function getLocation() {
      req.send();
    });
  } 
+
 
  async function continentApi(testData) {
    auth.currentUser.getIdToken().then(function(token) {

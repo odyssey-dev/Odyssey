@@ -1,14 +1,28 @@
-<div class="card-parent">
-    <div class="card-child">
-        <span class="badges">
-            <img src="./static/logo-variations/color-icon.svg" alt="badge">
-            <img src="./static/logo-variations/color-icon.svg" alt="badge">
-            <img src="./static/logo-variations/color-icon.svg" alt="badge">
-            <img src="./static/logo-variations/color-icon.svg" alt="badge">
-        </span>
-        <h3 class="monthly-title">Recent Badges</h3>
+
+
+    <div class="card-parent">
+        <div class="card-child">
+            {#await badges}
+                loading..
+            {:then querySnapshot}
+                <span class="badges">
+                    {#each badgeData as badge}
+                    <div>
+                        <img src="./static/logo-variations/color-icon.svg" alt="badge">
+                        <span>{badge}</span>
+                    </div>  
+                    {/each}
+                </span>
+            {:catch error}
+                <p style="color: red">{error.message}</p>
+            {/await}
+            <h3 class="monthly-title">Recent Badges</h3>
+        </div>
     </div>
-</div>
+
+
+
+
 
 <style>
 
@@ -55,4 +69,28 @@ img {
 </style>
 
 <script>
+    import {db} from '../../js/firebase.js';
+    import {userprofile} from '../../js/store.js';
+
+    if (localStorage.getItem('Profile') === null  ) {
+        var badgeData = [];
+        var badges = db.collection('Account').doc($userprofile.uid).collection('Achievement').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                badgeData.push(doc.data().Name); 
+            });
+            console.log("Profile Fetched:", "True");
+            localStorage.setItem('Profile', badgeData);
+        });
+    } else {
+        var profileStore = localStorage.getItem('Profile');
+        var badgeData = profileStore.split(',');
+    }
+    
+   
+
+
+
+    
+
+
 </script>
