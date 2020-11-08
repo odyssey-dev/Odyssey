@@ -124,6 +124,7 @@
   import {auth} from '../js/firebase.js';
   import Bottom from '../components/bottom-card/main.svelte';
   import { checkNetwork } from '../js/networkCheck.js';
+
   import {
     Page,
     Card,
