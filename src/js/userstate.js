@@ -12,6 +12,7 @@ auth.onAuthStateChanged(user => {
       uid: user.uid,
       token: user.xa
     });
+
     console.log("Auth Ready");
   } else {
     userstate.set(false);

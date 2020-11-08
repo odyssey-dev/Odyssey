@@ -21,7 +21,7 @@
       </section>
 
       <section class="menus">
-        <Profile bind:this={settings}></Profile>
+        <Profile></Profile>
       </section>
 
       <!-- Bottom-Card -->
@@ -123,6 +123,8 @@
   import Logout from '../components/logout.svelte';
   import {auth} from '../js/firebase.js';
   import Bottom from '../components/bottom-card/main.svelte';
+  import { checkNetwork } from '../js/networkCheck.js';
+
   import {
     Page,
     Card,
@@ -149,8 +151,14 @@
   import ListBadges from '../components/listBadges.svelte';
   import BottomToolbar from '../components/toolbar/toolbar.svelte';
 
-  let settings;
-  // settings.show(); 
+  let profile;
+  let currentCard;
+
+  checkNetwork();
+  function topMenuOpen() {
+    profile.show(); 
+    currentCard.show();
+  }
 
   document.addEventListener("DOMContentLoaded", function(){
     console.log("Ready");

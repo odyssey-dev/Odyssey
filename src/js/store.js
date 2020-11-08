@@ -12,3 +12,5 @@ export const county = writable();
 export const district = writable();
 export const latitude = writable();
 export const longitude = writable();
+
+export const lastUpdated = writable();

@@ -1,6 +1,7 @@
 import {auth} from '../js/firebase.js';
-import {showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
-
+import { SaveLastUpdatedDate } from '../js/LastUpdated.js';
+import { showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
+import { network } from '../js/networkCheck.js';
 // Location
 
 export var locationData;
@@ -29,7 +30,7 @@ export function getLocation() {
          // position.coords.heading 
          // position.coords.speed 
          // position.timestamp  
-         console.log("Calling Geolocation");
+        console.log("Calling Geolocation");
         showLocation.set(position);
          var latitudeFull = position.coords.latitude;
          var longitudeFull = position.coords.longitude;
@@ -48,6 +49,7 @@ export function getLocation() {
      console.log("Geolocation is not supported by this browser.");
    }
  }
+
  function formatLocation(longitudeFull,latitudeFull) {
   console.log("Format Geolocation");
   //  stored vars 
@@ -57,7 +59,12 @@ export function getLocation() {
   latitudeLoc = latitudeFull.toFixed(4);
   longitudeLoc = longitudeFull.toFixed(4);
 
-  locationData = mapboxCheck(longitudeLoc,latitudeLoc);
+  if (network == true) {
+    locationData = mapboxCheck(longitudeLoc,latitudeLoc);
+  } else {
+    console.log("Offline");
+  }
+
  }
 
  function mapboxCheck(longitudeLoc,latitudeLoc) {
@@ -96,7 +103,10 @@ export function getLocation() {
      const accessToken = "pk.eyJ1Ijoiam9zaHdhbGtlciIsImEiOiJZZ092bC1jIn0.biUwNatSPRog-uFhhxyF-A"
      let response = await fetch(`${geocodingURL}${latitude},${longitude}.json?types=place&access_token=${accessToken}`);
      var data = await response.json();
-     console.log(data.features);
+
+     SaveLastUpdatedDate();
+
+     console.log("locationApi:",data.features);
      var testData = data.features[0].place_name;
      newData = testData.replace(/\,\s/g, ',');
      var array = newData.split(',');
@@ -114,9 +124,10 @@ export function getLocation() {
     countyLoc = array[1];
     districtLoc = array[0];
 
-      auth.currentUser.getIdToken().then(function(token) {
+    auth.currentUser.getIdToken().then(function(token) {
        apiCheck();
      });
+
      return data;
    } else {
      console.log("Mapbox Error");
@@ -136,7 +147,7 @@ export function getLocation() {
                localStorage.setItem('Continent', continentLoc);
                console.log("Continent has Changed");
               //  console.log($continent)
-               continentApi(newData);
+              //  continentApi(newData);
              } else {
               console.log("Continent hasn't Changed");
             }
@@ -145,7 +156,7 @@ export function getLocation() {
                localStorage.setItem('Territory', territoryLoc);
                console.log("Territory has Changed");
               //  console.log($territory)
-               territoryApi(newData);
+              //  territoryApi(newData);
              } else {
               console.log("Territory hasn't Changed");
             }
@@ -154,7 +165,7 @@ export function getLocation() {
                localStorage.setItem('Country', countryLoc);
                console.log("Country has Changed");
               //  console.log($country)
-               countryApi(newData);
+              //  countryApi(newData);
              } else {
               console.log("Country hasn't Changed");
             }
@@ -163,7 +174,7 @@ export function getLocation() {
                localStorage.setItem('County', countyLoc);
                console.log("County has Changed");
               //  console.log($county)
-               countyApi(newData);
+              //  countyApi(newData);
              } else {
               console.log("County hasn't Changed");
             }
@@ -173,6 +184,7 @@ export function getLocation() {
                console.log("District has Changed");
               //  console.log($district)
                districtApi(newData);
+              //  profileApi();
              } else {
               console.log("District hasn't Changed");
             }
@@ -190,17 +202,20 @@ export function getLocation() {
  }
  function apiBackup() {
   console.log("Backup API Call");
-   continentApi(newData);
-   territoryApi(newData);
-   countryApi(newData);
-   countyApi(newData);
+  //  continentApi(newData);
+  //  territoryApi(newData);
+  //  countryApi(newData);
+  //  countyApi(newData);
    districtApi(newData);
  }
+
  if ( process.env.NODE_ENV == "production") {
    var apiUrl = 'https://us-central1-odyssey-65e36.cloudfunctions.net/app/';
  } else {
    var apiUrl = 'http://localhost:5000/odyssey-65e36/us-central1/app/';
  }
+
+
 
  export async function newAccountApi() {
    auth.currentUser.getIdToken().then(function(token) {
@@ -217,6 +232,7 @@ export function getLocation() {
      req.send();
    });
  } 
+
 
  async function continentApi(testData) {
    auth.currentUser.getIdToken().then(function(token) {
