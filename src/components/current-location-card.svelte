@@ -7,10 +7,11 @@
   <p style="color: red">{error.message}</p>
 {/await}
 {#if $district != undefined }
-  <div class="card-block">
-    <div class="hero-card">
+  <div class="card-parent">
+    <div class="card-child">
       <h1 class="hero-card-title">{$district}</h1>
       <h3 class="hero-card-subtitle">{$county}</h3>
+      <LastUpdated></LastUpdated>
       <div class="hero-card-info"> 
           <span class="long-lat">
             <img class="flag-icons" src="/static/svgs/location.svg" alt="flag">
@@ -23,9 +24,8 @@
       </div>
     </div>
   </div>
-
 {:else} 
-<div class="card-block">
+<div class="enable-block">
   <h3 class="location-prompt" on:click={getLocation} >
     Enable Location Services
     <Icon ios="f7:location_slash" aurora="f7:location_slash" md="material:location_off"></Icon>
@@ -39,11 +39,15 @@
 import { locationData, getLocation} from '../js/geolocation.js';
 import { showLocation, continent, territory, country,county,district,  latitude, longitude} from '../js/store.js';
 import LoadingIcon from './loading.svelte';
+import LastUpdated from './lastUpdated.svelte';
 
 import {
   Icon,
   Badge
   } from 'framework7-svelte';
+import { network } from '../js/networkCheck.js';
+
+
 
 locationCheck();
 function locationCheck() {
@@ -59,6 +63,7 @@ function locationCheck() {
               console.log("Continent", $continent);
               console.log($continent);
             }
+            
             if (localStorage.getItem('Territory')) {
               territory.set(localStorage.getItem('Territory')); 
               console.log("Territory",  $territory);
@@ -76,6 +81,7 @@ function locationCheck() {
               console.log("County", $county);
               console.log($county);
             }
+            
             if (localStorage.getItem('District')) {
               district.set(localStorage.getItem('District')); 
               console.log("District", $district);
@@ -104,6 +110,7 @@ function locationCheck() {
     console.log(" localStorage is not available");
   }
 }
+
 function locationBackup() {
  console.log("Backup Location");
 }
@@ -129,7 +136,33 @@ function locationBackup() {
     display: flex;
     flex-direction: row;
   }
-  .card-block {
+
+  .card-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0; 
+    font-size: inherit;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 2%;
+    overflow: hidden;
+    height: 100%;
+    }
+
+.card-child {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    padding: 16px;
+    height: 14vh;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+  .enable-block {
+    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 0; 
@@ -137,13 +170,10 @@ function locationBackup() {
     background-color: #fff;
     border-radius: 4px;
     margin: 0 2% 0 2%;
-  }
-  .hero-card {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    padding: 16px;
-  }
+    align-items: center;
+    place-content: center;
+   }
+  
   .hero-card-title {
     margin-top: 8px;
     margin-bottom: 0px;
@@ -151,6 +181,7 @@ function locationBackup() {
     font-weight: 600;
     font-family: 'Rubik', sans-serif;
   }
+
   .hero-card-subtitle {
     font-size: 16px;
     margin-top: 0;
@@ -158,7 +189,9 @@ function locationBackup() {
     font-weight: 500;
     color: #848483;
   }
+
   .hero-card-info {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items:center;
@@ -167,11 +200,13 @@ function locationBackup() {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;  
   }
+
   .hero-card-text {
     font-weight: bolder;
     color: #848484;
     margin-right: 0;
   }
+
   .flag-icons {
     display: flex;
     align-self: center;
