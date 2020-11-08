@@ -183,6 +183,7 @@ export function getLocation() {
                localStorage.setItem('District', districtLoc);
                console.log("District has Changed");
               //  console.log($district)
+              localStorage.removeItem('Profile');
                districtApi(newData);
               //  profileApi();
              } else {
