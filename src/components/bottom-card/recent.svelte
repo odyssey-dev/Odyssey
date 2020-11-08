@@ -57,12 +57,16 @@ img {
     border-radius: 4px;
     margin: 2%;
     overflow: hidden;
+    height: 100%;
     }
 
 .card-child {
     display: flex;
     text-align: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 14vh;
     padding: 16px;
 }
 

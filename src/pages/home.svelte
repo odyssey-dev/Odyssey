@@ -7,7 +7,7 @@
       <!-- Profile-Card component -->
       <section class="top-card">
         <div class="card-block">
-          <div class="card-content" on:click={() => topMenuOpen()}>
+          <div class="card-content">
             <div class="profile-block">
               <!-- svelte-ignore a11y-img-redundant-alt -->
               <img class="profile-picture" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
@@ -17,14 +17,17 @@
               </div>
             </div>
           </div>
-            <Profile bind:this={profile}></Profile>
         </div>
       </section>
 
-      <!-- Current-Location and Bottom-Card -->
+      <section class="menus">
+        <Profile></Profile>
+      </section>
+
+      <!-- Bottom-Card -->
       <section class="bottom-card">
-      <CurrentLocationCard bind:this={currentCard}></CurrentLocationCard>
       <Bottom></Bottom>
+      <BottomToolbar></BottomToolbar>
       </section>
   </div>
 
@@ -121,7 +124,6 @@
   import {auth} from '../js/firebase.js';
   import Bottom from '../components/bottom-card/main.svelte';
   import { checkNetwork } from '../js/networkCheck.js';
-  import CurrentLocationCard from '../components/current-location-card.svelte';
   import {
     Page,
     Card,
@@ -141,16 +143,16 @@
     Button,
     Popup
   } from 'framework7-svelte';
-  
-  // importing functionality
   import Landing from '../components/landing-page/main.svelte';
   import LoadingIcon from '../components/loading.svelte';
   import AchievementGet from '../components/modal/achievement-get.svelte';
-  import Profile from '../components/top-profile/profile.svelte';
+  import Profile from '../components/full-screen-el/profile.svelte';
   import ListBadges from '../components/listBadges.svelte';
+  import BottomToolbar from '../components/toolbar/toolbar.svelte';
 
   let profile;
   let currentCard;
+
   checkNetwork();
   function topMenuOpen() {
     profile.show(); 
