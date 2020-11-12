@@ -138,7 +138,7 @@
     display: flex;
     align-self: center;
     margin-bottom: 0;
-    font-size: 16pt;
+    font-size: 14pt;
     height: auto;
   }
 
