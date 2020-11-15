@@ -76,25 +76,18 @@ img {
     import {db} from '../../js/firebase.js';
     import {userprofile} from '../../js/store.js';
 
-    if (localStorage.getItem('Profile') === null  ) {
+    if (localStorage.getItem('Badges') === null  ) {
         var badgeData = [];
         var badges = db.collection('Account').doc($userprofile.uid).collection('Achievement').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 badgeData.push(doc.data().Name); 
             });
             console.log("Profile Fetched:", "True");
-            localStorage.setItem('Profile', badgeData);
+            localStorage.setItem('Badges', badgeData);
         });
     } else {
-        var profileStore = localStorage.getItem('Profile');
+        var profileStore = localStorage.getItem('Badges');
         var badgeData = profileStore.split(',');
     }
     
-   
-
-
-
-    
-
-
 </script>

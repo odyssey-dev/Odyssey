@@ -2,6 +2,7 @@ import { writable } from 'svelte/store';
 
 export const userstate = writable();
 export const userprofile = writable();
+export const settings = writable();
 
 export const showLocation = writable();
 export const position = writable();

@@ -17,10 +17,6 @@ var districtLoc;
 var longitudeLoc;
 var latitudeLoc;
 
-if (userstate == true) {
-  getLocation();
-}
-
 
 export function getLocation() {
    if (navigator.geolocation) {

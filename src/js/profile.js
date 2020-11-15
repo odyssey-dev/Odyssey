@@ -2,7 +2,7 @@ import {auth} from '../js/firebase.js';
 import { network } from '../js/networkCheck.js';
 
 if (network == true) {
-  profileApi()
+  profileApi();
 } else {
   console.log("Offline");
 }
