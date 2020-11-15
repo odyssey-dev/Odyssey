@@ -7,7 +7,9 @@
         you are to award badges. Odyssey will always respect your privacy and will 
         <b>never</b> sell your location data. <br><br> Enable Location:
         </p>
-            <Toggle />
+        <div class="toggle-setting">
+          <Toggle />
+        </div>
     </div>
 </div>
 
@@ -18,6 +20,13 @@
 </script>
 
 <style>
+
+    .toggle-setting {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+    }
 
     .swiper-img {
       height: 100%;

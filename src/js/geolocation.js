@@ -1,6 +1,6 @@
 import {auth} from '../js/firebase.js';
 import { SaveLastUpdatedDate } from '../js/LastUpdated.js';
-import { showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
+import { userstate, showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
 import { network } from '../js/networkCheck.js';
 // Location
 
@@ -17,7 +17,10 @@ var districtLoc;
 var longitudeLoc;
 var latitudeLoc;
 
-getLocation();
+if (userstate == true) {
+  getLocation();
+}
+
 
 export function getLocation() {
    if (navigator.geolocation) {
