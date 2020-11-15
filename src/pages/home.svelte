@@ -3,7 +3,6 @@
   {#if $userstate == true }
   <main class="main-page">
     <div class="main-content">
-
       <!-- Profile-Card component -->
       <section class="top-card">
         <div class="top-profile">
@@ -12,6 +11,7 @@
       </section>
 
       <section class="menus">
+        <AchievementGet></AchievementGet>
         <Profile></Profile>
       </section>
 
@@ -90,6 +90,7 @@
   import LoadingIcon from '../components/loading.svelte';
   import Profile from '../components/full-screen-el/profile.svelte';
   import BottomToolbar from '../components/toolbar/toolbar.svelte';
+  import AchievementGet from '../components/modal/achievement-get.svelte';
 
   let profile;
   let currentCard;

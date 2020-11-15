@@ -2,6 +2,7 @@ import {auth} from '../js/firebase.js';
 import { SaveLastUpdatedDate } from '../js/LastUpdated.js';
 import { showLocation, position, continent, territory, country, county, district, latitude, longitude} from '../js/store.js';
 import { network } from '../js/networkCheck.js';
+import Achievement, { showBadge, playAudio } from '../components/modal/achievement-get.svelte';
 // Location
 
 export var locationData;
@@ -311,6 +312,8 @@ export function getLocation() {
        console.log(req.responseText)
        if (req.responseText != "District Badge Already Achieved: E08000015") {
         console.log("District Badge Achieved");
+        showBadge();
+        playAudio();
        };
      };
      req.onerror = function() {
