@@ -2,8 +2,11 @@
     <div class="card-child">
       <div class="profile-container">
         <div class="progress-bar-container">
-          <h1 class="lvl">{lvl}</h1>
-          <div class="progress-bar"></div>
+          <span>
+            <h1 class="lvl">{lvl}</h1>
+            <div class="progress-bar"></div>
+          </span>
+            <p class="progress-subtitle">{progress}</p>
         </div>
 
         <hr class="page-break">
@@ -116,6 +119,10 @@
     margin-right: calc(var(--f7-list-inset-side-margin) + var(--f7-safe-area-outer-right));
   }
 
+  .progress-subtitle {
+    text-align: center;
+  }
+
   /* activity */
 
   .activity-container {
@@ -177,7 +184,9 @@
 </style>
 
 <script>
-    let lvl = 1;
+    let progress = 0;
+
+    let lvl = 0;
     let continents = 0;
     let territories = 0;
     let countries = 0;
