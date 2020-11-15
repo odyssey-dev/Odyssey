@@ -1,6 +1,6 @@
 <div class="card-parent">
     <div class="card-child">
-        <h1> Settings </h1>
+        <Top></Top>
         <List inset>
 
             <h3>
@@ -134,13 +134,6 @@
 </div>
 
 <style>
-  h1 {
-    display: flex;
-    align-self: center;
-    margin-bottom: 0;
-    font-size: 14pt;
-    height: auto;
-  }
 
   .card-parent {
     display: flex;
@@ -183,4 +176,5 @@
   } from 'framework7-svelte';
 
   import Logout from "../logout.svelte";
+  import Top from '../profile.svelte';
 </script>

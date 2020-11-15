@@ -1,6 +1,7 @@
 <div class="card-parent">
     <div class="card-child">
       <div class="badge-card">
+        <Top></Top>
         <div class="location-container">
           <h3 class="location-title">Continent Badges</h3>
           <span class="location-badges">
@@ -142,3 +143,7 @@
     width: auto;
   }
 </style>
+
+<script>
+  import Top from '../profile.svelte';
+</script>

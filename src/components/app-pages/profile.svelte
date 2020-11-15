@@ -1,5 +1,6 @@
 <div class="card-parent">
     <div class="card-child">
+      <Top></Top>
       <div class="profile-container">
         <div class="progress-bar-container">
           <span>
@@ -184,6 +185,8 @@
 </style>
 
 <script>
+    import Top from '../profile.svelte';
+    
     let progress = 0;
 
     let lvl = 0;
