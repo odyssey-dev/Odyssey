@@ -71,7 +71,8 @@
 
       <ListItem title="Color Depth" text="{screen.colorDepth}" ></ListItem>
 
-
+      
+      <ListItem><Button on:click={clearLocalStorage} >Clear Local Storage</Button></ListItem>
     </List>
 
     </Block>
@@ -91,11 +92,17 @@ import {
     NavRight,
     Link,
     Block,
+    Button,
     Popup,
     List,
     ListItem,
     ListInput,
     Toggle
   } from 'framework7-svelte';
+
+
+  function clearLocalStorage () {
+    localStorage.clear();
+  }
 
 </script>
