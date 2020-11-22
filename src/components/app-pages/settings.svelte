@@ -1,7 +1,9 @@
 <div class="card-parent">
     <div class="card-child">
+
         <h1> Settings </h1>
 
+        <Top></Top>
 
         {#await profileSettings}
         loading..
@@ -125,13 +127,6 @@
 </div>
 
 <style>
-  h1 {
-    display: flex;
-    align-self: center;
-    margin-bottom: 0;
-    font-size: 16pt;
-    height: auto;
-  }
 
   .card-parent {
     display: flex;
@@ -377,4 +372,5 @@
     // getLocalSettings();
                         
   import Logout from "../logout.svelte";
+  import Top from '../profile.svelte';
 </script>

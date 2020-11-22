@@ -1,15 +1,4 @@
-<script>
-    import Modal from "./modal.svelte";
-    let modal;
-    let badgeNotificationAudio = new Audio("/static/audio/app_alert_tone_012.mp3");
-    function playBadgeNotificationAudio() {
-    badgeNotificationAudio.play();
-  }
-    playBadgeNotificationAudio()
-</script>
-
 <style>
-
   .achievement-get { 
       display: flex;
       flex-direction: column;
@@ -41,3 +30,15 @@
         </div>
     </Modal>
 </main>
+
+<script context="module">
+    import Modal from "./modal.svelte";
+    let modal;
+    let badgeNotificationAudio = new Audio("/static/audio/app_alert_tone_012.mp3");
+    export function showBadge() {
+        modal.show();
+    }
+    export function playAudio() {
+        badgeNotificationAudio.play();
+    }
+</script>
