@@ -1,9 +1,9 @@
 <div class="card-parent">
     <div class="card-child">
 
-        <h1> Settings </h1>
-
         <Top></Top>
+
+        <h1> Settings </h1>
 
         {#await profileSettings}
         loading..
