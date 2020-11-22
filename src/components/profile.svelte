@@ -1,3 +1,4 @@
+<Link tabLink="#tab-3" tabLinkActive>
 <div class="card-block">
     <div class="card-content">
       <div class="profile-block">
@@ -10,6 +11,7 @@
       </div>
     </div>
   </div>
+</Link>
 
   <style>
 
@@ -23,11 +25,17 @@
     margin: 2%;
     overflow: hidden;
   } */
+
+  .card-block {
+    width: 100%;
+  }
+
   .card-content {
     display: flex;
     text-align: center;
     flex-direction: column;
     padding: 16px;
+    width: auto;
   }
 
   .profile-picture {
@@ -60,4 +68,5 @@
 
   <script>
       import {userstate, userprofile} from '../js/store.js';
+      import { Link, Tab, Tabs, tabLink } from 'framework7-svelte';
   </script>

@@ -8,7 +8,9 @@
         We use these in conjunction with the location data to send you notifications when you unlock a
         new badge! <br><br> Enable Notifications:
     </p>
+     <div class="toggle-setting">
         <Toggle />
+      </div>
     </div>
 </div>
 
@@ -19,6 +21,13 @@
 </script>
 
 <style>
+
+    .toggle-setting {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+    }
   
     .swiper-img {
       height: 100%;
