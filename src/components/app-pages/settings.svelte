@@ -12,77 +12,41 @@
                 General Settings
                 </h3>
 
-            <ListItem
-                title="Sound"
-                >
+            <ListItem title="Sound" >
                 <span slot="after">
-                    {#if profileSettings.Sound == true }
-                        <Toggle checked on:toggleChange={updateSettings} />
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                    <Toggle id="sound_setting" bind:checked={sound} on:toggleChange={updateSettings} />
                 </span>
             </ListItem>
 
-            <ListItem
-                title="Vibration"
-                >
+            <ListItem title="Vibration" >
                 <span slot="after">
-                    {#if profileSettings.Vibration == true }
-                        <Toggle checked on:toggleChange={updateSettings} />
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                    <Toggle id="vibration_setting" bind:checked={vibration} on:toggleChange={updateSettings} />
                 </span>
             </ListItem>
 
-            <ListItem
-            title="Animations"
-            >
+            <ListItem title="Animations" >
             <span slot="after">
-                {#if profileSettings.Animation == true }
-                        <Toggle checked on:toggleChange={updateSettings}/>
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                <Toggle id="animation_setting" bind:checked={animation} on:toggleChange={updateSettings} />
             </span>
             </ListItem>
 
-            <ListItem
-                title="Monthly Challenges"
-                >
+            <ListItem title="Monthly Challenges" >
                 <span slot="after">
-                    {#if profileSettings.MonthlyChallenge == true }
-                        <Toggle checked on:toggleChange={updateSettings}/>
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                    <Toggle id="monthly_challenge_setting" bind:checked={monthlyChallenge} on:toggleChange={updateSettings} />
                 </span>
             </ListItem>
 
-            <ListItem
-                title="Email me Events/Updates"
-                >
+            <ListItem title="Email me Events/Updates" >
                 <span slot="after">
-                    {#if profileSettings.Email == true }
-                        <Toggle checked on:toggleChange={updateSettings}/>
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                    <Toggle id="email_setting" bind:checked={email} on:toggleChange={updateSettings} />
                 </span>
             </ListItem>
 
-            <ListItem
-            title="Theme"
-            >
-            <span slot="profileSettings">
-                {#if profileSettings.Theme == true }
-                    <Toggle checked on:toggleChange={updateSettings}/>
-                {:else}
-                    <Toggle on:toggleChange={updateSettings} />
-                {/if}
+            <ListItem title="Theme" >
+            <span slot="after">
+                <Toggle id="theme_setting" checked={theme} on:toggleChange={updateSettings} />
             </span>
-            </ListItem>
+            </ListItem> 
 
             </List>
 
@@ -96,11 +60,7 @@
                 title="On New Badge"
                 >
                 <span slot="after">
-                    {#if profileSettings.newBadge == true }
-                        <Toggle checked on:toggleChange={updateSettings} />
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                    <Toggle id="new_badge_setting" checked={newBadge} on:toggleChange={updateSettings} />
                 </span>
             </ListItem>
 
@@ -108,11 +68,7 @@
                 title="On Party Join"
                 >
                 <span slot="after">
-                    {#if profileSettings.partyMode == true }
-                        <Toggle checked on:toggleChange={updateSettings} />
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                    <Toggle id="party_mode_setting" checked={partyMode} on:toggleChange={updateSettings} />
                 </span>
             </ListItem>
             </List>
@@ -140,25 +96,16 @@
                 Account Settings
             </h3>
 
-            <ListInput
-                label="Select Home"
-                type="select"
-                >
+            <ListInput label="Select Home" type="select" >
                 <option>England</option>
                 <option>Northern Ireland</option>
                 <option>Scotland</option>
                 <option>Wales</option>
             </ListInput>
 
-            <ListItem
-                title="Allow Location"
-                >
+            <ListItem title="Allow Location" >
                 <span slot="after">
-                    {#if profileSettings.Location == true }
-                        <Toggle checked on:toggleChange={updateSettings} />
-                    {:else}
-                        <Toggle on:toggleChange={updateSettings} />
-                    {/if}
+                    <Toggle id="location_setting" checked={location} on:toggleChange={updateSettings} />
                 </span>
             </ListItem>
 
@@ -229,17 +176,6 @@
     import {auth, db} from '../../js/firebase.js';
     import { userprofile, settings, userstate } from '../../js/store.js';
   
-    var sound;
-    var vibration;
-    var location;
-    var animation;
-    var monthlyChallenge;
-    var email;
-    var theme;
-    var newBadge;
-    var partyMode;
-
-
     // var profileSettings = { 
     //             'Sound': sound,
     //             'Vibration': vibration,
@@ -259,6 +195,16 @@
         var profileStore = localStorage.getItem('Settings');
         var profileSettings =  JSON.parse(profileStore);
         console.log("Setttings Stored:", "True", profileSettings);
+
+        var sound = profileSettings.Sound;
+        var vibration = profileSettings.Vibration;
+        var location = profileSettings.Location;
+        var animation = profileSettings.Animation;
+        var monthlyChallenge = profileSettings.MonthlyChallenge;
+        var email = profileSettings.Email;
+        var theme = profileSettings.Theme;
+        var newBadge = profileSettings.newBadge;
+        var partyMode = profileSettings.partyMode;
     }
 
 
@@ -292,7 +238,17 @@
 
     export async function updateSettings() {
 
-
+      
+        sound = document.querySelector('#sound_setting input').checked;
+        vibration = document.querySelector('#vibration_setting input').checked;
+        location = document.querySelector('#location_setting input').checked;
+        animation = document.querySelector('#animation_setting input').checked;
+        monthlyChallenge = document.querySelector('#monthly_challenge_setting input').checked;
+        email = document.querySelector('#email_setting input').checked;
+        theme = document.querySelector('#theme_setting input').checked;
+        newBadge = document.querySelector('#new_badge_setting input').checked;
+        partyMode = document.querySelector('#party_mode_setting input').checked;
+        
             var updateprofileSettings = { 
                 'Sound': sound,
                 'Vibration': vibration,
@@ -305,6 +261,7 @@
                 'partyMode': partyMode
             };
         console.log(updateprofileSettings);
+        localStorage.setItem('Settings', JSON.stringify(updateprofileSettings));
         // localStorage.setItem('Settings', JSON.stringify(profileSettings));
     }
 

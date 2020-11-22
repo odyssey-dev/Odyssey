@@ -30,6 +30,7 @@
     Enable Location Services
     <Icon ios="f7:location_slash" aurora="f7:location_slash" md="material:location_off"></Icon>
   </h3>
+  <h5>Tap to try again</h5>
 </div>
 {/if}
 {/if}
