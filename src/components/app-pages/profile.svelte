@@ -82,7 +82,7 @@
               <img src="./static/logo-variations/color-icon.svg" alt="badge">
               <img src="./static/logo-variations/color-icon.svg" alt="badge">
             </span>
-            <p>See All Badges {'>'}</p>
+            <p>See More Badges {'>'}</p>
           </div>
         </div>
       </div>

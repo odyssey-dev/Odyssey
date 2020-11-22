@@ -10,6 +10,7 @@
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
           </span>
+          <p> See More Badges {'>'} </p>
         </div>
 
         <hr size="1">
@@ -22,6 +23,7 @@
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
           </span>
+          <p> See More Badges {'>'} </p>
         </div>
 
         <hr size="1">
@@ -34,6 +36,7 @@
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
           </span>
+          <p> See More Badges {'>'} </p>
         </div>
 
         <hr size="1">
@@ -46,6 +49,7 @@
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
           </span>
+          <p> See More Badges {'>'} </p>
         </div>
 
         <hr size="1">
@@ -58,6 +62,7 @@
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
           </span>
+          <p> See More Badges {'>'} </p>
         </div>
 
         <hr size="1">
@@ -70,6 +75,7 @@
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
           </span>
+          <p> See More Badges {'>'} </p>
         </div>
 
         <hr size="1">
@@ -82,6 +88,7 @@
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
           </span>
+          <p> See More Badges {'>'} </p>
         </div>
       </div>
     </div>
@@ -141,6 +148,14 @@
   .location-badges img {
     height: 50px;
     width: auto;
+  }
+
+  .location-container p {
+    font-size: 10pt;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+    margin-right: calc(var(--f7-list-inset-side-margin) + var(--f7-safe-area-outer-right));
   }
 </style>
 
