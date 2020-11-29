@@ -1,63 +1,35 @@
 <script>
-
-    import Top from '../../profile';
-
+    import AppPage from '../app-pages';
 </script>
-<main>
-    <div class="card-parent">
-        <div class="card-child">
-            <Top></Top>
-            <div class="badge-content">
-                <!-- svelte-ignore a11y-missing-attribute -->
-                <img class="badge-img" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                <h1>Badge Name</h1>
-                <h3>Badge Descriptor</h3>
-                <div class="progress-bar"></div>
-                <p>0/0</p>
-                <div class="badge-needed">
-                  <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-                  <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-              </div>
-            </div>
-        </div>
+
+<AppPage>
+  <div class="badge-content">
+      <!-- svelte-ignore a11y-missing-attribute -->
+      <img class="badge-img" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <h1>Badge Name</h1>
+      <h3>Badge Descriptor</h3>
+      <div class="progress-bar"></div>
+      <p>0/0</p>
+      <div class="badge-needed">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
     </div>
-</main>
+  </div>
+</AppPage>
 
 <style>
-
-  .card-parent {
-    display: flex;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-  }
-
-  .card-child {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    margin: 2%;
-    border-radius: 4px;
-    height: auto;
-    width: 100%;
-    margin-bottom: calc(var(--f7-tabbar-labels-height) + 2%);
-  }
 
   .badge-content {
     display: flex;
