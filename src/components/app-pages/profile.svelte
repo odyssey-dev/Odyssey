@@ -2,10 +2,9 @@
   <div class="profile-container">
     <div class="progress-bar-container">
       <span>
-        <h1 class="lvl">{lvl}</h1>
-        <div class="progress-bar"></div>
+      <progress id="lvl" value="{progress}" max="100" color="#000"></progress>
       </span>
-        <p class="progress-subtitle">{progress}</p>
+        <p class="progress-subtitle">{lvl}</p>
     </div>
 
     <hr class="page-break">
@@ -95,6 +94,11 @@
     margin-right: calc(var(--f7-list-inset-side-margin) + var(--f7-safe-area-outer-right));
   }
 
+  #lvl {
+    width: 100%;
+    height: 6px;
+  }
+
   .progress-subtitle {
     text-align: center;
   }
@@ -160,9 +164,8 @@
 </style>
 
 <script>
-    import App from "framework7-svelte/components/app.svelte";
-import AppPage from "../app-pages/app-pages";
-    
+    import AppPage from "../app-pages/app-pages";
+
     let progress = 0;
 
     let lvl = 0;
