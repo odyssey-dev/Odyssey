@@ -140,6 +140,8 @@ loading..
     import {auth, db} from '../../js/firebase.js';
     import { userprofile, settings, userstate } from '../../js/store.js';
 
+    var user = auth.currentUser;
+
     import AppPage from "../app-pages/app-pages";
   
     // var profileSettings = { 
@@ -227,8 +229,24 @@ loading..
                 'partyMode': partyMode
             };
         console.log(updateprofileSettings);
+
         localStorage.setItem('Settings', JSON.stringify(updateprofileSettings));
         // localStorage.setItem('Settings', JSON.stringify(profileSettings));
+
+
+        localStorage.setItem('Settings', JSON.stringify(profileSettings));
+
+        const cityRef = db.collection('Account').doc(user.uid).collection('Profile').doc('Settings');
+        const doc = await cityRef.get();
+        if (!doc.exists) {
+            console.log('No such document!');
+            const res = await cityRef.set(updateprofileSettings, { merge: true });
+            
+        } else {
+            const res = await cityRef.set(updateprofileSettings, { merge: true });
+            console.log('Document data:', doc.data());
+        }
+
     }
 
 
