@@ -233,9 +233,6 @@ loading..
         localStorage.setItem('Settings', JSON.stringify(updateprofileSettings));
         // localStorage.setItem('Settings', JSON.stringify(profileSettings));
 
-
-        localStorage.setItem('Settings', JSON.stringify(profileSettings));
-
         const cityRef = db.collection('Account').doc(user.uid).collection('Profile').doc('Settings');
         const doc = await cityRef.get();
         if (!doc.exists) {
