@@ -1,4 +1,3 @@
-
 <AppPage>
 
 {#await profileSettings}
