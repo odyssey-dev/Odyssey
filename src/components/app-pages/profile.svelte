@@ -1,123 +1,102 @@
-<div class="card-parent">
-    <div class="card-child">
-      <Top></Top>
-      <div class="profile-container">
-        <div class="progress-bar-container">
-          <span>
-            <h1 class="lvl">{lvl}</h1>
-            <div class="progress-bar"></div>
-          </span>
-            <p class="progress-subtitle">{progress}</p>
-        </div>
+<AppPage>
+  <div class="profile-container">
+    <div class="progress-bar-container">
+      <span>
+      <progress id="lvl" value="{progress}" max="100" color="#000"></progress>
+      </span>
+        <p class="progress-subtitle">{lvl}</p>
+    </div>
 
-        <hr class="page-break">
+    <hr class="page-break">
 
-        <div class="total-activity">
-          <h3>Total Activity</h3>
-          <div class="activity-container">
-            <span class="activity">
-              <p>Continents Visited</p>
-              <p>{continents}</p>
-            </span>
-            <span class="activity">
-              <p>Territories Visited</p>
-              <p>{territories}</p>
-            </span>
-            <span class="activity">
-              <p>Countries Visited</p>
-              <p>{countries}</p>
-            </span>
-            <span class="activity">
-              <p>Counties Visited</p>
-              <p>{counties}</p>
-            </span>
-            <span class="activity">
-              <p>Districts Visited</p>
-              <p>{districts}</p>
-            </span>
-            <span class="activity">
-              <p>Badges Acquired</p>
-              <p>{badges}</p>
-            </span>
-            <span class="activity">
-              <p>Badges Completed</p>
-              <p>{badgesComplete}</p>
-            </span>
-            <span class="activity">
-              <p>Total XP</p>
-              <p>{totalXP}</p>
-            </span>
-            <span class="activity">
-              <p>Start Date</p>
-              <p>{startDate}</p>
-            </span>
-          </div>
-        </div>
-
-        <hr class="page-break">
-
-        <div class="challenges">
-          <h3>Challenges</h3>
-          <div class="challenge-container">
-            <h3>Monthly Challenges</h3>
-            <span id="challOne" class="current-challenge">
-              <img class="challenge-img" src="./static/logo-variations/color-icon.svg" alt="badge">
-              <p>Visit {currentMonthlyChallengeLocation}</p>
-            </span>
-            <span class="current-challenge">
-              <img class="challenge-img" src="./static/logo-variations/color-icon.svg" alt="badge">
-              <p>Visit {currentWeeklyChallengeLocation}</p>
-            </span>
-          </div>
-        </div>
-
-        <hr class="page-break">
-
-        <div class="recent-badges">
-          <h3>Recent Badges</h3>
-          <div class="recent-badges-container">
-            <span class="badges-cont">
-              <img src="./static/logo-variations/color-icon.svg" alt="badge">
-              <img src="./static/logo-variations/color-icon.svg" alt="badge">
-              <img src="./static/logo-variations/color-icon.svg" alt="badge">
-              <img src="./static/logo-variations/color-icon.svg" alt="badge">
-            </span>
-            <p>See More Badges {'>'}</p>
-          </div>
-        </div>
+    <div class="total-activity">
+      <h3>Total Activity</h3>
+      <div class="activity-container">
+        <span class="activity">
+          <p>Continents Visited</p>
+          <p>{continents}</p>
+        </span>
+        <span class="activity">
+          <p>Territories Visited</p>
+          <p>{territories}</p>
+        </span>
+        <span class="activity">
+          <p>Countries Visited</p>
+          <p>{countries}</p>
+        </span>
+        <span class="activity">
+          <p>Counties Visited</p>
+          <p>{counties}</p>
+        </span>
+        <span class="activity">
+          <p>Districts Visited</p>
+          <p>{districts}</p>
+        </span>
+        <span class="activity">
+          <p>Badges Acquired</p>
+          <p>{badges}</p>
+        </span>
+        <span class="activity">
+          <p>Badges Completed</p>
+          <p>{badgesComplete}</p>
+        </span>
+        <span class="activity">
+          <p>Total XP</p>
+          <p>{totalXP}</p>
+        </span>
+        <span class="activity">
+          <p>Start Date</p>
+          <p>{startDate}</p>
+        </span>
       </div>
     </div>
-</div>
 
+    <hr class="page-break">
+
+    <div class="challenges">
+      <h3>Challenges</h3>
+      <div class="challenge-container">
+        <h3>Monthly Challenges</h3>
+        <span id="challOne" class="current-challenge">
+          <img class="challenge-img" src="./static/logo-variations/color-icon.svg" alt="badge">
+          <p>Visit {currentMonthlyChallengeLocation}</p>
+        </span>
+        <span class="current-challenge">
+          <img class="challenge-img" src="./static/logo-variations/color-icon.svg" alt="badge">
+          <p>Visit {currentWeeklyChallengeLocation}</p>
+        </span>
+      </div>
+    </div>
+
+    <hr class="page-break">
+
+    <div class="recent-badges">
+      <h3>Recent Badges</h3>
+      <div class="recent-badges-container">
+        <span class="badges-cont">
+          <img src="./static/logo-variations/color-icon.svg" alt="badge">
+          <img src="./static/logo-variations/color-icon.svg" alt="badge">
+          <img src="./static/logo-variations/color-icon.svg" alt="badge">
+          <img src="./static/logo-variations/color-icon.svg" alt="badge">
+        </span>
+        <p>See More Badges {'>'}</p>
+      </div>
+    </div>
+  </div>
+</AppPage>
 
 <style>
-  .card-parent {
-    display: flex;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-  }
-
-  .card-child {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    margin: 2%;
-    border-radius: 4px;
-    height: auto;
-    width: 100%;
-    margin-bottom: calc(var(--f7-tabbar-labels-height) + 2%);
-  }
 
   .profile-container {
     display: flex;
     flex-direction: column;
     margin-left: calc(var(--f7-list-inset-side-margin) + var(--f7-safe-area-outer-left)) ;
     margin-right: calc(var(--f7-list-inset-side-margin) + var(--f7-safe-area-outer-right));
+  }
+
+  #lvl {
+    width: 100%;
+    height: 6px;
   }
 
   .progress-subtitle {
@@ -185,8 +164,8 @@
 </style>
 
 <script>
-    import Top from '../profile.svelte';
-    
+    import AppPage from "../app-pages/app-pages";
+
     let progress = 0;
 
     let lvl = 0;
