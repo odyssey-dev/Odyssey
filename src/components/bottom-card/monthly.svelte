@@ -3,11 +3,18 @@
         <span class="badges">
             <img src="./static/logo-variations/color-icon.svg" alt="badge">
         </span>
+        <progress id="lvl" value="{progress}" max="100" color="#000"></progress>
         <h3 class="monthly-title">Monthly Challenge: Visit Place</h3>
     </div>
 </div>
 
 <style>
+
+#lvl {
+    width: 90%;
+    height: 5px;
+    margin-bottom: 2px;
+}
 
 h3 {
     font-family: 'Roboto', sans-serif;
@@ -52,4 +59,5 @@ img {
 </style>
 
 <script>
+    let progress = 25
 </script>
