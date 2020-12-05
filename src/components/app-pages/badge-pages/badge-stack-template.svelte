@@ -15,20 +15,23 @@
     </span>
 
     <div class="badges">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
     </div>
   </div>
 </AppPage>
@@ -59,21 +62,20 @@ p {
 }
 
 .badges {
-  display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-between;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 .badges img {
-  display: flex;
-  width: 45pt;
-  margin: 5px;
+  margin: 15px;
 }
 
 .show-all {
   display: flex;
 }
 
+.need {
+  opacity: 0.5;
+}
 </style>
