@@ -1,9 +1,17 @@
 <script>
   import AppPage from '../app-pages';
+  import BadgeSngl from '../badge-pages/badge-sngl';
   import { Toggle } from 'framework7-svelte';
-</script>
 
+  let badgeSngl
+  let showBadge = () => { 
+    badgeSngl.show();
+    console.log("Badge Page Loaded");
+    }
+</script>
+<BadgeSngl bind:this={badgeSngl}></BadgeSngl>
 <AppPage>
+
   <div class="badge-content">
     <span class="header">
       <p>District Badges</p>
@@ -15,7 +23,7 @@
     </span>
 
     <div class="badges">
-      <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <img on:click={showBadge} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
       <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
       <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
       <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
