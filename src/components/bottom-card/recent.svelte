@@ -20,10 +20,6 @@
         </div>
     </div>
 
-
-
-
-
 <style>
 
 .badges {

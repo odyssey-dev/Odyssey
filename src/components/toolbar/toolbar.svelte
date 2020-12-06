@@ -27,7 +27,7 @@
 
   <script>
     import {Toolbar, Link, Tabs, Tab } from 'framework7-svelte';
-    import Badges from '../app-pages/badges';
+    import Badges from '../app-pages/badge-pages/badge-stack-template';
     import Profile from '../app-pages/profile';
     import Settings from '../app-pages/settings';
   
