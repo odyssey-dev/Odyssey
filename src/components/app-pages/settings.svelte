@@ -176,37 +176,39 @@
     import {auth, db} from '../../js/firebase.js';
     import { userprofile, settings, userstate } from '../../js/store.js';
   
-    // var profileSettings = { 
-    //             'Sound': sound,
-    //             'Vibration': vibration,
-    //             'Location': location, 
-    //             'Animation': animation, 
-    //             'MonthlyChallenge': monthlyChallenge, 
-    //             'Email': email, 
-    //             'Theme': theme, 
-    //             'newBadge': newBadge, 
-    //             'partyMode': partyMode
-    //         };
+    var sound;
+    var vibration;
+    var location;
+    var animation;
+    var monthlyChallenge;
+    var email;
+    var theme;
+    var newBadge;
+    var partyMode;
+    var profileSettings 
 
     if (localStorage.getItem('Settings') === null  ) {
         getSettings();
         console.log("Setttings Fetched:", "True");
     } else {
-        var profileStore = localStorage.getItem('Settings');
-        var profileSettings =  JSON.parse(profileStore);
-        console.log("Setttings Stored:", "True", profileSettings);
-
-        var sound = profileSettings.Sound;
-        var vibration = profileSettings.Vibration;
-        var location = profileSettings.Location;
-        var animation = profileSettings.Animation;
-        var monthlyChallenge = profileSettings.MonthlyChallenge;
-        var email = profileSettings.Email;
-        var theme = profileSettings.Theme;
-        var newBadge = profileSettings.newBadge;
-        var partyMode = profileSettings.partyMode;
+        showSettings();
     }
 
+    export async function showSettings() {
+        var profileStore = localStorage.getItem('Settings');
+        profileSettings =  JSON.parse(profileStore);
+        console.log("Setttings Stored:", "True", profileSettings);
+
+        sound = profileSettings.Sound;
+        vibration = profileSettings.Vibration;
+        location = profileSettings.Location;
+        animation = profileSettings.Animation;
+        monthlyChallenge = profileSettings.MonthlyChallenge;
+        email = profileSettings.Email;
+        theme = profileSettings.Theme;
+        newBadge = profileSettings.newBadge;
+        partyMode = profileSettings.partyMode;
+    }
 
     export async function getSettings() {
         var profileStored = localStorage.getItem('Profile');
@@ -218,22 +220,25 @@
             console.log('No such document!');
             var profileSettings = { 
                 'Sound': sound,
-                'Vibration': true,
-                'Location': true, 
-                'Animation': true, 
-                'MonthlyChallenge': true, 
-                'Email': true, 
-                'Theme': true, 
-                'newBadge': true, 
-                'partyMode': true
+                'Vibration': vibration,
+                'Location': location, 
+                'Animation': animation, 
+                'MonthlyChallenge': monthlyChallenge, 
+                'Email': email, 
+                'Theme': theme, 
+                'newBadge': newBadge, 
+                'partyMode': newBadge
             };
             localStorage.setItem('Settings', JSON.stringify(profileSettings));
             const res = await settingRef.set(profileSettings, { merge: true });
+         
         } else {
             console.log('Document data:', doc.data());
             localStorage.setItem('Settings', JSON.stringify(doc.data()));
+            showSettings();
             return doc.data();
         }
+        
     }
 
     export async function updateSettings() {
