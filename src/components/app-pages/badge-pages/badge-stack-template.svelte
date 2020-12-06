@@ -1,39 +1,130 @@
 <script>
   import AppPage from '../app-pages';
-  import { Toggle } from 'framework7-svelte';
+  import { Toggle, Icon } from 'framework7-svelte';
+
+  // default shown = false
+  let shown = true;
+
+  // show function
+  function show() {
+    shown = true;
+  }
+
+  // hide function
+  function hide() {
+    shown = false;
+  }
+
+  let title = "Badge Name";
+    let progress = 0;
+    let date = "00/00/0000";
+
 </script>
 
 <AppPage>
-  <div class="badge-content">
-    <span class="header">
-      <p>District Badges</p>
-      <span class="show-all">
-        <p>Show All</p>
-        <span class="divider"></span>
-        <Toggle />
+  {#if shown}
+    <div class="badge-content">
+      <span class="header">
+        <p>District Badges</p>
+        <span class="show-all">
+          <p>Show All</p>
+          <span class="divider"></span>
+          <Toggle />
+        </span>
       </span>
-    </span>
 
-    <div class="badges">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
-      <img src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <div class="badges">
+        <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge" >
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      </div>
     </div>
-  </div>
+
+  {:else}
+    <div class="badge-content">
+      <span class="header">
+        <span class="go-back" on:click={() => show()}>
+          <img class="prev" src="../../../static/svgs/previous.svg" alt="badge"/>
+          <span class="divider"></span>
+          <p>Go Back</p>
+        </span>
+        <span class="show-all">
+          <p>{title}</p>
+        </span>
+      </span>
+
+      <div class="body">
+        <div class="badge"><img class="acq-badge" src="../../../static/logo-variations/color-icon.svg" alt="badge"></div>
+        <h1 class="badge-name">{title}</h1>
+        <progress id="lvl" value="{progress}" max="1" color="#000"></progress>
+        <p>{progress}/1</p>
+        {#if progress=1}
+            <p>Date Acquired: {date}</p>
+        {/if}
+      </div>
+    </div>
+  
+    {/if}
+  
 </AppPage>
 
 <style>
+
+.badge {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: none;
+}
+
+.acq-badge {
+  width: 60%;
+}
+
+.badge-name {
+  font-size: 30pt;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+#lvl {
+  width: 100%;
+}
+
+.go-back {
+  display:flex;
+  flex-direction: row;
+}
+
+.go-back img {
+  display: flex;
+  align-self: center;
+  height: 30px;
+}
+
+.body p {
+  font-size: 12pt;
+  display: flex;
+  justify-content: center;
+}
 
 .divider {
   width: 10px;
@@ -59,21 +150,21 @@ p {
 }
 
 .badges {
-  display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-between;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 .badges img {
-  display: flex;
-  width: 45pt;
-  margin: 5px;
+  margin: 15px;
 }
 
 .show-all {
   display: flex;
+}
+
+.need {
+  opacity: 0.5;
 }
 
 </style>
