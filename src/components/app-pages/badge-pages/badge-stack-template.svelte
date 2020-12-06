@@ -32,25 +32,26 @@
           <Toggle />
         </span>
       </span>
-
-      <div class="badges">
-        <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge" >
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-        <img class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+      <div class="badges-parent">
+        <div class="badges">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge" >
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+        </div>
       </div>
     </div>
 
@@ -83,6 +84,17 @@
 </AppPage>
 
 <style>
+
+.badges-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.badges img {
+  max-height: 100px;
+  max-width: 100px;
+}
 
 .badge {
   width: 100%;
