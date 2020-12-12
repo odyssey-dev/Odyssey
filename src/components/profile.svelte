@@ -1,17 +1,15 @@
-<Link tabLink="#tab-3" tabLinkActive>
 <div class="card-block">
     <div class="card-content">
       <div class="profile-block">
         <!-- svelte-ignore a11y-img-redundant-alt -->
         <img class="profile-picture" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
         <div class="profile-data">
-          <div><p class="profile-name">{$userprofile.displayName}</p></div>
-          <div><p class="profile-name">🧭 1,500</p></div>
+          <p class="profile-name">{$userprofile.displayName}</p>
+          <p class="profile-name">{userScore}</p>
         </div>
       </div>
     </div>
   </div>
-</Link>
 
   <style>
 
@@ -32,7 +30,6 @@
 
   .card-content {
     display: flex;
-    text-align: center;
     flex-direction: column;
     padding: 16px;
     width: auto;
@@ -69,4 +66,6 @@
   <script>
       import {userstate, userprofile} from '../js/store.js';
       import { Link, Tab, Tabs, tabLink } from 'framework7-svelte';
+
+      let userScore = "🧭 1,500"
   </script>
