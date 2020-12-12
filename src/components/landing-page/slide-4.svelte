@@ -9,7 +9,7 @@
         new badge! <br><br> Enable Notifications:
     </p>
      <div class="toggle-setting">
-        <Toggle />
+        <Toggle id="intro_notifications_setting" checked={notificationsIntro} on:toggleChange={notificationsIntroSettings} />
       </div>
     </div>
 </div>
@@ -18,6 +18,8 @@
     import {
     Toggle
   } from 'framework7-svelte';
+
+  import {notificationsIntro, notificationsIntroSettings} from '../../js/notificationsIntro.js';
 </script>
 
 <style>
