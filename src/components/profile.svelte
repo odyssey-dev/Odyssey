@@ -67,4 +67,6 @@
   <script>
       import {userstate, userprofile} from '../js/store.js';
       import { Link, Tab, Tabs, tabLink } from 'framework7-svelte';
+
+      let userScore = "🧭 1,500"
   </script>
