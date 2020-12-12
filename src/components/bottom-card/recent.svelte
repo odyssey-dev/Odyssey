@@ -24,7 +24,7 @@
 
 .badges {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
 }
 
 h3 {
