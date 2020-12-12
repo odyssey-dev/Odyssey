@@ -11,13 +11,37 @@
   }
 
   // hide function
-  function hide() {
+  function hide(badgeName, badgeTimestamp) {
     shown = false;
+    title = badgeName;
+    date = badgeTimestamp;
+    console.log(date);
   }
 
   let title = "Badge Name";
-    let progress = 0;
-    let date = "00/00/0000";
+  let progress = 0;
+  let date = "00/00/0000";
+
+
+  import {db} from '../../../js/firebase.js';
+  import {userprofile} from '../../../js/store.js';
+
+  var allBadges = db.collection('Account').doc($userprofile.uid).collection('Achievement');
+  
+  if (localStorage.getItem('AllBadges') === null  ) {
+      var badgeData = [];
+      var badges = allBadges.orderBy("Timestamp").get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+          badgeData.push( doc.data()); 
+      });
+          console.log("All Badges Fetched:", "True");
+          localStorage.setItem('AllBadges', JSON.stringify(badgeData));
+      });
+  } else {
+      var profileStore = localStorage.getItem('AllBadges');
+      console.log("profileStore", profileStore);
+      var badgeData = JSON.parse(profileStore);
+  }
 
 </script>
 
@@ -34,23 +58,17 @@
       </span>
       <div class="badges-parent">
         <div class="badges">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge" >
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
-          <img on:click={() => hide()} class="need" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+
+          {#await badges}
+              loading..
+          {:then querySnapshot}
+                {#each badgeData as badge}
+                  <img on:click={() => hide(badge.Name, badge.Timestamp.seconds)} name="{badge.Name}" timestamp="{badge.Timestamp.seconds}" class="got" src="../../../static/logo-variations/color-icon.svg" alt="badge" >
+                {/each}
+          {:catch error}
+              <p style="color: red">{error.message}</p>
+          {/await}
+         
         </div>
       </div>
     </div>
