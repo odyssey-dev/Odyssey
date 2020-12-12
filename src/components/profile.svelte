@@ -4,8 +4,8 @@
         <!-- svelte-ignore a11y-img-redundant-alt -->
         <img class="profile-picture" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
         <div class="profile-data">
-          <div><p class="profile-name">{$userprofile.displayName}</p></div>
-          <div><p class="profile-name">🧭 1,500</p></div>
+          <p class="profile-name">{$userprofile.displayName}</p>
+          <p class="profile-name">{userScore}</p>
         </div>
       </div>
     </div>
