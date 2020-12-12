@@ -71,13 +71,15 @@ img {
 <script>
     import {db} from '../../js/firebase.js';
     import {userprofile} from '../../js/store.js';
-
+    
+    var recentBadge = db.collection('Account').doc($userprofile.uid).collection('Achievement');
+    
     if (localStorage.getItem('Badges') === null  ) {
         var badgeData = [];
-        var badges = db.collection('Account').doc($userprofile.uid).collection('Achievement').get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                badgeData.push(doc.data().Name); 
-            });
+        var badges = recentBadge.orderBy("Timestamp").limit(4).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            badgeData.push(doc.data().Name); 
+        });
             console.log("Profile Fetched:", "True");
             localStorage.setItem('Badges', badgeData);
         });
