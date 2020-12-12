@@ -14,11 +14,11 @@
       <LastUpdated></LastUpdated>
       <div class="hero-card-info"> 
           <span class="long-lat">
-            <img class="flag-icons" src="/static/svgs/location.svg" alt="flag">
+            <img class="flag-icons" src="/static/svgs/location.svg" alt="location ico">
             <div class="hero-card-text">{$latitude}, {$longitude}</div>
           </span>
           <span class="flag">
-            <img class="flag-icons" src="https://www.flaticon.com/svg/static/icons/svg/197/197485.svg" alt="flag">
+            <img class="flag-icons" src={countryIco} alt="flag ico">
             <div class="hero-card-text">{$country}</div>
           </span>
       </div>
@@ -48,6 +48,7 @@ import {
   } from 'framework7-svelte';
 import { network } from '../js/networkCheck.js';
 
+let countryIco
 
 
 locationCheck();
@@ -126,6 +127,19 @@ function locationBackup() {
         } else {
             shown = false;
         }
+    }
+
+    // This will need to be changed when we expand outside of the UK
+    if ($country === "England") {
+      countryIco = "/static/svgs/flags/gb-eng.svg";
+    } else if ($country === "Wales") {
+      countryIco = "/static/svgs/flags/gb-wls.svg";
+    } else if ($country === "Scotland") {
+      countryIco = "/static/svgs/flags/gb-sct.svg";
+    } else if ($country === "Northern Ireland") {
+      countryIco = "/static/svgs/flags/gb-ni.svg";
+    } else {
+      countryIco = "/static/svgs/flags/gb.svg";
     }
 
 </script>
