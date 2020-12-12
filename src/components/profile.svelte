@@ -1,4 +1,3 @@
-<Link tabLink="#tab-3" tabLinkActive>
 <div class="card-block">
     <div class="card-content">
       <div class="profile-block">
@@ -11,7 +10,6 @@
       </div>
     </div>
   </div>
-</Link>
 
   <style>
 
