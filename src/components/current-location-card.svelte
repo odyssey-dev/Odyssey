@@ -235,4 +235,11 @@ function locationBackup() {
     text-align: center;
     vertical-align: middle;
   }
+
+  @media only screen and (max-width: 350px) {
+  .hero-card-info {
+    font-size: 8pt;  
+  }
+}
+
 </style>
