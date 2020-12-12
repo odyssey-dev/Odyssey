@@ -16,7 +16,7 @@
   }
 
   let title = "Badge Name";
-    let progress = 0;
+    let progressValue = 0;
     let date = "00/00/0000";
 
 </script>
@@ -69,11 +69,17 @@
       </span>
 
       <div class="body">
-        <div class="badge"><img class="acq-badge" src="../../../static/logo-variations/color-icon.svg" alt="badge"></div>
+        <div class="badge">
+          {#if progressValue === 1}
+            <img class="acq-badge" src="../../../static/logo-variations/color-icon.svg" alt="badge"> 
+          {:else}
+            <img id="halfOpacity" class="acq-badge" src="../../../static/logo-variations/color-icon.svg" alt="badge">
+          {/if}
+        </div>
         <h1 class="badge-name">{title}</h1>
-        <progress id="lvl" value="{progress}" max="1" color="#000"></progress>
-        <p>{progress}/1</p>
-        {#if progress=1}
+        <progress id="lvl" value="{progressValue}" max="1" color="#000"></progress>
+        <p>{progressValue}/1</p>
+        {#if progressValue === 1}
             <p>Date Acquired: {date}</p>
         {/if}
       </div>
@@ -109,6 +115,10 @@
   width: 60%;
 }
 
+#halfOpacity {
+  opacity: 0.5;
+}
+
 .badge-name {
   font-size: 30pt;
   width: 100%;
@@ -119,6 +129,8 @@
 
 #lvl {
   width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .go-back {
