@@ -3,7 +3,6 @@ export var locationIntro;
 export async function locationIntroSettings() {
     
     locationIntro = document.querySelector('#intro_location_setting input').checked;
-    
     if (locationIntro == true) {
       if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -15,6 +14,7 @@ export async function locationIntroSettings() {
             console.log(error);
             console.log("Geolocation Error");
             localStorage.setItem('locationIntro', false);
+            document.querySelector('#intro_location_setting input').checked = false;
             locationIntro = false;
           },
           {
@@ -25,6 +25,7 @@ export async function locationIntroSettings() {
       } else { 
         console.log("Geolocation is not supported by this browser.");
         localStorage.setItem('locationIntro', false);
+        document.querySelector('#intro_location_setting input').checked = false;
         locationIntro = false;
       }
     }
