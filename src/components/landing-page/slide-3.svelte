@@ -38,8 +38,8 @@
       height: 40vh;
       max-height: 40vh;
       min-height: 40vh;
-      width:auto;
-      align-self: center;
+      width: 100%;
+      justify-content: center;
     }
   
     .swiper-info {
@@ -92,7 +92,7 @@
   
   /* smaller phones */
   
-  @media screen and (max-height: 500px) { 
+  @media screen and (max-width: 350px) { 
     .swiper-info p {
       font-size: 10pt;
     }
