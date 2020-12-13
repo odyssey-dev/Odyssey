@@ -59,11 +59,10 @@
     border-radius: 10px;
     overflow: hidden;
     margin: auto;
-    width: 94%;
-    min-width: 300px;
-    min-height: 80%;
+    width: 98%;
+    min-width: 98%;
+    min-height: 98vh;
     flex-direction: column;
-    max-width: 610px;
 }
 
 </style>

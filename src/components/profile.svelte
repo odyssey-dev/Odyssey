@@ -5,7 +5,7 @@
         <img class="profile-picture" src="{$userprofile.photoUrl}" alt="profile picture" width="50" height="50">
         <div class="profile-data">
           <p class="profile-name">{$userprofile.displayName}</p>
-          <p class="profile-name">{userScore}</p>
+          <p id="sub-name" class="profile-name">{userLvl} | 🧭 {userScore}xp</p>
         </div>
       </div>
     </div>
@@ -23,6 +23,12 @@
     margin: 2%;
     overflow: hidden;
   } */
+
+  #sub-name {
+    font-weight: 400;
+    color: #848483;
+    font-size: 12pt;
+  }
 
   .card-block {
     width: 100%;
@@ -60,6 +66,12 @@
     font-weight: 500;
   }
 
+  @media only screen and (max-width: 350px) {
+    #sub-name {
+    font-size: 14px;  
+  }
+}
+
 
   </style>
 
@@ -67,5 +79,6 @@
       import {userstate, userprofile} from '../js/store.js';
       import { Link, Tab, Tabs, tabLink } from 'framework7-svelte';
 
-      let userScore = "🧭 1,500"
+      let userScore = 1000
+      let userLvl = 1
   </script>
