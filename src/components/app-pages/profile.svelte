@@ -34,7 +34,7 @@
         </span>
         <span class="activity">
           <p>Badges Acquired</p>
-          <p>{badges}</p>
+          <p>{badgesAcquired}</p>
         </span>
         <span class="activity">
           <p>Badges Completed</p>
@@ -74,12 +74,20 @@
       <h3>Recent Badges</h3>
       <div class="recent-badges-container">
         <span class="badges-cont">
-          <img src="./static/logo-variations/color-icon.svg" alt="badge">
-          <img src="./static/logo-variations/color-icon.svg" alt="badge">
-          <img src="./static/logo-variations/color-icon.svg" alt="badge">
-          <img src="./static/logo-variations/color-icon.svg" alt="badge">
+
+          {#await badges}
+            loading..
+            {:then querySnapshot}
+                {#each badgeData as badge}
+                    <img name="{badge.Name}" src="./static/logo-variations/color-icon.svg" alt="badge">
+                {/each}
+            {:catch error}
+                <p style="color: red">{error.message}</p>
+          {/await}
         </span>
-        <p>See More Badges {'>'}</p>
+       
+        <p> <Link tabLink="#tab-2" text="See More Badges >" /></p>
+
       </div>
     </div>
   </div>
@@ -149,6 +157,7 @@
 
   .badges-cont {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-around;
   }
 
@@ -165,6 +174,25 @@
 
 <script>
     import AppPage from "../app-pages/app-pages";
+    import {Link } from 'framework7-svelte';
+    import {db} from '../../js/firebase.js';
+    import {userprofile} from '../../js/store.js';
+
+    var recentBadge = db.collection('Account').doc($userprofile.uid).collection('Achievement');
+    
+    if (localStorage.getItem('RecentBadges') === null  ) {
+        var badgeData = [];
+        var badges = recentBadge.orderBy("Timestamp").limit(4).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            badgeData.push(doc.data()); 
+        });
+            console.log("Recent Badge Fetched:", "True");
+            localStorage.setItem('RecentBadges', JSON.stringify(badgeData));
+        });
+    } else {
+        var profileStore = localStorage.getItem('RecentBadges');
+        var badgeData = JSON.parse(profileStore);
+    }
 
     let progress = 0;
 
@@ -174,7 +202,7 @@
     let countries = 0;
     let counties = 0;
     let districts = 0;
-    let badges = 0;
+    let badgesAcquired = 0;
     let badgesComplete = 0;
     let totalXP = 0;
     let startDate = "00/00/0000";

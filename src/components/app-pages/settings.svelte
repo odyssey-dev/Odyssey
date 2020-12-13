@@ -210,8 +210,6 @@ loading..
     }
 
     export async function updateSettings() {
-
-      
         sound = document.querySelector('#sound_setting input').checked;
         vibration = document.querySelector('#vibration_setting input').checked;
         location = document.querySelector('#location_setting input').checked;
@@ -221,7 +219,6 @@ loading..
         theme = document.querySelector('#theme_setting input').checked;
         newBadge = document.querySelector('#new_badge_setting input').checked;
         partyMode = document.querySelector('#party_mode_setting input').checked;
-        
             var updateprofileSettings = { 
                 'Sound': sound,
                 'Vibration': vibration,
@@ -234,10 +231,7 @@ loading..
                 'partyMode': partyMode
             };
         console.log(updateprofileSettings);
-
         localStorage.setItem('Settings', JSON.stringify(updateprofileSettings));
-        // localStorage.setItem('Settings', JSON.stringify(profileSettings));
-
         const cityRef = db.collection('Account').doc(user.uid).collection('Profile').doc('Settings');
         const doc = await cityRef.get();
         if (!doc.exists) {
@@ -248,120 +242,7 @@ loading..
             const res = await cityRef.set(updateprofileSettings, { merge: true });
             console.log('Document data:', doc.data());
         }
-
     }
-
-
-    // export async function updateSettings(profileSettings) {
-
-    //     localStorage.setItem('Settings', profileSettings);
-
-    //     var profileStored = localStorage.getItem('Profile');
-
-    //     var profile = JSON.parse(profileStored);
-    //     console.log('Profile Settings: ', profile);
-
-    //     console.log(profile.uid);
-
-    //     const cityRef = db.collection('Account').doc(profile.uid).collection('Profile').doc('Settings');
-    //     const doc = await cityRef.get();
-    //     if (!doc.exists) {
-    //         console.log('No such document!');
-            
-    //         const res = await cityRef.set(profileSettings, { merge: true });
-            
-    //     } else {
-    //         const res = await cityRef.set(profileSettings);
-    //         console.log('Document data:', doc.data());
-    //     }
-    // }
-
-    // var soundSetting = true;
-    // var vibrationSetting = true;
-    // var locationSetting = true ;
-    // var animationSetting = true ;
-    // var monthlyChallengeSetting = true;
-    // var emailSetting = true;
-    // var themeSetting = true;
-    // var newBadgeSetting = true;
-    // var partyModeSetting = true;
-
-    // createSettings();
-
-
-    // var profileSettings = { 
-    //                         'Sound': soundSetting,
-    //                         'Vibration': vibrationSetting,
-    //                         'Location': locationSetting, 
-    //                         'Animation': animationSetting, 
-    //                         'MonthlyChallenge': monthlyChallengeSetting, 
-    //                         'Email': emailSetting, 
-    //                         'Theme': themeSetting, 
-    //                         'newBadge': newBadgeSetting, 
-    //                         'partyMode': partyModeSetting
-    //                     };
-
-    //                     console.log(profileSettings.Sound);
-  
-
-
-
-    // export async function getSettings() {
-
-    //     var profileStored = localStorage.getItem('Profile');
-
-    //     var profile = JSON.parse(profileStored);
-
-    //     const cityRef = db.collection('Account').doc(profile.uid).collection('Profile').doc('Settings');
-    //     const doc = await cityRef.get();
-    //     if (!doc.exists) {
-    //         console.log('No such document!');
-
-    //         const res = await cityRef.set(profileSettings, { merge: true });
-            
-    //     } else {
-    //         console.log('Document data:', doc.data());
-    //         return doc.data();
-    //     }
-    // }
-
-
-    // export async function updateSettings(profileSettings) {
-
-    //     var profileStored = localStorage.getItem('Profile');
-
-    //     var profile = JSON.parse(profileStored);
-    //     console.log('Profile Settings: ', profile);
-
-    //     console.log(profile.uid);
-
-    //     const cityRef = db.collection('Account').doc(profile.uid).collection('Profile').doc('Settings');
-    //     const doc = await cityRef.get();
-    //     if (!doc.exists) {
-    //         console.log('No such document!');
-            
-    //         const res = await cityRef.set(profileSettings, { merge: true });
-            
-    //     } else {
-    //         const res = await cityRef.set(profileSettings);
-    //         console.log('Document data:', doc.data());
-    //     }
-    // }
-
-
-
-
-    // export function getLocalSettings() {
-
-    //     // Retrieve the object from storage
-    //     var profileSettings = localStorage.getItem('Settings');
-
-    //     console.log('Profile Settings: ', JSON.parse(profileSettings));
-    // }
-
-    // createSettings();
-    // getLocalSettings();
                         
   import Logout from "../logout.svelte";
-  import Top from '../profile.svelte';
 </script>

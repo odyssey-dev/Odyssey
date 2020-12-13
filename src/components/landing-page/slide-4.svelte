@@ -9,7 +9,7 @@
         new badge! <br><br> Enable Notifications:
     </p>
      <div class="toggle-setting">
-        <Toggle />
+        <Toggle id="intro_notifications_setting" checked={notificationsIntro} on:toggleChange={notificationsIntroSettings} />
       </div>
     </div>
 </div>
@@ -18,6 +18,8 @@
     import {
     Toggle
   } from 'framework7-svelte';
+
+  import {notificationsIntro, notificationsIntroSettings} from '../../js/notificationsIntro.js';
 </script>
 
 <style>
@@ -39,8 +41,8 @@
       height: 40vh;
       max-height: 40vh;
       min-height: 40vh;
-      width:auto;
-      align-self: center;
+      width: 100%;
+      justify-content: center;
     }
   
     .swiper-info {
@@ -93,7 +95,7 @@
   
   /* smaller phones */
   
-  @media screen and (max-height: 500px) { 
+  @media screen and (max-width: 350px) { 
     .swiper-info p {
       font-size: 10pt;
     }

@@ -31,13 +31,12 @@
     .modal {
         display: flex;
         background-color: #fff;
-        width: 60%;
-        height: 30%;
-        padding: 10%;
-        margin: 15% auto;
+        padding: 10% 20%;
+        margin: auto;
         border-radius: 8px;
         align-self: center;
         justify-content: center;
+        align-content: center;
         z-index: 12;
     }
     .modal-closer {
@@ -46,6 +45,7 @@
         display: flex;
         position: absolute;
     }
+
 
     slot {
         max-height: 100%;

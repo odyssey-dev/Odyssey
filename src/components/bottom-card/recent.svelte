@@ -9,7 +9,7 @@
                     {#each badgeData as badge}
                     <div>
                         <img src="./static/logo-variations/color-icon.svg" alt="badge">
-                        <span>{badge}</span>
+                        <span>{badge.Name}</span>
                     </div>  
                     {/each}
                 </span>
@@ -24,7 +24,7 @@
 
 .badges {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
 }
 
 h3 {
@@ -72,18 +72,20 @@ img {
     import {db} from '../../js/firebase.js';
     import {userprofile} from '../../js/store.js';
 
-    if (localStorage.getItem('Badges') === null  ) {
+    var recentBadge = db.collection('Account').doc($userprofile.uid).collection('Achievement');
+    
+    if (localStorage.getItem('RecentBadges') === null  ) {
         var badgeData = [];
-        var badges = db.collection('Account').doc($userprofile.uid).collection('Achievement').get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                badgeData.push(doc.data().Name); 
-            });
-            console.log("Profile Fetched:", "True");
-            localStorage.setItem('Badges', badgeData);
+        var badges = recentBadge.orderBy("Timestamp").limit(4).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            badgeData.push(doc.data()); 
+        });
+            console.log("Recent Badge Fetched:", "True");
+            localStorage.setItem('RecentBadges', JSON.stringify(badgeData));
         });
     } else {
-        var profileStore = localStorage.getItem('Badges');
-        var badgeData = profileStore.split(',');
+        var profileStore = localStorage.getItem('RecentBadges');
+        var badgeData = JSON.parse(profileStore);
     }
     
 </script>
