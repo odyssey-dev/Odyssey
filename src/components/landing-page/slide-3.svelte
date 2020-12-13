@@ -8,7 +8,7 @@
         <b>never</b> sell your location data. <br><br> Enable Location:
         </p>
         <div class="toggle-setting">
-          <Toggle />
+          <Toggle id="intro_location_setting" checked={locationIntro} on:toggleChange={locationIntroSettings} />
         </div>
     </div>
 </div>
@@ -16,7 +16,10 @@
 <script>
     import {
     Toggle
-  } from 'framework7-svelte';
+  } from 'framework7-svelte';  
+
+  
+  import {locationIntro, locationIntroSettings} from '../../js/locationIntro.js';
 </script>
 
 <style>
